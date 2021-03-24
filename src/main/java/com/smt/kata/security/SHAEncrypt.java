@@ -1,7 +1,11 @@
 package com.smt.kata.security;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 // JDK 11.x
 import java.security.NoSuchAlgorithmException;
+
+
 
 /****************************************************************************
  * <b>Title:</b> SHAEncrypt.java
@@ -24,12 +28,13 @@ import java.security.NoSuchAlgorithmException;
  * 
  ****************************************************************************/
 public class SHAEncrypt {
-
+	String  hashDigestType;
 	/**
 	 * Default constructor.  Assigns SHA-256
 	 */
 	public SHAEncrypt() {
 		super();
+		this.hashDigestType = "SHA-256";
 	}
 	
 	/**
@@ -38,6 +43,9 @@ public class SHAEncrypt {
 	 */
 	public SHAEncrypt(String hashDigestType) {
 		super();
+		this.hashDigestType = hashDigestType;
+
+		
 	}
 
 	/**
@@ -48,6 +56,31 @@ public class SHAEncrypt {
 	 * @throws InvalidDataException
 	 */
 	public String encrypt(String val) throws NoSuchAlgorithmException {
-		return val;
+		
+
+		if (val.length() == 0) val = "";
+	
+		try {
+			MessageDigest digest = MessageDigest.getInstance(hashDigestType);
+			byte[] encodedhash = digest.digest(val.getBytes(StandardCharsets.UTF_8));
+			return this.bytesToHex(encodedhash);
+		} catch (Exception e) {
+			throw new NoSuchAlgorithmException(e);
+		}
+
+	} 
+	
+	private String bytesToHex(byte[] hash) {
+	    StringBuilder hexString = new StringBuilder(2 * hash.length);
+	    for (int i = 0; i < hash.length; i++) {
+	        String hex = Integer.toHexString(0xff & hash[i]);
+	        if(hex.length() == 1) {
+	            hexString.append('0');
+	        }
+	        hexString.append(hex);
+	    }
+	    return hexString.toString();
 	}
+	
+	
 }
