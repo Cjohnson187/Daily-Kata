@@ -1,5 +1,10 @@
 package com.smt.kata.distance;
 
+import static org.mockito.Mockito.spy;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title:</b> LexigraphicOrdering.java
  * <b>Project:</b> SMT-Kata
@@ -55,6 +60,77 @@ public class LexigraphicOrdering {
 	 * @return matrix of data that is properly ordered
 	 */
 	public char[][] orderData(char[][] data) {
-		return data;
+		List<String> rows = new ArrayList();
+		List<String> cols = new ArrayList();
+		// get rows
+		if (data.length == 0 || data[0].length == 1) {
+			return new char[0][0];
+		}
+		// get rows
+		for (int i = 0 ; i < data.length ; i++) {	
+			String row = "";
+			for (int j = 0 ; j < data.length ; j++) {
+				System.out.println("rows = " + data[i][j]);
+				row += data[i][j];
+			}
+			rows.add(row);
+		}
+	
+		
+		// get cols
+		for (int i = 0 ; i < data.length ; i++) {	
+			String col = "";
+			for (int j = 0 ; j < data.length ; j++) {
+				System.out.println("cols = " + data[j][i]);
+				col += data[j][i];
+			}
+			cols.add(col);
+		}
+		
+		// check order
+		
+
+		for (int i= 0; i < rows.size(); i++  ) { 
+			int prev = 0;
+			for (char current : rows.get(i).toCharArray()) {
+		        if (current < prev) {
+		        	rows.remove(i);
+		        	i--;
+		        	break;
+		        	
+		        }
+		        else prev = current;
+		    }
+
+		}
+		
+		for (int i= 0; i < cols.size(); i++  ) { 
+			int prev = 0;
+			for (char current : cols.get(i).toCharArray()) {
+		        if (current < prev) {
+		        	cols.remove(i);
+		        	i--;
+		        	break;
+		        	
+		        }
+		        else prev = current;
+		    }
+			
+		}
+		System.out.println("cols size = " + cols.size());
+		System.out.println("rows size = " + rows.size());
+		
+		char[][] end = new char[rows.size()][cols.size()];
+		
+		// get rows
+		for (int i = 0 ; i < data.length ; i++) {	
+			end[i] = rows.get(i).toCharArray();
+		}
+	
+
+		
+		return end;
 	}
+	
+
 }
