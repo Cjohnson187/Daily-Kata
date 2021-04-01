@@ -38,6 +38,18 @@ public class SumOfMultiples {
 	 * @return Sum of th multiples
 	 */
 	public int calculate(int maxValue, Integer...factors) {
-		return maxValue;
+		int sum = 0;
+		
+		
+		for (int i = 1; i < maxValue; i++) {
+			for(int factor : factors) {
+                if (i % factor == 0) {
+                    sum += i;
+                    break;
+                }
+            }
+			
+		}
+		return sum;
 	}
 }
