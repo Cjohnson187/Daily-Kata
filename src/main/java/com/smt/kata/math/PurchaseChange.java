@@ -1,7 +1,12 @@
 package com.smt.kata.math;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Iterator;
 // JDK 11.x
 import java.util.Map;
+
+
 
 /****************************************************************************
  * <b>Title:</b> PurchaseChange.java
@@ -31,7 +36,14 @@ public class PurchaseChange {
 	 * Currency enum to track money types
 	 */
 	public enum Currency {
-		TWENTY_DOLLAR, TEN_DOLLAR, FIVE_DOLLAR, DOLLAR, QUARTER, DIME, NICKEL, PENNY;
+		TWENTY_DOLLAR(2000), TEN_DOLLAR(1000), FIVE_DOLLAR(500), DOLLAR(100), QUARTER(25), DIME(10), NICKEL(5), PENNY(1);
+		
+		public Integer value;
+		
+        Currency(Integer d) {
+            this.value = d;
+        }
+	
 	}
 	
 	/**
@@ -40,8 +52,22 @@ public class PurchaseChange {
 	 * @param moneyPaid The amount given to pay for the purchase
 	 * @return Map with currencies and amounts
 	 */
-	public Map<Currency, Integer> calculate(double purchaseAmount, double moneyPaid) {
-		
-		return null;
+	public Map<Currency, Integer> calculate(Double purchaseAmount, Double moneyPaid) {
+		Map<Currency, Integer> types = new HashMap<>();
+		if (moneyPaid - purchaseAmount < 0) return types;
+		int change = Integer.parseInt( String.valueOf(moneyPaid - purchaseAmount).replace(".", ""));	
+      
+        for (Currency cur : Currency.values()) {
+        	if (change < cur.value) continue;
+        	else {
+        		int counter = 0;
+        		while(change >= cur.value ){
+        			change -= cur.value;
+        			counter++;
+        		}
+        		types.put(cur, counter);
+        	}
+		}
+		return types;
 	}
 }
