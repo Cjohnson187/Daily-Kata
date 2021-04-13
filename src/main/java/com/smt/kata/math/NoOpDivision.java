@@ -34,7 +34,33 @@ public class NoOpDivision {
 	 * @return rounded number.  Zero if dividend or divisor is zero
 	 */
 	public int divide(int dividend, int divisor) {
-		return dividend + divisor;
+		int quotient = 0;
+		int remainder = dividend;
+		if (dividend > 0 ) {
+			while (remainder >=divisor ) {
+				remainder -= divisor;
+				quotient ++;
+				
+			}
+
+		} else {
+			while (remainder < Math.abs(divisor) ) {
+				remainder += Math.abs(divisor);
+				quotient ++;
+				
+			}
+			if (divisor > 0) {
+				quotient -= quotient+ quotient -1; 
+			}
+			else {
+				quotient-=1;
+				
+			}
+
+		}
+		
+		
+		return quotient;
 	}
 
 }
