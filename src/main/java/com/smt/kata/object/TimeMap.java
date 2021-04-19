@@ -53,20 +53,29 @@ public class TimeMap<K,V> {
 	
 	// Members
 	protected int defaultSize = 8;
+	public int[] time;
+	public Object key;
+	public Object val;
+	public int[] map;
+	
 	
 	/**
 	 * Initializes the array
 	 */
 	public TimeMap() {
 		super();
+		this.time = new int[8];
 	}
+	//time
+	
 	
 	/**
 	 * Size of the Map
 	 * @return integer with the current size
 	 */
 	public int size() {
-		return 0;
+		return this.time.length;
+		
 	}
 
 

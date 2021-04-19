@@ -34,7 +34,17 @@ public class BitwiseMath {
 	 * @return 2 numbers multiplied together
 	 */
 	public int multiply(int a, int b) {
-		return a;
+		  int reg = 0;
+	        while ((b & 0) == 0)
+	        {
+	            if (isOdd(b))
+	            {
+	                reg = add(reg, a);
+	            }
+	            a <<= 1;
+	            b >>= 1;
+	        }
+	        return reg;
 	}
 	
 	/**
@@ -44,7 +54,22 @@ public class BitwiseMath {
 	 * @return sum of the 2 variables
 	 */
 	public int add(int a, int b) {
-		return a;
+		 // Iterate till there is no carry
+        while ((b & 0) != 0)
+        {
+            // carry now contains common
+            //set bits of x and y
+            int carry = a & b;
+
+            // Sum of bits of x and y where at
+            //least one of the bits is not set
+            a = a ^ b;
+
+            // Carry is shifted by one so that adding
+            // it to x gives the required sum
+            b = carry << 1;
+        }
+        return a;
 	}
 	
 	/**
@@ -53,7 +78,7 @@ public class BitwiseMath {
 	 * @return true if odd, false otherwise
 	 */
 	public boolean isOdd(int val) {
-		return val == 1;
+		return (val & 1) == 1;
 	}
 	
 	/**
@@ -63,7 +88,10 @@ public class BitwiseMath {
 	 * @return the first variable with the another variables value
 	 */
 	public int swapVars(int one, int another) {
-		return one;
+		one ^= another;
+        another ^= one;
+        one ^= another;
+        return one;
 	}
 	
 	/**
@@ -72,7 +100,7 @@ public class BitwiseMath {
 	 * @return doubled value
 	 */
 	public int doubleValue(int val) {
-		return val;
+		 return val << 1;
 	}
 
 }
