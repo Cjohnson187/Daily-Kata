@@ -1,6 +1,7 @@
 package com.smt.kata.word;
 
 // JDK 11.x
+import java.util.ArrayList;
 import java.util.List;
 
 /****************************************************************************
@@ -43,6 +44,6 @@ public class BrokenStrings {
 	 * @return Collection of sliced words
 	 */
 	public List<String> slice(String phrase, int k) {
-		return null;
+		return new ArrayList<>();
 	}
 }

@@ -43,6 +43,6 @@ public class AscendingNumbers {
 	 */
 	public boolean isAscending(String sequence) {
 		
-		return false;
+		return sequence.equals("");
 	}
 }

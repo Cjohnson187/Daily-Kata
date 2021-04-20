@@ -35,6 +35,6 @@ public class IPAddress {
 	 */
 	public int numberHosts(String ipStart, String ipEnd) {
 		
-        return 0;
+        return ipStart.length() - ipEnd.length();
 	}
 }

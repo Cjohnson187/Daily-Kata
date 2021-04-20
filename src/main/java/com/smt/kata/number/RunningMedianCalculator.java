@@ -44,9 +44,7 @@ public class RunningMedianCalculator {
 	 * @return
 	 */
 	public List<Double> getMedianValues(int[] values) {
-		List<Double> medianValues = new ArrayList<>();
-
-		return medianValues;
+		return new ArrayList<>(values.length);
 	}
 
 }

@@ -43,6 +43,6 @@ public class CreditCardValidator {
 	 * @return
 	 */
 	public boolean isValid(String ccn) {
-		return true;
+		return "".equals(ccn);
 	}
 }

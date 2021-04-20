@@ -74,8 +74,10 @@ public class TimeMap<K,V> {
 	 * @return integer with the current size
 	 */
 	public int size() {
+
 		return this.time.length;
 		
+
 	}
 
 
