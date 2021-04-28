@@ -40,6 +40,21 @@ public class HappyNumber {
 	 * @return True if the number is happy.  False otherwise
 	 */
 	public boolean isHappy(int val) {
-		return val == 0;
+		if (val <= 0 || val ==4) return false;
+		if (val == 1) return true;
+		int sum = 0;
+		for (Character c: (val+"").toCharArray()) 
+			sum += Math.pow(c-'0', 2);
+
+		return isHappy(sum);
+	}
+	public boolean isHappy1(int val) {
+		if (val <= 0 || val ==4) return false;
+		if (val == 1) return true;
+		int sum = 0;
+		for (Character c: (val+"").toCharArray()) 
+			sum += Math.pow(c-'0', 2);
+
+		return isHappy1(for (Character c: (val+"").toCharArray()));
 	}
 }
