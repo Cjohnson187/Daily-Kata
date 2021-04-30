@@ -48,13 +48,13 @@ public class HappyNumber {
 
 		return isHappy(sum);
 	}
-	public boolean isHappy1(int val) {
-		if (val <= 0 || val ==4) return false;
-		if (val == 1) return true;
-		int sum = 0;
-		for (Character c: (val+"").toCharArray()) 
-			sum += Math.pow(c-'0', 2);
-
-		return isHappy1(for (Character c: (val+"").toCharArray()));
-	}
+//	public boolean isHappy1(int val) {
+//		if (val <= 0 || val ==4) return false;
+//		if (val == 1) return true;
+//		int sum = 0;
+//		for (Character c: (val+"").toCharArray()) 
+//			sum += Math.pow(c-'0', 2);
+//
+//		return isHappy1(for (Character c: (val+"").toCharArray()));
+//	}
 }

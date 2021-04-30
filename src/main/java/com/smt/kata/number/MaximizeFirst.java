@@ -1,5 +1,11 @@
 package com.smt.kata.number;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
+import com.siliconmtn.data.format.NumberUtil;
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title:</b> MaximizeFirst.java
  * <b>Project:</b> SMT-Kata
@@ -41,7 +47,28 @@ public class MaximizeFirst {
 	 * @return Largest swapped number possible
 	 */
 	public int maxPossible(int first, int second) {
-		return first + second;
+
+		char[] one = (first+"").toCharArray();
+		char[] two = (second+"").toCharArray();
+		char highest = 0;
+		int loc = 0;
+		for (int i = 0; i <  one.length  ; i++) {
+			for (int j = 0; j < two.length  ; j++) {
+				if(two[j]>highest) {
+					highest = two[j];
+					loc = j;
+				}	
+			}
+			if (highest > one[i]) {
+				one[i] = highest;
+				two[loc] = 0;
+			}
+		}
+		String s = "";
+		for (int i = 0; i < one.length; i++) 
+			s+=one[i];
+			
+		return NumberUtil.toInt(s);
 	}
 
 }
