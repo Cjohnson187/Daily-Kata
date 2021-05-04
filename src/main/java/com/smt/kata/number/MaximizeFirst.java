@@ -1,10 +1,9 @@
 package com.smt.kata.number;
 
-import java.util.Arrays;
-import java.util.Iterator;
+
 
 import com.siliconmtn.data.format.NumberUtil;
-import com.siliconmtn.data.text.StringUtil;
+
 
 /****************************************************************************
  * <b>Title:</b> MaximizeFirst.java
