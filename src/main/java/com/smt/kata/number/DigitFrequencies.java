@@ -1,5 +1,8 @@
 package com.smt.kata.number;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 /****************************************************************************
  * <b>Title</b>: DigitFrequencies.java
  * <b>Project</b>: SMT-Kata
@@ -7,7 +10,7 @@ package com.smt.kata.number;
  * 
  * Given a positive integer n, find the frequencies of the digits from 0 to 9 of the number 2n.
  * 
- * Here is an example for n=10. The digits of 210=1024 are (1,0,2,4). The 
+ * Here is an example for n=10. The digits of 2^10=1024 are (1,0,2,4). The 
  * frequencies of the digits 0, 1, 2, …, 9 are 1, 1, 1, 0, 1, 0, 0, 0, 0, 0:
  * 
  * DigitFrequenciesInThePowersOfTwo[10]
@@ -40,6 +43,19 @@ public class DigitFrequencies {
 	 * @return int array with 10 elements containing a count of each digit
 	 */
 	public int[] calculate(int pow) {
-		return null;
+		int[] ret = new int[10];
+		String num = "";
+		if(pow < 0) num = ""+Math.pow(2, pow);
+		else {
+			BigDecimal  a = BigDecimal.valueOf(2).pow(pow);
+			num = a.toString();
+		}
+		
+		for (int i = 0; i < (num.length()); i++) {
+			if (num.charAt(i) == '.') continue;
+			ret[num.charAt(i)-'0'] = ret[num.charAt(i)-'0']+1;
+		}
+		
+		return ret;
 	}
 }
