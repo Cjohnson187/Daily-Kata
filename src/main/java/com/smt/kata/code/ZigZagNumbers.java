@@ -37,6 +37,20 @@ public class ZigZagNumbers {
 	 * @return True if a zig zgag array.  False otherwise
 	 */
 	public boolean isZigZag(int[] source) {
+		if (source == null || source.length < 2 ) return false;
+		int prev = source[0];
+		boolean up = false;
+		for (int i = 1;  i < source.length; i++) {
+			if (source[i] > prev && up != true) {
+				up = true;
+				prev = source[i];
+			}
+			else if (source[i] < prev && up != false) {
+				up = false;
+				prev = source[i];
+			}
+			else return false;
+		}
 		return true;
 	}
 }
