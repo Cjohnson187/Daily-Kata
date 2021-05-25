@@ -30,15 +30,22 @@ package com.smt.kata.object;
  * @since May 24, 2021
  * @updates:
  ****************************************************************************/
+@FunctionalInterface
+interface  FuncInterface<T> {
+	T fun(T t);
+}
+
+
 public class LambdaExpressions {
-	
 	/**
 	 * Determines if the provided int is odd or not
 	 * @param value Value to evaluate for odd 
 	 * @return True if the value is odd.  False otherwise
 	 */
 	public boolean isOdd(int value) {
-		return value == 0;
+		FuncInterface fobj = (b) -> value%2 != 0;
+		
+		return (boolean) fobj.fun(value);
 	}
 	
 	/**
@@ -47,7 +54,8 @@ public class LambdaExpressions {
 	 * @return True if the value is a palindrome.  False otherwise
 	 */
 	public boolean isPalindrome(String value) { 
-		return value == null;
+		FuncInterface fobj = (s) -> value.equalsIgnoreCase(new StringBuilder(value).reverse().toString()) ;
+		return (boolean) fobj.fun(value);
 	}
 	
 	/**
@@ -56,7 +64,13 @@ public class LambdaExpressions {
 	 * @return True if the value is a prime number.  False otherwise
 	 */
 	public boolean isPrime(int value) { 
-		return value == 0;
+		
+		FuncInterface fobj = (n) -> {
+			for(int x = 2; x < (int)n; x++)
+                if((int)n % x == 0)
+                    return false;
+            return true;
+		};
+		return (boolean) fobj.fun(value);
 	}
-
 }
