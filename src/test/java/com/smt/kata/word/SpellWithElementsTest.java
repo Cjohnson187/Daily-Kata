@@ -50,6 +50,9 @@ class SpellWithElementsTest {
 	@Test
 	void testFindPatternsPolice() throws Exception {
 		List<List<String>> res = swe.findPatterns("police");
+		for (List<String> row : res) {
+			System.out.println(" row " + row.size() +"  "+ row.toString());
+		}
 		assertEquals(2, res.size());
 		
 		for (List<String> row : res) {

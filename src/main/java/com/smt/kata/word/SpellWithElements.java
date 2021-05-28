@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.siliconmtn.data.text.StringUtil;
+
+
 /****************************************************************************
  * <b>Title</b>: SpellWithElements.java
  * <b>Project</b>: SMT-Kata
@@ -61,7 +64,43 @@ public class SpellWithElements {
 	 * @return Collection of lists of the matching patterns
 	 */
 	public List<List<String>> findPatterns(String source) {
-		return new ArrayList<>();
+		List<List<String>> results = new ArrayList<>();
+		List<String> combination = new ArrayList<>();
+		if (StringUtil.isEmpty(source)) return results;
+		
+		checkNext(source, results, combination, source);
+		
+		return results;
+	}
+	
+	public void checkNext(String source, List<List<String>> results, List<String> combination,String check)  {
+		for (Map.Entry<String, String> els : elements.entrySet()) {
+			
+			if (els.getKey().length() <= source.length()) {
+				System.out.println("source = " + source);
+				String sub = source.substring(0, els.getKey().length());
+				if (sub.equalsIgnoreCase(els.getKey()) && !combination.contains(sub)) {
+					combination.add(els.getKey());
+					source = source.substring(els.getKey().length());
+					checkNext(source, results, combination, check);
+				}
+			}			
+		}
+	
+		if (source.length() < 1 && !combination.isEmpty()) {
+			System.out.println("combo to string = " + combination.toString());
+			if (isFull(combination, check))
+			results.add(new ArrayList<>(combination));
+			combination.clear();
+		}
+	}
+	public boolean isFull(List<String> found, String check) {
+		String word = ""; 
+		for (String s: found) {
+			word += s; 
+		}
+		
+		return check.equalsIgnoreCase(word);
 	}
 	
 	/**
