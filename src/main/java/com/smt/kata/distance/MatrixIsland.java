@@ -33,54 +33,38 @@ package com.smt.kata.distance;
  * 
  ****************************************************************************/
 public class MatrixIsland {
-	// Members
-	protected int[][] matrix;
-	protected boolean hasIslands = false;
-	protected int numberIslands = 0;
-	protected int nodesInLargestIsland = 0;
-	
-	/**
-	 * Assigns the matrix
-	 */
-	public MatrixIsland(int[][] matrix) throws NullPointerException {
-		super();
-	}
-	
-	/**
-	 * Finds the largest island and returns the number of nodes in that island
-	 * @return Number of nodes in the largest island
-	 */
-	protected void findLargest() {
-		/** Do something here **/
-	}
-	
-	/**
-	 * Calculates if there are any islands and how many.  Updates the member 
-	 * variables when complete
-	 */
-	protected void countIslands() {
-		/** Do something here **/
-	}
+    // Members
+    protected int[][] matrix;
+    protected boolean hasIslands = false;
+    protected int numberIslands = 0;
+    protected int nodesInLargestIsland = 0;
+    
+    /**
+     * Assigns the matrix
+     */
+    public MatrixIsland(int[][] matrix) throws NullPointerException {
+        super();
+    }
 
-	/**
-	 * @return the hasIslands
-	 */
-	public boolean hasIslands() {
-		return hasIslands;
-	}
+    /**
+     * @return the hasIslands
+     */
+    public boolean hasIslands() {
+        return this.numberIslands > 0;
+    }
 
-	/**
-	 * @return the numberIslands
-	 */
-	public int getNumberIslands() {
-		return numberIslands;
-	}
+    /**
+     * @return the numberIslands
+     */
+    public int getNumberIslands() {
+        return numberIslands;
+    }
 
-	/**
-	 * @return the nodesInLargestIsland
-	 */
-	public int getNodesInLargestIsland() {
-		return nodesInLargestIsland;
-	}
+    /**
+     * @return the nodesInLargestIsland
+     */
+    public int getNodesInLargestIsland() {
+        return nodesInLargestIsland;
+    }
 
 }
