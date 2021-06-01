@@ -87,11 +87,11 @@ public class SpellWithElements {
 			}			
 		}
 	
-		if (source.length() < 1 && !combination.isEmpty()) {
+		if (source.length() < 1 ) {
 			System.out.println("combo to string = " + combination.toString());
 			if (isFull(combination, check))
 			results.add(new ArrayList<>(combination));
-			combination.clear();
+			//combination.clear();
 		}
 	}
 	public boolean isFull(List<String> found, String check) {
@@ -99,7 +99,6 @@ public class SpellWithElements {
 		for (String s: found) {
 			word += s; 
 		}
-		
 		return check.equalsIgnoreCase(word);
 	}
 	
