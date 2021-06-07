@@ -1,5 +1,6 @@
 package com.smt.kata.math;
 
+
 /****************************************************************************
  * <b>Title</b>: LunarMathematics.java 
  * <b>Project</b>: SMT-Kata 
@@ -43,7 +44,31 @@ public class LunarMathematics {
 	 * @return Total of the lunar math addition of the provided 2 numbers
 	 */
 	public int add(int firstNumber, int secondNumber) {
-		return firstNumber + secondNumber;
+		firstNumber = Math.abs(firstNumber);
+		secondNumber = Math.abs(secondNumber);
+		
+		StringBuilder ret = new StringBuilder();
+		int i, j = 0;
+ 		if ((firstNumber+"").length() > (secondNumber+"").length()) {
+ 			i = firstNumber;
+ 			j = secondNumber;
+ 		} else {
+ 			i = secondNumber;
+ 			j = firstNumber;
+ 		}
+		while (i > 0) {
+			if (i%10 >= j%10) {
+				ret.append(i%10);
+				i = i/10;
+				j = j/10;
+			}
+			else {
+				ret.append(j%10);
+				i = i/10;
+				j = j/10;
+			}
+		}
+		return Integer.valueOf(ret.reverse().toString());
 	}
 
 }
