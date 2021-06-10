@@ -90,4 +90,12 @@ class PasswordEvaluatorTest {
 	void testIsValidPasswordNoSpecial() throws Exception {
 		assertFalse(pe.isValidPassword("HelloWorld1", 10));
 	}
+	
+    /**
+     * Test method for {@link com.smt.kata.security.PasswordEvaluator#isValidPassword(java.lang.String, int)}.
+     */
+    @Test
+    void testIsValidPasswordEmpty2() throws Exception {
+        assertFalse(pe.isValidPassword("", 10));
+    }
 }
