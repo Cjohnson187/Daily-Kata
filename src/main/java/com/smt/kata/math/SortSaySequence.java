@@ -1,5 +1,9 @@
 package com.smt.kata.math;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /****************************************************************************
  * <b>Title</b>: SortSaySequence.java 
  * <b>Project</b>: SMT-Kata 
@@ -46,6 +50,36 @@ public class SortSaySequence {
 	 * @return Reordered array of elements
 	 */
     public int[] reorder(int[] input) {
+    	System.out.println(units.values()[2]);
+    	if (input == null || input.length<=0) return new int[0];
+//    	List<String>  as= Arrays.stream(input)
+//    			.map(a -> units.values()[a])
+//    			.sorted()
+//    			.map(a-> units.valueOf(a).ordinal())
+//    			.collect(Collectors.toList());
+//    		
+//    	 .mapToObj(i -> units.values()[Math.abs(i)].name())
+//         .sorted()
+//         .map(i -> units.valueOf(i).ordinal())
+//         .mapToInt(Integer::intValue)
+//         .toArray();
+
+    			
+    	
+//    			.sorted()
+//    			.collect(Collectors.toList())
+//    			.stream()
+//    			.map(a -> units.valueOf(a).ordinal() )
+//    			.mapToInt(Integer::intValue)
+//    			.toArray();
+    			//.collect(Collectors.toList());
+    	
+//    	for (Integer s : as ) {
+//    		System.out.println(" str = " + s);
+//    	}
+    	
+    	
+    	
         return new int[0];
     }
 }
