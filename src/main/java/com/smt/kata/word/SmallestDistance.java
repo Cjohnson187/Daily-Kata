@@ -1,5 +1,10 @@
 package com.smt.kata.word;
 
+import java.util.Arrays;
+
+
+import org.apache.commons.lang3.StringUtils;
+
 /****************************************************************************
  * <b>Title</b>: SmallestDistance.java
  * <b>Project</b>: SMT-Kata
@@ -31,6 +36,20 @@ public class SmallestDistance {
 	 * @return Number of words between the start and end.  0 if none found
 	 */
 	public int calculate(String phrase, String startWord, String endWord) {
+		if(StringUtils.isEmpty(phrase)) return 0;
+        int num = 0;
+        boolean found = false;
+		for (String word : Arrays.asList( phrase.toLowerCase().split(" "))) {
+			if(word.equals(startWord)) {
+				num =0;
+				num ++;
+				found = true;
+			}
+			else if(word.equals(endWord) && found ) {
+				return num-1;
+			}
+			else num++;
+		}
 		return 0;
 	}
 
