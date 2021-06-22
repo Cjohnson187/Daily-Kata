@@ -1,6 +1,7 @@
 package com.smt.kata.tree;
 
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 // JDK 11.x
 import java.util.List;
@@ -98,5 +99,45 @@ public class KataTree<T> {
 	 */
 	public int getTotalNodeCount() {
 		return totalNodeCount;
+	}
+	
+	/**
+	 * Finds a node based upon its id
+	 * @return node corresponding to the ID.  Null if not found
+	 */
+	public KataNode<T> find(String nodeId) {
+		return null;
+	}
+	
+	/**
+	 * Gets a collection of nodes
+	 * @return collection is provided in a preorder list formatting
+	 */
+	public List<KataNode<T>> getPreOrderList() {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Gets a collection of nodes
+	 * @return collection is provided in a inorder list formatting
+	 */
+	public List<KataNode<T>> getInOrderList() {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Gets a collection of nodes
+	 * @return collection is provided in a postorder list formatting
+	 */
+	public List<KataNode<T>> getPostOrderList() {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Gets a collection of nodes
+	 * @return collection is provided in a level order list formatting
+	 */
+	public List<KataNode<T>> getLevelOrderList() {
+		return new ArrayList<>();
 	}
 }
