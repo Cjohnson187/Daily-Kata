@@ -41,42 +41,44 @@ public class KataTree<T> {
 	 */
 	public KataTree(List<KataNode<T>> data,  KataNode<T> root) {
 		this.root = root; 
-		addChildren(data, root);
-		depth = calculateDepth(root);
+		this.depth = 1;
+		this.totalNodeCount = 1;
+
+		addChildren(data, root, this.depth);
+		//depth = calculateDepth(root);
+		//print(root);
+	}
+
+	public void print(KataNode<T> root) {
+		System.out.println("id = " + root.getNodeId());
+		for(var v : root.getChildren()) {
+			print(v);
+		}
+
 	}
 	
-	private void addChildren(List<KataNode<T>> data,  KataNode<T> root) {
+	private void addChildren(List<KataNode<T>> data,  KataNode<T> root, int depth) {
+		depth++;
 		var rootChildren = new ArrayList<KataNode<T>>();
-		var queue = new LinkedList<KataNode<T>>();
-		var children = new ArrayList<KataNode<T>>();
+
 		
 		for (var node : data) {
 			if (node.getParentId().equals(root.getNodeId())) {
+				totalNodeCount++;
+				this.depth = Math.max(this.depth, depth);
 				rootChildren.add(node);
-				queue.add(node);
+				addChildren(data ,node , depth);
+				//queue.add(node);
 			}
-			else
-				children.add(node);
-		}
-		root.setChildren(rootChildren);
-		
-		for (var newRoot : queue) {
-			addChildren(children, newRoot);
+			
 		}
 		
-		this.totalNodeCount++;
-	}
+		
 	
-	private int calculateDepth(KataNode<T> node) {
-		var children = node.getChildren();
-		if (children.isEmpty()) return 1;
-		
-		var tempDepth = 0;
-		for (var child : children) 
-			tempDepth += calculateDepth(child);
-		
-		return tempDepth;
+		root.setChildren(rootChildren);
 	}
+
+
 	
 	/**
 	 * Returns the total depth of the tree
@@ -105,7 +107,16 @@ public class KataTree<T> {
 	 * Finds a node based upon its id
 	 * @return node corresponding to the ID.  Null if not found
 	 */
-	public KataNode<T> find(String nodeId) {
+	public KataNode<T> find(String nodeData) {
+		if(this.root.getData().equals(nodeData)){
+			return this.root;
+		}
+		else {
+			for (var v : root.getChildren()){
+				this.root = v;
+				find(nodeData);
+			}
+		}
 		return null;
 	}
 	
