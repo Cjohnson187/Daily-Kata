@@ -1,5 +1,7 @@
 package com.smt.kata.distance;
 
+import java.util.Arrays;
+
 /****************************************************************************
  * <b>Title</b>: RotateMatrix.java
  * <b>Project</b>: SMT-Kata
@@ -48,7 +50,14 @@ public class RotateMatrix {
 	 * @return Rotated matrix.  Empty matrix of input is null
 	 */
 	public int[][] rotateClockwise(int[][] matrix) {
-		return new int[0][0];
+		if (matrix == null || matrix.length == 0) return new int[0][0];
+		int[][] m  = new int[matrix.length][matrix[0].length];
+		for (int i = 0; i< matrix.length; i++) {
+			for (int j = 0; j< matrix[i].length; j++) {
+				m[j][matrix[i].length-i-1] = matrix[i][j];
+			}
+		}
+		return m;
 	}
 	
 	/**
@@ -57,6 +66,13 @@ public class RotateMatrix {
 	 * @return Rotated matrix.  Empty matrix of input is null
 	 */
 	public int[][] rotateCounterClockwise(int[][] matrix) {
-		return new int[0][0];
+		if (matrix == null || matrix.length == 0) return new int[0][0];
+		int[][] m  = new int[matrix.length][matrix[0].length];
+		for (int i = 0; i< matrix.length; i++) {
+			for (int j = 0; j< matrix[i].length; j++) {
+				m[matrix[j].length-j-1][i] = matrix[i][j];
+			}
+		}
+		return m;
 	}
 }
