@@ -61,14 +61,13 @@ public class KataTree<T> {
 		depth++;
 		var rootChildren = new ArrayList<KataNode<T>>();
 
-		
 		for (var node : data) {
 			if (node.getParentId().equals(root.getNodeId())) {
 				totalNodeCount++;
 				this.depth = Math.max(this.depth, depth);
 				rootChildren.add(node);
 				addChildren(data ,node , depth);
-				//queue.add(node);
+				
 			}
 			
 		}

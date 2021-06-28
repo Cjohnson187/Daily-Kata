@@ -117,7 +117,9 @@ public class KataNode<T> implements Serializable {
 	 * @return the leaf
 	 */
 	public boolean isLeaf() {
-		return false;
+		if(getChildren().isEmpty())
+			return true;
+		else return false;
 	}
 
 	/**
