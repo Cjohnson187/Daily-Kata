@@ -51,10 +51,12 @@ public class RotateMatrix {
 	 */
 	public int[][] rotateClockwise(int[][] matrix) {
 		if (matrix == null || matrix.length == 0) return new int[0][0];
+		
 		int[][] m  = new int[matrix.length][matrix[0].length];
 		for (int i = 0; i< matrix.length; i++) {
+
 			for (int j = 0; j< matrix[i].length; j++) {
-				m[j][matrix[i].length-i-1] = matrix[i][j];
+				m[j][i] = matrix[matrix[i].length-i-1][j];
 			}
 		}
 		return m;
@@ -70,7 +72,7 @@ public class RotateMatrix {
 		int[][] m  = new int[matrix.length][matrix[0].length];
 		for (int i = 0; i< matrix.length; i++) {
 			for (int j = 0; j< matrix[i].length; j++) {
-				m[matrix[j].length-j-1][i] = matrix[i][j];
+				m[j][i] = matrix[i][matrix[j].length-j-1];
 			}
 		}
 		return m;
