@@ -25,7 +25,7 @@ class PixelSwapTest {
 	 * Test method for {@link com.smt.kata.distance.PixelSwap#swap(char[][], int[], char)}.
 	 */
 	@Test
-	void testSwapEmpty() throws Exception {
+	void testScoordswapEmpty() throws Exception {
 		assertEquals(0, ps.swap(null, null, 'G').length);
 		assertEquals(0, ps.swap(new char[5][3], null, 'G').length);
 		assertEquals(0, ps.swap(null, new int[] {0,0}, 'G').length);
@@ -127,4 +127,23 @@ class PixelSwapTest {
 		assertEquals('R', swapped[2][3]);
 		assertEquals('R', swapped[3][3]);
 	}
+	
+	@Test
+    void testSwapIslands() throws Exception {
+        char[][] pixels = new char[][] {
+                { 'W', 'B', 'B', 'B' },
+                { 'B', 'B', 'W', 'B' },
+                { 'B', 'B', 'W', 'W' },
+                { 'B', 'B', 'B', 'W' }
+        };
+
+        char[][] swapped = ps.swap(pixels, new int[] { 3,3 }, 'R');
+        assertEquals('W', swapped[0][0]);
+        assertEquals('B', swapped[0][1]);
+        assertEquals('B', swapped[1][1]);
+        assertEquals('R', swapped[1][2]);
+        assertEquals('R', swapped[2][2]);
+        assertEquals('R', swapped[2][3]);
+        assertEquals('R', swapped[3][3]);
+    }
 }
