@@ -1,5 +1,7 @@
 package com.smt.kata.word;
 
+import org.apache.commons.lang3.StringUtils;
+
 /****************************************************************************
  * <b>Title</b>: Longest7SegmentWord.java
  * <b>Project</b>: Daily-Kata
@@ -38,7 +40,20 @@ public class Longest7SegmentWord {
 	 * @param words Collection of words to evaluate
 	 * @return Longest word.  Empty string if none can be displayed
 	 */
+	
+
 	public String calculate(String[] words) {
-		return words[0];
+
+		if (words == null ) return null;
+		String w = "";
+		for (String s : words) {
+			if(StringUtils.isEmpty(s)) continue;
+			String wordString = s.toLowerCase();
+			
+			if(wordString.contains("k") ||wordString.contains("m") || wordString.contains("w") ||wordString.contains("v")  ||wordString.contains("x")) continue;
+			else if(w.length() < s.length()) w = s;
+			
+		}
+		return w;
 	}
 }
