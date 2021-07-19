@@ -2,7 +2,9 @@ package com.smt.kata.object;
 
 // JDK 11.x
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /****************************************************************************
@@ -51,7 +53,62 @@ public class JsonParser {
 	 */
 	public Map<String, Object> parse(String json) throws IOException {
 		Map<String, Object> data = new HashMap<>();
+		//for 
+		String s = json.replace("\n", "").replace(" ", "").replace("\t", "");
+		s = s.substring(s.indexOf("{")+1, s.lastIndexOf("}")-1);
+//		List<String> lines =  Arrays.asList(s.split('{'));
+//		System.out.println("lns = "+ lines.size());
+//		for(var  v: lines) {
+//			System.out.println("line = " + v);
+//		}
+		System.out.println("s= " + s);
+		
+		String j = json.substring(json.indexOf("{")+1, json.lastIndexOf("}")-1 );
+		//System.out.println("line = " + j);
+		//List<String> obj =  Arrays.asList(line.split(","));
+		//System.out.println("len" + obj.size());
+		data.putAll(  mapJson("",j)  );
+	
+		for(var v: data.entrySet()) {
+			System.out.println("key = " + v.getKey() +"   "+ v.getValue());
+		}
+		
 
+		return data;
+	}
+	
+	public Map<String, Object> mapJson(String key, String j){
+		Map<String, Object> data = new HashMap<>();
+		String cur = j.substring(j.indexOf("'") );
+		String ln = cur.substring(cur.indexOf("'")+1, cur.indexOf("\n") );
+		
+		//System.out.println("str = " + key + "cur = "+ cur+"  ln = "+ ln);
+		if(key.length() < 1)
+		key = ln.substring(0, ln.indexOf("'"));
+		else {
+			key +="." +  ln.substring(0, ln.indexOf("'"));
+		}
+		System.out.println("keeeyeyeye = " +  key);
+		String val = j.split("\\n")[1];
+		j = j.substring(j.indexOf(",") );
+		if (val.contains("{")) {
+			System.out.println("crap");
+			data.putAll(  mapJson(key, j)  );
+			
+		}
+		else {
+			try {
+				data.put(key, Integer.valueOf(val.substring(val.indexOf(":")+1, val.indexOf(",")).trim()));
+			} catch (Exception e) {
+				data.put(key, val.substring(val.indexOf(":")+1, val.indexOf(",")).trim());
+			}
+			
+			
+		}
+		//System.out.println("str = " + key +" val "+ val );
+		
+		
+		
 		return data;
 	}
 }
