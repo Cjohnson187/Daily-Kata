@@ -53,21 +53,12 @@ public class JsonParser {
 	 */
 	public Map<String, Object> parse(String json) throws IOException {
 		Map<String, Object> data = new HashMap<>();
-		//for 
-		String s = json.replace("\n", "").replace(" ", "").replace("\t", "");
-		s = s.substring(s.indexOf("{")+1, s.lastIndexOf("}")-1);
-//		List<String> lines =  Arrays.asList(s.split('{'));
-//		System.out.println("lns = "+ lines.size());
-//		for(var  v: lines) {
-//			System.out.println("line = " + v);
-//		}
-		System.out.println("s= " + s);
+		String sub = json.replace("\n", "").replace(" ", "").replace("\t", "");
+		sub = sub.substring(sub.indexOf("{")+1, sub.lastIndexOf("}"));
+
+		System.out.println("sub string= " + sub);
 		
-		String j = json.substring(json.indexOf("{")+1, json.lastIndexOf("}")-1 );
-		//System.out.println("line = " + j);
-		//List<String> obj =  Arrays.asList(line.split(","));
-		//System.out.println("len" + obj.size());
-		data.putAll(  mapJson("",j)  );
+		data.putAll(  mapJson("",sub)  );
 	
 		for(var v: data.entrySet()) {
 			System.out.println("key = " + v.getKey() +"   "+ v.getValue());
@@ -77,23 +68,37 @@ public class JsonParser {
 		return data;
 	}
 	
-	public Map<String, Object> mapJson(String key, String j){
+	public Map<String, Object> mapJson(String key, String val){
+		//return map
 		Map<String, Object> data = new HashMap<>();
-		String cur = j.substring(j.indexOf("'") );
-		String ln = cur.substring(cur.indexOf("'")+1, cur.indexOf("\n") );
+		Boolean pair = true;
+		// set key var
+		if(key.length()< 1) key += "."+ val.substring(0, val.indexOf(":"));
+		else key = val.substring(0, val.indexOf(":"));
+		String[] setup = val.split(",", 2);
+		System.out.println("string size = " + Arrays.toString(setup));
+		
+		
+		String subVal = val.substring(val.indexOf(":"), val.indexOf(","));
+		
+		//val = 
+		System.out.println("key = " + key + "   subval = " + subVal + "   val " + val);
+		
+		if(val.contains("{")) mapJson(key, val.substring(1, val.length()-1));
+		//String ln = keyAlt.substring(keyAlt.indexOf("'")+1, keyAlt.indexOf("\n") );
 		
 		//System.out.println("str = " + key + "cur = "+ cur+"  ln = "+ ln);
-		if(key.length() < 1)
-		key = ln.substring(0, ln.indexOf("'"));
-		else {
-			key +="." +  ln.substring(0, ln.indexOf("'"));
-		}
+//		if(key.length() < 1)
+//		key = ln.substring(0, ln.indexOf("'"));
+//		else {
+//			key +="." +  ln.substring(0, ln.indexOf("'"));
+//		}
 		System.out.println("keeeyeyeye = " +  key);
-		String val = j.split("\\n")[1];
-		j = j.substring(j.indexOf(",") );
+		//String val = val.split("\\n")[1];
+		val = val.substring(val.indexOf(",") );
 		if (val.contains("{")) {
 			System.out.println("crap");
-			data.putAll(  mapJson(key, j)  );
+			data.putAll(  mapJson(key, val)  );
 			
 		}
 		else {
