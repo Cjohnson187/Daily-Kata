@@ -1,7 +1,11 @@
 package com.smt.kata.distance;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 // JDK 11.x
 import java.util.List;
+import java.util.Map;
 
 /****************************************************************************
  * <b>Title</b>: IntersectingRectangles.java
@@ -48,7 +52,50 @@ public class IntersectingRectangles {
 	 * @return List of overlapping coordinates
 	 */
 	public List<Coord> getOverlap(Coord one, int width1,  int height1, Coord two, int width2, int height2) {
+		List<Coord> co  = new ArrayList<>();
+		if(one == null|| two == null )
 		return null;
+		List<int[]> oneM = fill(one, width1, height1);
+		System.out.println("other");
+		List<int[]> twoM = fill(two, width2, height2);
+		for (int[] c: oneM) {
+			for (int[] d: twoM) {
+				if(d[0] == c[0] && d[1] == c[1]) {
+					co.add(new Coord(d[0], d[1]));
+					System.out.println("similar");
+				}
+			}
+			
+		}
+		for (int[] c: twoM) {
+			if (twoM.contains(c)) System.out.println("contains pair");
+			System.out.println("d = " + c[0] + "   " + c[1]);
+		}
+		
+		//for (int i=0, j= 0 i <  width1)
+		
+		return co;
+		
+	}
+	
+	public List<int[]> fill(Coord one, int width1,  int height1) {
+		
+		List<int[]>  a = new ArrayList<>();
+		for (int i = one.top; i <= height1 + one.top; i++) {
+			for (int j = one.left; j < width1 + one.left; j++) {
+				int[] t = new int[2];
+				t[0] = i;
+				t[1] = j;
+				a.add(t);
+
+				System.out.println(" coord addded = " + i + "  " + j);
+			}
+			
+		}
+		return a;
+		
+		
+		
 	}
 }
 
