@@ -23,6 +23,7 @@ public class DBConnection {
 	protected String driver; 
 	protected String url;
 	protected Connection conn;
+	protected boolean isConnected;
 	
 	/**
 	 * 
@@ -37,6 +38,8 @@ public class DBConnection {
 		this.pwd = pwd;
 		this.driver = driver;
 		this.url = url;
+		this.isConnected = false;
+		this.conn = null;
 	}
 	
 	
@@ -45,6 +48,7 @@ public class DBConnection {
 	 * @return
 	 */
 	public Connection getConnection() throws SQLException {
+		
 		return conn;
 	}
 	
@@ -53,7 +57,7 @@ public class DBConnection {
 	 * @return
 	 */
 	public boolean isConnected() {
-		return false;
+		return isConnected;
 	}
 	
 	/**
