@@ -2,10 +2,16 @@ package com.smt.kata.database;
 
 // JDK 11.x
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.collections.map.HashedMap;
 
 /****************************************************************************
  * <b>Title</b>: DatabaseIntro.java
@@ -35,6 +41,7 @@ public class DatabaseIntro {
 	 */
 	public DatabaseIntro(Connection conn) throws SQLException {
 		super();
+		this.conn = conn;
 	}
 
 	/**
@@ -44,7 +51,25 @@ public class DatabaseIntro {
 	 * @throws SQLException 
 	 */
 	public Map<String, String> getTableMetaData(String tableName) throws SQLException {
-		return null;
+		Map<String, String> meta = new HashedMap();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * from ").append(tableName).append(" Limit 1");
+
+		try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int colCount = rs.getMetaData().getColumnCount();
+				for(int i =1; i<= colCount; i++) {
+					meta.put(rs.getMetaData().getColumnName(i), rs.getMetaData().getColumnClassName(i));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Error getting results");
+			e.printStackTrace();
+		}
+		
+		return meta;
 	}
 	
 	/**
@@ -54,7 +79,27 @@ public class DatabaseIntro {
 	 * as the key and the value for each row as the value
 	 */
 	public List<Map<String, Object>> retrieveDataFromTable(String tableName) throws SQLException {
-		return null;
+		List<Map<String, Object>> data = new ArrayList();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * from ").append(tableName);
+
+		try (PreparedStatement ps = conn.prepareStatement(sql.toString())){
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int colCount = rs.getMetaData().getColumnCount();
+				Map<String, Object> row = new HashMap<>();
+				for(int i =1; i<= colCount; i++) {
+					row.put(rs.getMetaData().getColumnName(i), rs.getObject(i));
+				}
+				data.add(row);
+			}
+		} catch (Exception e) {
+			System.err.println("Error getting results");
+			e.printStackTrace();
+		}
+		
+		return data;
 	}
 	
 	/**
@@ -64,7 +109,12 @@ public class DatabaseIntro {
 	 * @throws SQLException
 	 */
 	public String getPrimaryKeyColumn(String tableName) throws SQLException {
-		return null;
+		ResultSet rs = conn.getMetaData().getPrimaryKeys(null, null, tableName);
+		String ret = null;
+		if(rs.next()) {
+			ret = rs.getString("COLUMN_NAME");
+		}
+		return ret;
 	}
 	
 	/**
@@ -74,6 +124,14 @@ public class DatabaseIntro {
 	 * @throws SQLException
 	 */
 	public List<String> listDatabaseTables(String schema) throws SQLException {
-		return new ArrayList<>();
+		List<String> ret = new ArrayList<>();
+	
+		ResultSet rs = conn.getMetaData().getTables(null, schema, "%", null);
+		while (rs.next()) {
+			ret.add(rs.getString("TABLE_NAME"));
+		}
+	
+	
+		return ret;
 	}
 }
