@@ -54,7 +54,7 @@ class DatabaseQueryTest {
 	 */
 	@Test
 	void testExecuteStar() throws Exception {
-		String sql = "--- Fill Me out ---";
+		String sql = "Select * from ezform";
 		
 		List<Map<String, Object>> data = dq.execute(sql, null);
 		assertEquals(12, data.size());
@@ -67,7 +67,7 @@ class DatabaseQueryTest {
 	 */
 	@Test
 	void testExecuteCountStar() throws Exception {
-		String sql = "--- Fill Me out ---";
+		String sql = "Select count(*) from ezform";
 		
 		List<Map<String, Object>> data = dq.execute(sql, null);
 		assertEquals(12, data.size());
@@ -76,12 +76,15 @@ class DatabaseQueryTest {
 	/**
 	 * Test method for {@link com.smt.kata.database.DatabaseQuery#execute(java.lang.String, java.util.List)}.
 	 * 
-	 * --- Execute a query to the number of options for each question text that is 
+	 * --- Execute a query to count the number of options for each question text that is 
 	 * the same
 	 */
 	@Test
 	void testExecuteOptionsPerQuestion() throws Exception {
-		String sql = "--- Fill Me out ---";
+		String sql = "select count(eqo.ezform_question_option_id), eq.question_txt"
+				+ "from ezform_question_option eqo"
+				+ "join ezform_question eq on eqo.ezform_question_id = eq.ezform_question_id"
+				+ "group by eq.question_txt";
 		List<Map<String, Object>> data = dq.execute(sql, null);
 		assertEquals(21, data.size());
 		assertEquals(630, data.size());
@@ -97,10 +100,14 @@ class DatabaseQueryTest {
 	@Test
 	void testExecuteOptionsPerQuestionFilterByForm() throws Exception {
 		//String uuid = "477396fc-8e71-4775-8474-43a171a0e574";
-		String sql = "--- Fill Me out ---";
+		String sql = "select count(eqo.ezform_question_option_id), eq.question_txt"
+				+ " from ezform_question_option eqo"
+				+ " join ezform_question eq on eqo.ezform_question_id = eq.ezform_question_id"
+				+ " where eq.ezform_id = ?"
+				+ " group by eq.question_txt";
 		List<Map<String, Object>> data = dq.execute(sql, null);
 		assertEquals(20, data.size());
-		assertEquals(90, data.size());
-		assertEquals(2, data.size());
+		assertEquals(90, Integer.parseInt(data.get(data.size()-1).get("qcount").toString()));
+		assertEquals(2, Integer.parseInt(data.get(0).get("qcount").toString()));
 	}
 }
