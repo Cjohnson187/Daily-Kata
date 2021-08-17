@@ -1,7 +1,12 @@
 package com.smt.kata.math;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 // JDK 11.x
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 /****************************************************************************
  * <b>Title</b>: ModulusSets.java
@@ -33,7 +38,39 @@ public class ModulusSets {
 	 * @return Largest colleciton of matchin modulus values
 	 */
 	public Collection<Integer> calculate(int[] input) {
-		return null;
+		
+		if (input== null ||input.length < 2 ) {
+			return new ArrayList<>();
+		}
+		List<Integer> set =  new ArrayList<>();
+		List<Integer> ret =  new ArrayList<>();
+		for (int i : input) {
+			set.add(i);
+		}
+		Collections.sort(set);
+		
+		for (int i : input) {
+			boolean add = true;
+			
+			for (int j : input) {
+				if(i == j) break;
+				System.out.println("i = " + i + "  j " + j +  "  i%j " + (i%j) );
+				if(i%j != 0) {
+					add = false;
+				}
+			}
+			if(add) {
+				ret.add(i);
+				
+			}
+			add = true;
+		}
+	
+	
+		
+		
+		
+		return ret;
 	}
 
 }

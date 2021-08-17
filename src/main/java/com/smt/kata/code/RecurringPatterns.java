@@ -32,8 +32,23 @@ public class RecurringPatterns {
 	 * @return starting location of all patterms
 	 */
 	public List<Integer> count(String word, String pattern) {
+		int index = 0;
+		String rem = word;
+		int lenrem = 0;
+		List<Integer> found = new ArrayList<>();
+		while(word.contains(pattern)) {
+			if(word.contains(pattern) ) {
+				System.out.println("index = " + word.indexOf(pattern) + "   len rem" + (word.indexOf(pattern) + pattern.length()) + "  word " + word);
+				lenrem += (word.indexOf(pattern) + pattern.length());
+				word = word.substring(word.indexOf(pattern) + pattern.length());
+				System.out.println("lenrem = " + lenrem);
+				found.add(lenrem);
+			}
+		}
 		
-		return new ArrayList<>();
+
+		
+		return found;
 	}
 
 }
