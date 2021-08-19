@@ -41,12 +41,8 @@ public class LongestCommonSequenceAgain {
 		if(wordsArray == null || wordsArray.length < 2) return "";
 		for(String s: wordsArray)
 			if(StringUtil.isEmpty(s)) return "";
-		
-//		List<String> words = new ArrayList<>();
-//		for(int wrds =0; wrds < wordsArray.length; wrds++) {
-//			String[] wrdsArray = new String[wordsArray.length];
-//			wrdsArray[1]
-//		}
+		List<String> segments = new ArrayList<>();
+
 		
 		String longestWord = "";
 		int[] indexes = new int[wordsArray.length];

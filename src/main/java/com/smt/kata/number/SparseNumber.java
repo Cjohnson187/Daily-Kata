@@ -31,7 +31,15 @@ public class SparseNumber {
 	 * @return True if sparse, false otherwise
 	 */
 	public boolean isSparse(int val) {
-		return val > 0;
+		String bin = convert(val);
+		String prev = "s";
+		for (String c : bin.split("")) {
+			if (prev.equals("1") && !c.equals("0")) {
+				return false;
+			}
+			prev = c;
+		}
+		return true;
 	}
 	
 	/**
@@ -40,6 +48,21 @@ public class SparseNumber {
 	 * @return Next sparse number
 	 */
 	public int findNext(int val) {
+		if(val < 0) val = Math.abs(val);
+		while (!isSparse(val)) {
+			val = findNext(val+1);
+		}
+		
+		
 		return val;
+	}
+	
+	public String convert(int num) {
+		String bin = "";
+		while (num > 0) {
+			bin += num%2;
+			num = num/2;
+		}	
+		return bin;
 	}
 }
