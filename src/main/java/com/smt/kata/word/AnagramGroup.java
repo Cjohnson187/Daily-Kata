@@ -2,8 +2,13 @@ package com.smt.kata.word;
 
 // JDK 11.x
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.siliconmtn.data.text.StringUtil;
 
 /****************************************************************************
  * <b>Title</b>: AnagramGroup.java
@@ -47,7 +52,22 @@ public class AnagramGroup {
 	 * @return Groups of anagrams
 	 */
 	public Collection<List<String>> assign(String[] words) {
-		return new ArrayList<>();
+		List<List<String>>  groups = new ArrayList<>();
+		Map<String, List<String>> wordList = new HashMap<>();
+		
+		
+		for(String word: words) {
+			if (StringUtil.isEmpty(word)) continue;
+			char[] sorted = word.toCharArray();
+			Arrays.sort(sorted);
+			if(wordList.containsKey(sorted)) {
+				
+			}
+		} 
+		return groups;
 	}
+	
+	
+	
 
 }
