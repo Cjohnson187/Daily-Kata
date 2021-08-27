@@ -1,5 +1,7 @@
 package com.smt.kata.code;
 
+import java.util.Arrays;
+
 /****************************************************************************
  * <b>Title</b>: LongestConsecutiveSequence.java
  * <b>Project</b>: SMT-Kata
@@ -35,6 +37,22 @@ public class LongestConsecutiveSequence {
 	 * @return Largest sequence of numbers in the array
 	 */
 	public int calculate(int[] items) {
-		return items.length;
+		int len = items.length;
+		for (int i=0; i< len-1 ; i++) {
+			if(items[i] > items[i+1]) {
+				int temp = items[i];
+				items[i] = items[i+1];
+				items[i+1] = temp;
+				i = -1;
+			}
+		}
+		int con = 1;
+		for (int i=0; i< len-1 ; i++) {
+			if(items[i] == items[i+1]-1 ) {
+				con++;
+			}
+			
+		}
+		return con;
 	}
 }
