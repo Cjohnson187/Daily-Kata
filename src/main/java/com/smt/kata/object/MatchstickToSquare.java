@@ -1,5 +1,10 @@
 package com.smt.kata.object;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title</b>: MatchstickToSquare.java
  * <b>Project</b>: SMT-Kata
@@ -39,8 +44,10 @@ public class MatchstickToSquare {
 	 * @return True if they form a square, false otherwise
 	 */
 	public boolean canFormSquare(int[] matchsticks) {
-				
+	
+
 		return true;
 	}
 
+	
 }

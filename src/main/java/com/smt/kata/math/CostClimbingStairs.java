@@ -38,6 +38,40 @@ public class CostClimbingStairs {
 	 * @return Smallest cost to climb
 	 */
 	public int calculate(int[] costs) {
-		return costs.length;
+		
+		if (costs == null || costs.length == 0) {
+			return 0;
+		}
+		if(costs.length == 1) {
+			return costs[0];
+		}
+
+		int cost0 = findCost(0, costs);
+		int cost1 = findCost(1, costs);
+
+		if(cost0 < cost1)
+			return cost0;
+		else if(cost0 > cost1)
+			return cost1;
+			
+		return 0;
+	}
+	
+	
+
+	public int findCost(int x,int[] costs ){
+		int totalCost = 0;
+		for (int i = x+1; i < costs.length; i++) {
+			if(costs[x] < costs[x+1])
+				totalCost += costs[x];
+			else if(costs[x] == costs[x+1])
+				x++;
+			else {
+				totalCost += costs[x+1];
+				x++;
+			}
+		}
+
+		return totalCost;
 	}
 }
