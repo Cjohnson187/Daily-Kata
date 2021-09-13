@@ -1,6 +1,15 @@
 package com.smt.kata.word;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.xml.datatype.DatatypeConfigurationException;
+
+import com.siliconmtn.data.text.StringUtil;
+
+
+
 
 /****************************************************************************
  * <b>Title</b>: AlienDictionary.java
@@ -49,7 +58,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
  * @updates:
  ****************************************************************************/
 public class AlienDictionary {
-
+	public static String order;
 	/**
 	 * Initializes the class with the new alphabet order
 	 * @param order Order of the letters in the new alphabet
@@ -57,8 +66,10 @@ public class AlienDictionary {
 	 */
 	public AlienDictionary(String order) throws DatatypeConfigurationException {
 		super();
+		if(order.length() != 26)
+			throw new DatatypeConfigurationException("Don't do this");
 		
-		throw new DatatypeConfigurationException("Don't do this");
+		this.order = order;
 	}
 
 	/**
@@ -67,6 +78,47 @@ public class AlienDictionary {
 	 * @return True if the words are in order and false otherwise
 	 */
 	public boolean isSorted(String[] words) {
-		return words.length == 0;
+		if(words == null  ||words.length <= 1  ) {
+			return false;
+		}
+		List<Integer> wordVals = new ArrayList<>();
+		for(String word: words) {
+			int val = 0;
+			
+			if (StringUtil.isEmpty(word)) continue;
+			word = word.toLowerCase();
+			for (char c: word.toCharArray()) {
+				val += order.indexOf((c+"").toLowerCase());
+			}
+			wordVals.add(val);
+			System.out.println("word = " + word );
+		}
+		for (int i = 1; i < wordVals.size(); i++) {
+			int prev = wordVals.get(i-1);
+			System.out.println("prev val = " + prev +"  " + wordVals.get(i) + "  " + (prev > wordVals.get(i)) );
+		
+			if(prev < wordVals.get(i)) return true;
+			
+		}
+
+//		for(int x=1; x< words.length; x++) {
+//			if(StringUtil.isEmpty( words[x])) {
+//				String temp=words[x-1];
+//				words[x-1] = words[x];
+//				words[x] =temp;
+//				continue;
+//			}
+//			words[x] = words[x].toLowerCase();
+//			int prevW = 0;
+//			int nextW = 0;
+//			
+//			for(int i=0; i< words[x-1].length() && i < words[x].length(); i++) {
+//				prevW += order.indexOf( (words[x-1].charAt(i)+"") );
+//				nextW += order.indexOf( (words[x].charAt(i)+"") );
+//			}
+//			if(prevW >= nextW) return false;
+//		}
+
+		return false;
 	}
 }
