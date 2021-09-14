@@ -1,5 +1,10 @@
 package com.smt.kata.distance;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title</b>: MinimumMovesEqual.java
  * <b>Project</b>: SMT-Kata
@@ -38,6 +43,25 @@ public class MinimumMovesEqual {
 	 * @return Number of moves to make equal
 	 */
 	public int calculate(int[] elements) {
-		return elements.length;
+		if(elements == null || elements.length < 2) return 0;
+		int total = 0;
+		for (int i: elements) {
+			total += i;
+		}
+		total = total/elements.length;
+		int moves = 0;
+		for(int i=0, j=elements.length-1; i < elements.length && j >= 0; i++) {
+			while (elements[i] != total) {
+				if(elements[i] < total) {
+					elements[i]++;
+					moves++;
+				}
+				else if (elements[i] > total) {
+					elements[i]--;
+					moves++;
+				}
+			}
+		}
+		return moves;
 	}
 }
