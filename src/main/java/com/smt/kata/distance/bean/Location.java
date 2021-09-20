@@ -3,6 +3,7 @@ package com.smt.kata.distance.bean;
 // JDK 11.x
 import java.io.Serializable;
 
+import com.siliconmtn.core.HashCodeUtil;
 // Spacelibs 1.x
 import com.siliconmtn.data.text.StringUtil;
 
@@ -53,6 +54,16 @@ public class Location implements Serializable {
 	@Override
 	public String toString() {
 		return StringUtil.getToString(this);
+	}
+	
+	@Override
+	public int hashCode() {
+		return HashCodeUtil.hash(this) ;
+	}
+	
+	
+	public boolean equals(Location loc) {
+		return this.hashCode() == loc.hashCode();
 	}
 
 	/**

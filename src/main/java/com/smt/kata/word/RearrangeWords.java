@@ -1,7 +1,16 @@
 package com.smt.kata.word;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 // JDK 11.x
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.siliconmtn.data.text.StringUtil;
+
 
 /****************************************************************************
  * <b>Title</b>: RearrangeWords.java
@@ -36,7 +45,33 @@ public class RearrangeWords {
 	 * @return All the possible ways the word can be rearranged to not have sequential characters
 	 */
 	public Collection<String> arrange(String word) {
-		return null;
+		if(StringUtil.isEmpty(word) || word.length() < 2) return new ArrayList<>();
+		for(char c : word.toLowerCase().toCharArray()) {
+			if(c  > 122 || c < 97) {
+				return new ArrayList<>();
+			}
+		}
+		return isValid(word) ? Arrays.asList(word):  reArrangeWord("", word, new ArrayList<String>());
+	}
+	public List<String> reArrangeWord(String prefix ,String word, List<String> words){
+		int n = word.length();
+		if(n == 0 && !words.contains(prefix) && isValid(prefix)) {
+			words.add(prefix);
+		}
+		else {
+			for (int i = 0; i < n; i++) {
+				reArrangeWord((prefix+ word.charAt(i)), (word.substring(0, i) + word.substring(i+1, n))  , words );	
+			}
+		}
+		return words;
+	}
+	public boolean isValid(String word) {
+		
+		for (int i = 1; i < word.length(); i++) {
+			char prev = word.charAt(i-1);
+			if (word.charAt(i) == prev) return false;
+		}
+		return true;
 	}
 
 }
