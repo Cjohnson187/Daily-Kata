@@ -1,5 +1,9 @@
 package com.smt.kata.word;
 
+import java.util.Iterator;
+
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title</b>: StringHalves.java
  * <b>Project</b>: SMT-Kata
@@ -58,6 +62,6 @@ public class StringHalves {
 	 * @return True if the numbers match.  False otherwise;
 	 */
 	public boolean calculate(String s) {
-		return s.length() == 0;
+		return (StringUtil.isEmpty(s)  || s.length() < 2) || s.substring(0, s.length()/2).replaceAll("[^aeiouAEIOU]","").length() ==  s.substring( s.length()/2, s.length()).replaceAll("[^aeiouAEIOU]","").length();
 	}
 }
