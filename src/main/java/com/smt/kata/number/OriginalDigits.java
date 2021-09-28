@@ -1,5 +1,11 @@
 package com.smt.kata.number;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title</b>: OriginalDigits.java
  * <b>Project</b>: SMT-Kata
@@ -29,12 +35,25 @@ package com.smt.kata.number;
  * @updates:
  ****************************************************************************/
 public class OriginalDigits {
+	Map<String, String> nums;
 	
 	/**
 	 * Initializes the class 
 	 */
 	public OriginalDigits() {
 		super();
+		nums = new HashMap<String, String>();
+		nums.put("0", "zero");
+		nums.put("1", "one");
+		nums.put("2", "two");
+		nums.put("3", "three");
+		nums.put("4", "four");
+		nums.put("5", "five");
+		nums.put("6", "six");
+		nums.put("7", "seven");
+		nums.put("8", "eight");
+		nums.put("9", "nine");
+		
 	}
 	
 	/**
@@ -43,6 +62,23 @@ public class OriginalDigits {
 	 * @return Digits in order
 	 */
 	public String calculate(String source) {
-		return source;
+		String ret = "";
+		
+		if (StringUtil.isEmpty(source)) return ret;
+		source = source.toLowerCase();
+		
+		for(Entry<String, String> num: nums.entrySet() ) {
+			int n = 0;
+			for (char let: num.getValue().toCharArray()) {
+				if(source.contains(let+"")) n++;
+			}
+			if(n == num.getValue().length()) {
+				ret+=num.getKey();
+				
+			}
+			n =0;
+			
+		}
+		return ret;
 	}
 }
