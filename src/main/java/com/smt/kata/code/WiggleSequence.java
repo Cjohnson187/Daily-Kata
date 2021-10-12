@@ -1,5 +1,9 @@
 package com.smt.kata.code;
 
+import java.util.ArrayList;
+
+import org.hibernate.mapping.List;
+
 /****************************************************************************
  * <b>Title</b>: WiggleSequence.java
  * <b>Project</b>: SMT-Kata
@@ -54,6 +58,19 @@ public class WiggleSequence {
 	 * @return Number of wiggles in the sequence
 	 */
 	public int count(int[] sequence) {
-		return sequence.length;
+		var difs = new ArrayList<Integer>();
+		if(sequence == null ||  sequence.length < 1) return difs.size();
+		
+		difs.add( sequence[1] - sequence[0]);
+		for (int i = 1, j = 1; i < sequence.length-1; i++) {
+			if( difs.get(j-1) > 0 &&   sequence[i+1] - sequence[i] < 0) {
+				difs.add( sequence[i+1] - sequence[i]);
+				j++;
+			}else if( difs.get(j-1) < 0 &&  sequence[i+1] - sequence[i] > 0) {
+				difs.add( sequence[i+1] - sequence[i]);
+				j++;
+			} else i+=2;
+		}
+		return difs.size()+1;
 	}
 }

@@ -1,5 +1,10 @@
 package com.smt.kata.tree;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title</b>: TrianglePath.java
  * <b>Project</b>: SMT-Kata
@@ -42,13 +47,38 @@ package com.smt.kata.tree;
  * @updates:
  ****************************************************************************/
 public class TrianglePath {
-	
+	List<Integer> ret = new ArrayList<>();
+	int[][] tri;
 	/**
 	 * Sums the entries through the triangle and finds the shortest path
 	 * @param triangle Multi-dimensional array to sum against
 	 * @return Sum of the shortest path
 	 */
 	public int sum(int[][] triangle) {
-		return triangle.length;
+		if(triangle == null || triangle[0] == null) return 0;
+		tri = triangle;
+		int path = 0;
+		int level= 0;
+		int sum = 0;
+		move(0,0, tri[0][0] );
+		
+		
+		Collections.sort(ret);
+		return ret.get(0);
 	}
+	
+	public void move( int level, int col, int count) {
+		for (int i = 0; i < tri.length; i++) {
+			
+		}
+		
+		
+	}
+	
 }
+
+//if(level >= tri.length) ret.add(count);
+//if(col - 1 > 0 && col+1 < tri[level].length) {
+//	int less = tri[level][col-1] < tri[level][col] ?col-1: col;
+//	move(level+1, less, (count + tri[level][less]));
+//}
