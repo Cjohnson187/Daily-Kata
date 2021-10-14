@@ -1,5 +1,10 @@
 package com.smt.kata.number;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title</b>: MaxKSumPairs.java
  * <b>Project</b>: SMT-Kata
@@ -37,6 +42,7 @@ package com.smt.kata.number;
  ****************************************************************************/
 public class MaxKSumPairs {
 	
+	
 	/**
 	 * In one operation, you can pick two numbers from the array whose sum equals k 
  	 * and remove them from the array.
@@ -45,7 +51,54 @@ public class MaxKSumPairs {
 	 * @return Number of operations
 	 */
 	public int calculate(int[] source, int target) {
-		// Validate the data
-		return source.length + target;
+		int sum = 0;
+		if(source == null || source.length < 1) return sum;
+		List<Integer> s = new ArrayList();
+		for(int i: source) {
+			s.add(i);
+		}
+		
+		int count = 0;
+		int index = 0;
+		while ( s.size() > 0) {
+			List<Integer> newS = sum(s, target, index);
+			if(newS.size() < s.size()) {
+				s = newS;
+				count++;
+				
+			}
+			else if(newS.size() == s.size() && index <newS.size()   ) {
+				newS = sum(s, target, index++);
+			}
+			else if(newS.size() == s.size()) {
+				break;
+			}
+		}
+		
+		
+		return count;
+	}
+	
+	public List<Integer> sum(List<Integer> nums,  int target, int index) {
+		List<Integer> newNums= new ArrayList<>( nums);
+		Collections.sort(newNums);
+		Collections.reverse(newNums);
+ 		int sum = 0;
+		
+		for(int i=index; i < newNums.size(); i++) {
+			if((newNums.get(i) + sum) <= target ) {
+				sum += newNums.get(i);
+				newNums.remove(i);
+				i--;
+			}
+			
+			if(sum == target) {
+				return newNums;
+			}
+			
+		}
+		
+			return nums;
+		
 	}
 }

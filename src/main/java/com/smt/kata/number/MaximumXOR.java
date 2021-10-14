@@ -28,6 +28,16 @@ public class MaximumXOR {
 	 * array < 2 elements ...)
 	 */
 	public int calculate(int[] numbers) {
-		return numbers.length;
+		if (numbers == null || numbers.length < 2) return 0;
+		int largest = 0;
+	
+		for (int i = 0; i < numbers.length; i++) {
+			
+			for (int j = 0; j < numbers.length; j++) {
+				
+				if ((numbers[i]^numbers[j]) > largest ) largest = (numbers[i]^numbers[j]); 
+			}	
+		} 
+		return largest;
 	}
 }

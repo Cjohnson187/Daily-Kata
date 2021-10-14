@@ -90,6 +90,6 @@ class MaxKSumPairsTest {
 	 */
 	@Test
 	void testCalculateExample2() throws Exception {
-		assertEquals(1, mkp.calculate(new int[]{3,1,3,4,3}, 6));
+		assertEquals(1, mkp.calculate(new int[]{3,1,7,4,3}, 6));
 	}
 }
