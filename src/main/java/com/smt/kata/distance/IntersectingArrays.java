@@ -2,6 +2,8 @@ package com.smt.kata.distance;
 
 // JDK 11.x
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /****************************************************************************
@@ -49,7 +51,28 @@ public class IntersectingArrays {
 	 * @return Array of the intersected values
 	 */
 	public Integer[] intersectNoCollections(Integer[] one, Integer[] two) {
-		return two;
+		if(one == null || one.length <1 || two == null || two.length < 1) return new Integer[0];
+		if(one.length < two.length) {
+			Integer[] temp = one;
+			one = two;
+			two = temp;
+		}
+		Integer[] nums = new Integer[0];
+		for(Integer i: one) {
+			for (int j = 0; j < two.length; j++) {
+				if(i == null || two[j] == null) return new Integer[0];
+				else if (i == two[j]) {
+					Integer[] temp = new Integer[nums.length+1];
+					for(int x = 0; x < nums.length;x++) 
+						temp[x] = nums[x];
+					temp[temp.length-1] = i;
+					nums = temp;
+					two[j] = -1;
+				}
+			}
+			
+		}
+		return nums;
 	}
 	
 	/**
@@ -59,6 +82,26 @@ public class IntersectingArrays {
 	 * @return Collection of the intersected values
 	 */
 	public List<Integer> intersectWithCollections(Integer[] one, Integer[] two) {
-		return new ArrayList<>();
+		List<Integer> nums = new ArrayList<>();
+		if(one == null || one.length <1 || two == null || two.length < 1) return nums;
+		List<Integer> one1 = new ArrayList<>();
+		List<Integer> two2 = new ArrayList<>();
+		if(two.length < one.length) {
+			one1 = Arrays.asList(two);
+			two2 = Arrays.asList(one);
+		} else {
+			one1 = Arrays.asList(one);
+			two2 = Arrays.asList(two);
+		}
+		for(Integer i : two2) {
+			if(i == null ) return new ArrayList<Integer>();
+		}
+		for(Integer i: one1) {
+			if(i == null ) return new ArrayList<Integer>();
+			if(two2.contains(i))
+				nums.add(i);
+		}
+
+		return nums;
 	}
 }

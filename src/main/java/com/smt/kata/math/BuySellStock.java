@@ -1,5 +1,9 @@
 package com.smt.kata.math;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 /****************************************************************************
  * <b>Title</b>: BuySellStock.java
  * <b>Project</b>: SMT-Kata
@@ -42,7 +46,13 @@ public class BuySellStock {
 	 * @return Max profit amount.  ) if no profit (or loss)
 	 */ 
 	public int calculateMaxProfit(int[] trades) {
-		return trades.length;
+		if(trades == null || trades.length < 2) return 0;
+		var num = IntStream.of(trades);
+		//var s = Stream.iterate(0, i -> i < trades.length-1, i -> i++ );
+		var t = Arrays.stream(trades).max();
+		//var s  = Arrays.stream( Stream.iterate(0, i -> i < trades.length-1, i -> i++ ).map(j -> j  = trades[i]) );
+		System.out.println(t);
+		return 0;
 	}
 
 }
