@@ -1,16 +1,14 @@
 package com.smt.kata.game;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 // JDK 11.x
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Security.TrustStrategy;
+
+
 
 /****************************************************************************
  * <b>Title</b>: LazyBartender.java <b>Project</b>: SMT-Kata <b>Description:
@@ -56,58 +54,35 @@ public class LazyBartender {
 			return 1;
 
 		Map<Integer, List<Integer>> drinkRef = getDrinkefs(custDrinks);
-		List<Integer> minRecipes = getDrinkbyCust(custDrinks, new ArrayList<>(), 1, true, drinkRef);
-		minRecipes.sort(Comparator.naturalOrder());
-		System.out.println("minRecipes =   " + minRecipes.toString());
 
-		return minRecipes.isEmpty() ? 0 : minRecipes.get(0);
+		List<Integer> minRecipes = getDrinkbyCust(custDrinks, new ArrayList<>(), 0, drinkRef);
+
+		minRecipes.sort(Comparator.naturalOrder());
+		return minRecipes.get(0);
 	}
 
-	public List<Integer> getDrinkbyCust(Map<Integer, List<Integer>> custDrinks, List<Integer> min, int countingRecipes,
-			boolean start, Map<Integer, List<Integer>> drinkRef) {
-		if (custDrinks.isEmpty()) return min;
-
-		if (start) {
-			start = false;
-			printM(drinkRef);
-			printM(custDrinks);
+	public List<Integer> getDrinkbyCust(Map<Integer, List<Integer>> custDrinks, List<Integer> drinkListSizes, int countingRecipes,
+			 Map<Integer, List<Integer>> drinkRef) {
+		if (custDrinks.isEmpty() || drinkRef.size() < 1){
+			drinkListSizes.add(countingRecipes);
+			return drinkListSizes;
 		}
-
-		// iterate new drink preferences
+		
 		for (Map.Entry<Integer, List<Integer>> entry : drinkRef.entrySet()) {
+		
 			Map<Integer, List<Integer>> newCustDrinks = new HashMap<>(custDrinks);
-
-			// if customer not in drink list continue
-			for (Integer customer : entry.getValue()) {
-				if (newCustDrinks.containsKey(customer)) {
+			for (Integer customer : entry.getValue()) 
+				if (newCustDrinks.containsKey(customer)) 
 					newCustDrinks.remove(customer);
-				}
+				
 
-			}
-			if (!newCustDrinks.isEmpty()) {
-				min = getDrinkbyCust(newCustDrinks, min, countingRecipes++, start, drinkRef);
-				// } else {
-				// //min.add(countingRecipes);
-				// break;
-				// }
+			Map<Integer, List<Integer>> newDrinkRefs = new HashMap<>(drinkRef);
+			newDrinkRefs.remove(entry.getKey());
 
-				// remove users in list
-				for (Integer customer : entry.getValue()) {
-					// if(!custDrinks.containsKey(customer) ) continue;
-					if (newCustDrinks.containsKey(customer)) {
-						newCustDrinks.remove(customer);
-					}
-				}
-				if (!newCustDrinks.isEmpty()) {
-					min = getDrinkbyCust(newCustDrinks, min, countingRecipes++, start, drinkRef);
-				} else {
-					min.add(countingRecipes);
-					break;
-				}
-			}
+			drinkListSizes = getDrinkbyCust(newCustDrinks, drinkListSizes, countingRecipes+1, newDrinkRefs);
 		}
 
-		return min;
+		return drinkListSizes;
 	}
 
 	public Map<Integer, List<Integer>> getDrinkefs(Map<Integer, List<Integer>> custDrinks) {
@@ -124,47 +99,6 @@ public class LazyBartender {
 				}
 			}
 		}
-
 		return drinkToCust;
 	}
-
-	public void printM(Map<Integer, List<Integer>> list) {
-		System.out.println("*********************************************");
-		for (Map.Entry<Integer, List<Integer>> entry : list.entrySet())
-			System.out.println(entry.getKey() + "   ->  " + entry.getValue().toString());
-		System.out.println("*********************************************");
-	}
-
-	public List<Integer> getDrinkbyCust2(Map<Integer, List<Integer>> custDrinks, List<Integer> minRecipes,
-			int drinkNum) {
-		if (drinkNum > 8 || custDrinks.isEmpty())
-			return minRecipes;
-
-		Map<Integer, List<Integer>> newCustDrinks = Map.copyOf(custDrinks);
-
-		// iterate customers
-		for (Map.Entry<Integer, List<Integer>> customer : newCustDrinks.entrySet()) {
-			// if customer likes current drink remove it
-			if (!customer.getValue().isEmpty() && customer.getValue().contains(drinkNum)) {
-				newCustDrinks.get(customer.getKey()).remove(customer.getValue().indexOf(drinkNum));
-
-				// List<Integer> nl = new ArrayList<>(customer.getValue());
-				// nl.remove(customer.getValue().indexOf(drinkNum));
-				// scustomer.p;
-			}
-			// if a customers drink list is empty, remove it
-			if (customer.getValue().isEmpty()) {
-				newCustDrinks.remove(customer.getKey());
-
-			}
-		}
-		// if there are still more customers left, recurse
-		if (!newCustDrinks.isEmpty()) {
-			minRecipes = getDrinkbyCust2(newCustDrinks, minRecipes, ++drinkNum);
-		}
-		// }
-
-		return minRecipes;
-	}
-
 }
