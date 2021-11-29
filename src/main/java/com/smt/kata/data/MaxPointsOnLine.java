@@ -1,5 +1,12 @@
 package com.smt.kata.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 /****************************************************************************
  * <b>Title</b>: MaxPointsOnLine.java
  * <b>Project</b>: SMT-Kata
@@ -36,12 +43,68 @@ package com.smt.kata.data;
  ****************************************************************************/
 public class MaxPointsOnLine {
 	
-	/**
+	/** 
 	 * Calculates the number of points on a straight line
 	 * @param points Points on the graph
 	 * @return Max points in any straight line (vertical, horizontal and diagonal)
 	 */
 	public int findMax(int[][] points) {
+		//if(points == null || points.length < 1 || points[0].length < 1 || points.length <= 300) return 0;
+		
+		int xMax = 0;
+		int yMax = 0;
+		List<Integer> lens = new ArrayList<>();
+		
+//		for(int[] arrays : points) {
+//			if(arrays == null) continue;
+//			if(arrays[0]  > xMax) xMax = arrays[0];
+//			if(arrays[1]  > yMax) yMax = arrays[1];
+//			
+//	
+//		}
+		
+		
+		
+		for(int[] coords : points) {
+			int[] types = new int[]{0,0,0,0};
+			double slopeOg = (float)coords[1] / (float)coords[0];
+			double negSlopeOg = (double)(coords[1] * -1) / (double)coords[0];
+			System.out.println("og slope = " + slopeOg  + "  neg slope = " + negSlopeOg );
+			System.out.println(" coord og = " + coords[0] + "," + coords[1] +  "   " + 0/2);
+	
+			List<List<Integer>> locations = new ArrayList<>();
+			for(int[] coord : points) {
+				List<Integer> co = new ArrayList<>();
+				co.add(coord[0]);
+				co.add(coord[1]);
+				
+				if(!locations.contains(co)) {
+					locations.add(co);
+					double slope = (double)coord[1] / (double)coord[0];
+					double negSlope = (double)(coord[1] * -1) / (double)coord[0];
+					System.out.println( "coord =  "+ coord[0] + "," + coord[1]  + "   slope  =  " + slope + " neg slope = " + negSlope);
+					
+				}
+			}
+			
+			System.out.println("slope =  " + ( (double)coords[1]/ (double)coords[0])   );
+			
+			
+			System.out.println("slope =  " + ( (double)coords[1]/ (double)coords[0])   );
+			
+		}
+		
+		
+		System.out.println("x max = " + xMax + "   ymax = " + yMax);
+		
+		
+		
+		
 		return points.length;
 	}
+
+
+	
+	
+	
 }
