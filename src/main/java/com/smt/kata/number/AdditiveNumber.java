@@ -1,5 +1,13 @@
 package com.smt.kata.number;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
+
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title</b>: AdditiveNumber.java
  * <b>Project</b>: SMT-Kata
@@ -48,6 +56,100 @@ public class AdditiveNumber {
 	 * @return True if additive, false otherwise
 	 */
 	public boolean isAdditive(String sequence) {
-		return sequence == null;
+		if(StringUtil.isEmpty(sequence) || sequence.length() > 35) return false;
+		
+		return additive(false, sequence.replaceAll("[^0-9.]", ""), 1);
 	}
+	
+	
+	public boolean additive(boolean a, String sequence, int aNuStart) {
+		// get firsts
+		System.out.println("new iter " + sequence);
+		if(sequence.isEmpty()) return a;
+		List<String> ones = getNums(sequence, 2, aNuStart);
+		for (String n1 : ones) {
+			String twoSeq = sequence.substring(n1.length(), sequence.length());
+			System.out.println("two iter " + twoSeq);
+			List<String> twos = getNums(twoSeq, 1, 1);
+			for (String n2 : twos) {
+				String threeSeq = twoSeq.substring(n2.length(), twoSeq.length());
+				List<String> threes = getNums(threeSeq, 0, 1);
+				for (String tot : threes) {
+					System.out.println("first = " + sequence  + "   second = " + twoSeq  + "    third = " + threeSeq);
+					System.out.println("n1 = "+n1+"    n2 = "+n2+"    tot = "+tot );
+					if(Integer.parseInt(n1) + Integer.parseInt(n2) == Integer.parseInt(tot)) {
+						
+						if(sequence.endsWith(tot) ) {
+							return true;
+						} else 
+							additive(true, twoSeq.substring(n1.length(), threeSeq.length()), n2.length());
+					} 
+					else a = false;
+				}
+			}
+		}
+		
+		return a;
+	}
+	
+	public List<String> getNums(String seq, int max, int aNuStart) {
+		int index = 1;
+		List<String> nums = new ArrayList<>();
+		if(aNuStart >1) {
+			nums.add(seq.substring(0, aNuStart));
+			index = aNuStart;
+		}
+		for (int i = index; i < seq.toCharArray().length-max; i++) {
+			nums.add(seq.substring(0, i+1));
+		}
+
+		System.out.println(nums.toString());
+		return nums;
+	}
+	
+
+	
+	
+	
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

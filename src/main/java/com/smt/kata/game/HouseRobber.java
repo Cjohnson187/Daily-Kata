@@ -1,5 +1,8 @@
 package com.smt.kata.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title</b>: HouseRobber.java
  * <b>Project</b>: SMT-Kata
@@ -46,6 +49,27 @@ public class HouseRobber {
 	 * @return
 	 */
 	public int calculate(int[] values) {
-		return values.length;
+		if (values == null || values.length < 1) return 0;
+		if (values.length ==1 ) return values[0];
+		int total = 0;
+		List<Integer> vals = new ArrayList<Integer>();
+		
+		if(total(0, values) > total) total = total(0, values);
+		if(total(1, values) > total) total = total(1, values);
+
+		return total;
+	}
+	
+	public int total(int start, int[] values) {
+		int total = 0;
+		for (int i =start; i < values.length; i+=2) {
+			total += values[i];
+		}
+		
+		return total;
+	}
+	
+	public List<Integer> getHouse(List<Integer> totals, int pos, int total) {
+		return totals;
 	}
 }
