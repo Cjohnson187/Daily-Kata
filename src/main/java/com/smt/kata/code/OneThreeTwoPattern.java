@@ -47,6 +47,25 @@ public class OneThreeTwoPattern {
 	 * @return Number of 123 patterns in the data
 	 */
 	public int getTotal(int[] values) {
-		return values.length;
+		if(values == null || values.length < 2) return 0;
+		int combos = 0;
+		for (int i = 0; i < values.length; ++i) {
+			int first = values[i];
+			for (int j = i; j < values.length; ++j) {
+				int second  = values[j];
+				for (int k = j; k < values.length; ++k) {
+					int third = values[k];
+					if (first < second && second > third ) {// && first< third) {
+						combos++;
+						System.out.println(first+""+second+""+third);
+					}
+				}
+			}
+			
+		}
+		
+		
+		return combos;
 	}
+
 }

@@ -58,52 +58,59 @@ public class AdditiveNumber {
 	public boolean isAdditive(String sequence) {
 		if(StringUtil.isEmpty(sequence) || sequence.length() > 35) return false;
 		
-		return additive(false, sequence.replaceAll("[^0-9.]", ""), 1);
+		return additive(false, sequence.replaceAll("[^0-9.]", ""));
 	}
 	
-	
-	public boolean additive(boolean a, String sequence, int aNuStart) {
-		// get firsts
-		System.out.println("new iter " + sequence);
-		if(sequence.isEmpty()) return a;
-		List<String> ones = getNums(sequence, 2, aNuStart);
+	/**
+	 * Reccurse number possibilities based on remaining string
+	 * @param a
+	 * @param sequence
+	 * @return
+	 */
+	public boolean additive(boolean a, String sequence) {
+		// end condition
+		if(a) 
+			return a;
+		
+		List<String> ones = getNums(sequence, 2);
 		for (String n1 : ones) {
+			if(n1.startsWith("0")) continue;
+			
 			String twoSeq = sequence.substring(n1.length(), sequence.length());
-			System.out.println("two iter " + twoSeq);
-			List<String> twos = getNums(twoSeq, 1, 1);
+			List<String> twos = getNums(twoSeq, 1);
 			for (String n2 : twos) {
+				if(n2.startsWith("0")) continue;
+				
 				String threeSeq = twoSeq.substring(n2.length(), twoSeq.length());
-				List<String> threes = getNums(threeSeq, 0, 1);
+				List<String> threes = getNums(threeSeq, 0);
 				for (String tot : threes) {
-					System.out.println("first = " + sequence  + "   second = " + twoSeq  + "    third = " + threeSeq);
-					System.out.println("n1 = "+n1+"    n2 = "+n2+"    tot = "+tot );
+					if(tot.startsWith("0")) continue;
+					//check if addiditve
 					if(Integer.parseInt(n1) + Integer.parseInt(n2) == Integer.parseInt(tot)) {
-						
+						// check if end of sequence
 						if(sequence.endsWith(tot) ) {
-							return true;
-						} else 
-							additive(true, twoSeq.substring(n1.length(), threeSeq.length()), n2.length());
-					} 
-					else a = false;
+							return additive(true, twoSeq);
+						} else {
+							// continue to next number
+							return additive(false, twoSeq);
+						}
+					} else a = false;
 				}
 			}
 		}
 		
 		return a;
 	}
-	
-	public List<String> getNums(String seq, int max, int aNuStart) {
-		int index = 1;
+	/**
+	 * Get list of number possibilities
+	 * @param seq
+	 * @param max
+	 * @return
+	 */
+	public List<String> getNums(String seq, int max) {
 		List<String> nums = new ArrayList<>();
-		if(aNuStart >1) {
-			nums.add(seq.substring(0, aNuStart));
-			index = aNuStart;
-		}
-		for (int i = index; i < seq.toCharArray().length-max; i++) {
+		for (int i = 0; i < seq.toCharArray().length-max; i++) 
 			nums.add(seq.substring(0, i+1));
-		}
-
-		System.out.println(nums.toString());
 		return nums;
 	}
 	
