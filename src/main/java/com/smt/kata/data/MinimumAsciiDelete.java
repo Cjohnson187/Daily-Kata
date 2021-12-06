@@ -1,5 +1,11 @@
 package com.smt.kata.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 /****************************************************************************
  * <b>Title</b>: MinimumAsciiDelete.java
  * <b>Project</b>: SMT-Kata
@@ -53,6 +59,27 @@ public class MinimumAsciiDelete {
 	 * @return Total of the removed ascii values
 	 */
 	public int getMinumumValue(String s1, String s2) {
-		return s1.length() + s2.length();
+		List<String> absent = new ArrayList<>(); 
+		int num = 0;
+		if(s1.length() < 1 || s2.length() < 1) return num;
+		absent = getAbsent(absent, s1, s2);
+		absent = getAbsent(absent, s2, s1);
+		System.out.println(absent.toString());
+		for(String s: absent) {
+			num += .valueOf(s);
+		}
+		
+		
+		return num;
+	}
+	
+	public List<String> getAbsent(List<String> absent, String first, String second){
+		
+		for(String letter : first.split("")) {
+			if( Collections.frequency(Arrays.asList(second.split("")), letter) < 1 && !absent.contains(letter)) {
+				absent.add(letter);
+			}
+		}
+		return absent;
 	}
 }
