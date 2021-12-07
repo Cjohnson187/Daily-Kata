@@ -43,7 +43,34 @@ public class ToeplitzMatrix {
 	 * @return True if its a toeplitz.  False otherwise
 	 */
 	public boolean isToeplitz(int[][] matrix) {
-		
-		return matrix == null;
+		if(matrix == null || matrix.length < 1 || matrix[0].length <1) return false;
+	
+		// horizontal
+		for (int i = 0; i < matrix[0].length; i++) 
+			if( ! checkDiag(0,i, matrix) ) return false;
+		// Vertical
+		for (int i = 0; i < matrix.length; i++) 
+			if(! checkDiag(i,0, matrix) ) return false;
+
+		return true;
+	}
+	public boolean checkDiag(int y0, int x0, int[][] matrix) {
+		if(matrix[y0] == null) return false;
+		int val = matrix[y0][x0];
+		for (int y = y0, x = x0; y < matrix.length && matrix[y] != null && x < matrix[y].length; ++y, ++x) 
+			if(matrix[y].length < 1 || matrix[y][x] != val) 
+				return false;
+		return true;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

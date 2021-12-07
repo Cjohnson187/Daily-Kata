@@ -66,7 +66,7 @@ public class MinimumAsciiDelete {
 		absent = getAbsent(absent, s2, s1);
 		System.out.println(absent.toString());
 		for(String s: absent) {
-			num += .valueOf(s);
+			num += Integer.valueOf(s);
 		}
 		
 		
