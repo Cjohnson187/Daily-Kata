@@ -1,5 +1,13 @@
 package com.smt.kata.word;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
 /****************************************************************************
  * <b>Title</b>: ReplaceWords.java
  * <b>Project</b>: SMT-Kata
@@ -59,7 +67,21 @@ package com.smt.kata.word;
 public class ReplaceWords {
 
 	public String update(String phrase, String[] roots) {
-		return phrase;
+		if(StringUtils.isEmpty(phrase) || roots == null || roots.length < 1) return "";
+		List<String> words = Arrays.asList(phrase.split(" "));
+		
+		for (String word : Arrays.asList(phrase.split(" "))) {
+			inner: for(int i=0; i < 2; i++) {
+				for (String root : roots) {
+					if( root != null && word.startsWith(root)) {
+						phrase = phrase.replaceFirst(word, root);
+						break inner;
+					}
+				}
+				
+			}
+		}
+		return phrase.trim();
 	}
 
 }
