@@ -1,5 +1,7 @@
 package com.smt.kata.time;
 
+import java.util.Arrays;
+
 /****************************************************************************
  * <b>Title</b>: DailyTemperatures.java
  * <b>Project</b>: SMT-Kata
@@ -38,6 +40,32 @@ public class DailyTemperatures {
 	 * @return array matching the temps array that has the ith day for each day
 	 */
 	public int[] calculate(int[] temps) {
-		return temps;
+		if(temps == null || temps.length < 1) return new int[0];
+		int[] days = new int[temps.length];
+		
+		for (int a = 0, b = 0; a < temps.length && b < temps.length; b++) {
+			if(temps[b] > temps[a]) { 
+				days[a] = b-a;
+				b = ++a;
+				continue;
+			}
+			
+			
+			if(b == temps.length && a < days.length) 
+				b = ++a;
+			
+			
+		}
+		
+		
+//		for (int i = 0; i < temps.length-1; i++) {
+//			for (int j = i; j < temps.length; j++) {
+//				if(temps[j] > temps[i]) {
+//					days[i] = j-i;
+//					break;
+//				}	
+//			}
+//		}		
+		return days;
 	}
 }
