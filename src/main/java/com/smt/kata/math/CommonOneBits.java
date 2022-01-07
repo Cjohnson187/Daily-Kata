@@ -27,7 +27,9 @@ public class CommonOneBits {
 	 * @return Next number to match
 	 */
 	public int find(int start) {
-		
+		if(start <0 || start > 1024 ) return 0;
+		String bin = Integer.toBinaryString(start);
+		System.out.println("bin = " + bin + "  start = " + start);
 		// Return the value
 		return start;
 	}

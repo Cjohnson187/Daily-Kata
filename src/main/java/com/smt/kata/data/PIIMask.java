@@ -1,5 +1,10 @@
 package com.smt.kata.data;
 
+import java.util.function.Function;
+import java.util.regex.Pattern;
+
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title</b>: PIIMask.java
  * <b>Project</b>: SMT-Kata
@@ -91,13 +96,51 @@ public class PIIMask {
 	 * Regex to use for email validation if desired
 	 */
 	protected static final String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-	
+	protected static final Pattern emailPattern = Pattern.compile(EMAIL_REGEX);
 	/**
 	 * Masks the email address or phone number
 	 * @param source Email or a phone
 	 * @return Masked data.  Empty if data is invalid
 	 */
 	public String mask(String source) {
-		return source;
+		if(StringUtil.isEmpty(source)) return "";
+		Function<String, String> num = (n) -> {
+			String ret = "";
+			String[] s = n.split("\\.");
+			for(int i= 0; i < s.length-1; i++) {
+				ret += "*".repeat(s[i].length());
+				ret += "-";
+			}
+			ret += s[s.length-1];
+			return ret;
+		} ;
+		Function<String, String> email = (s) -> {
+			String ret = "";
+			String[] e = s.split("@");
+				ret += e[0].substring(0,1).toLowerCase();
+//				if(e[0].length() > 5) 
+//					ret += "*".repeat( e[0].substring(1,e[0].length()-2).length());
+//				else
+				ret += "*".repeat(5);
+				ret += e[0].substring(e[0].length()-1,e[0].length()).toLowerCase();
+				ret += ("@" + e[1].toLowerCase());
+			return ret;
+		};
+		
+		if(emailPattern.matcher(source).matches()) {
+			
+			if(source.length() > 40 && source.length() < 8) return "";
+			else {
+				return email.apply(source);
+			}
+			
+		} else {
+			if(source.length() > 20 && source.length() < 10) return "";
+			String ret = source.startsWith("+")? "+": "";
+			source = source.replaceAll("[^\\d.]", "");
+			System.out.println("ret = " + source);
+			return ret + num.apply(source);
+		}
+		
 	}
 }
