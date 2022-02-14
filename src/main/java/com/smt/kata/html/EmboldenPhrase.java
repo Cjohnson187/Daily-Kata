@@ -1,7 +1,13 @@
 package com.smt.kata.html;
 
+import java.util.ArrayList;
+import java.util.Collections;
 // JDK 11.x
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.siliconmtn.data.text.StringUtil;
 
 /****************************************************************************
  * <b>Title</b>: EmboldenPhrase.java
@@ -39,6 +45,49 @@ public class EmboldenPhrase {
 	 * @return Bolded phrase
 	 */
 	public String embolden(String phrase, List<String> boldWords) {
-		return phrase;
+		if(boldWords.isEmpty() || StringUtil.isEmpty(phrase)) return "";
+		
+		String s = phrase;
+		List<String> words = getPerm(boldWords);
+		for(String i : words) {
+			System.out.println(s+"  "+i +"  " + s.contains(i));
+			String n = "<b>"+i+"</b>";
+			System.out.println(n);
+			s = s.replace(i, ("<b>"+i+"</b>"));
+		}
+		boolean open = false;
+		StringBuilder builder = new StringBuilder(s.replaceAll("</b><b>", ""));
+		System.out.println("builder = " +builder.toString());
+		for (int i = 0; i < builder.length(); i++) {
+			if(builder.charAt(i) == '<' &&  i < builder.length() -1 && builder.charAt(i+1) == 'b' ) {
+				if(!open) {
+					
+					open = true;
+					
+				}
+				
+			}
+		}
+		System.out.println(s);
+		return s;
+	}
+	
+	public List<String> getPerm(List<String> boldWords) {
+		 List<String> words = new ArrayList<>();
+		 for (String s: boldWords) {
+			 for(String p: boldWords) {
+				 if(s.equals(p)) continue;
+				 if(s.charAt(0) == p.charAt(p.length()-1)) {
+					 words.add(p+ s.substring(1));
+				 } else if(s.charAt(s.length()-1) == p.charAt(0)) {
+					 words.add(s+ p.substring(1));
+				 }
+			 }
+		 }
+		 words.addAll(boldWords);
+		 Collections.sort(words);
+		 words.sort((a,b) -> b.length() - a.length());
+		 System.out.println("words = "+words.toString());
+		 return words;
 	}
 }
