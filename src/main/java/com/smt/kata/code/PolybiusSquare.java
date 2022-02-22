@@ -1,5 +1,12 @@
 package com.smt.kata.code;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title</b>: PolybiusSquare.java
  * <b>Project</b>: SMT-Kata
@@ -26,6 +33,14 @@ package com.smt.kata.code;
  * @updates:
  ****************************************************************************/
 public class PolybiusSquare {
+	
+	public final String[][] sq =  { 
+            {"a", "b", "c", "d", "e"},
+            {"f", "g", "h", "i|j", "k"},
+            {"l", "m", "n", "o", "p"},
+            {"q", "r", "s", "t", "u"},
+            {"v", "w", "x", "y", "z"}
+           };
 
 	/**
 	 * Encodes a sentence into its polybius values
@@ -33,7 +48,22 @@ public class PolybiusSquare {
 	 * @return
 	 */
 	public String polybiusEncode(String term){
-		return term;
+		if(StringUtil.isEmpty(term)) return "";
+		int diff = 81;
+		String ret = "";
+		term = term.toLowerCase();
+		for (int i = 0; i < term.length(); i++) {
+			if((term.charAt(i)+"").equals(" ")) {
+				ret+=" ";
+				continue;
+			}
+			String text = term.charAt(i)+"";
+			String index = getIndex(text);
+			ret+=index;
+		}
+		
+		
+		return ret;
 	}
 	
 	/**
@@ -42,7 +72,36 @@ public class PolybiusSquare {
 	 * @return
 	 */
 	public String decodeValue(String code){
-	    return code;
+		
+		
+		String ret = "";
+		for (int i = 0; i < code.length(); i+=2) {
+			if(code.charAt(i) == ' ') {
+				ret+=" ";
+				i -= 1;
+				continue;
+			}
+			
+			String n = sq[Integer.parseInt(code.charAt(i) +"")-1][Integer.parseInt(code.charAt(i+1) +"")-1];
+			ret += n.equals("i|j") ? "i": n;
+		}
+		
+	    return ret;
+	}
+	
+	public String getIndex(String tx) {
+		if (tx.equals("i") || tx.equals("j")) {
+			return "24";
+		}
+		for (int i = 0; i < sq.length; i++) {
+			for (int j = 0; j < sq.length; j++) {
+				if(tx.equals(sq[i][j])) {
+					return (i+1) + "" + (j+1);
+				}
+			}
+			
+		}
+		return "";
 	}
 
 }
