@@ -1,8 +1,12 @@
 package com.smt.kata.game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 // JDK 11.x
 import java.util.Collection;
 import java.util.List;
+
+import com.siliconmtn.data.text.StringUtil;
 
 /****************************************************************************
  * <b>Title</b>: AnagramGroup.java
@@ -42,6 +46,32 @@ public class AnagramGroup {
 	 * @return A collection of lists grouping the 
 	 */
 	public Collection<List<String>> findGroups(String[] words) {
-		return null;
+		List<List<String>> groups = new ArrayList<>();
+		if(words == null || words.length < 1) return groups;
+		for (String word : words) {
+			if(StringUtil.isEmpty(word)) continue;
+			List<String> curWords = getAn(words, word);
+			if(!curWords.isEmpty())
+				groups.add(curWords);
+		
+		}
+		System.out.println(groups.toString());
+		return groups;
 	}
+	
+	public List<String> getAn(String[] words, String word) {
+		List<String> an = new ArrayList<>();
+		char[] oC = word.toLowerCase().toCharArray();
+		Arrays.sort(oC);
+		if(StringUtil.isEmpty(word)) return an;
+		for (String w : words) {
+			if(StringUtil.isEmpty(w)) continue;
+			char[] wC = w.toLowerCase().toCharArray();
+			Arrays.sort(wC);
+			if( !w.equalsIgnoreCase(word)  &&  Arrays.equals(wC, oC))
+				an.add(w);
+		}
+		if(!an.isEmpty()) an.add(word);
+		return an;
+ 	}
 }
