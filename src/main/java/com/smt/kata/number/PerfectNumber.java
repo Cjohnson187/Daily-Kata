@@ -1,5 +1,7 @@
 package com.smt.kata.number;
 
+
+
 /****************************************************************************
  * <b>Title</b>: PerfectNumber.java
  * <b>Project</b>: SMT-Kata
@@ -27,7 +29,22 @@ public class PerfectNumber {
 	 * @return Value of the nth perfect number
 	 */
 	public int find(int nth) {
-		return 0;
+		if(nth < 0) return 0;
+		int index = nth;
+		while (!isPerfect(index)) {
+			index++;
+		}
+		return index;
+	}
+	public boolean isPerfect(int num){
+		String[] nums = (num+"").split("");
+		int total = 0;
+			for(String n: nums) {
+				total += Integer.parseInt(n);
+			}
+			if(total == 10) return true;
+		
+		return false;
 	}
 
 }
