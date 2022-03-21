@@ -22,7 +22,10 @@ package com.smt.kata.number;
  * @updates:
  ****************************************************************************/
 public class PerfectNumber {
-
+	
+	public interface Predicate<Integer> {
+		boolean test(Integer t);
+	}
 	/**
 	 * Finds the nth perfect number
 	 * @param nth nth value to locate
@@ -30,10 +33,14 @@ public class PerfectNumber {
 	 */
 	public int find(int nth) {
 		if(nth < 0) return 0;
-		int index = nth;
-		while (!isPerfect(index)) {
-			index++;
-		}
+		
+		
+		int cntr = 0;
+		
+		int index = 0;
+		int perfects = 0;
+	
+		
 		return index;
 	}
 	public boolean isPerfect(int num){
