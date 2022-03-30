@@ -1,7 +1,12 @@
 package com.smt.kata.number;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 // JDK 11.x
 import java.util.List;
+import java.util.Map;
 
 /****************************************************************************
  * <b>Title</b>: UniqueIntegers.java
@@ -51,6 +56,54 @@ public class UniqueIntegers {
 	 * @return Smallest unique list
 	 */
 	public List<Integer> calculate(int[] values, int k) {
-		return null;
+		List<Integer> ret = new ArrayList();
+		if(values == null || k < 1) return ret;
+		Arrays.sort(values);
+		Map<Integer, String> vals = new HashMap();
+		
+
+		
+		for (int i: values) vals.put(i, vals.get(i) == null? i+"": vals.get(i)+i );
+		
+		for(Map.Entry<Integer, String> m: vals.entrySet()) {
+			System.out.println("key = " + m.getValue() + " , " + m.getKey());
+		}
+	
+		while(k > 0) {
+			vals = removeVal(vals, k);
+			k--;
+		}
+		
+		for(Map.Entry<Integer, String> m: vals.entrySet()) 
+			for (String s: m.getValue().split("")) ret.add(Integer.parseInt(s)); 
+		
+		System.out.println(ret.toString());
+		return ret;
+	}
+	public Map<Integer, String> removeVal(Map<Integer, String> vals, int k) {
+		int totalLength = 0;
+		for (Map.Entry<Integer, String> m: vals.entrySet())
+			totalLength += m.getValue().length();
+		int removableDups = totalLength - vals.size();
+		//System.out.println("tot = " + totalLength + " ,  " + removableDups + "  , " + k);
+		if(removableDups > 0) {
+			for (Map.Entry<Integer, String> m: vals.entrySet())
+				if(m.getValue().length() > 1) 
+					m.setValue( m.getValue().substring(0,m.getValue().length()-1));
+		} else {
+			int smallest =  200;
+			Integer key = null;
+			for(Map.Entry<Integer, String> m: vals.entrySet() ) {
+				if(m.getValue().length() < smallest) {
+					smallest = m.getValue().length();
+					key = m.getKey();
+				}
+			}
+			if(key != null) vals.remove(key); 
+			
+		}
+		
+
+		return vals;
 	}
 }
