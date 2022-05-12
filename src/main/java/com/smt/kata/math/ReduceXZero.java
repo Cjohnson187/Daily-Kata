@@ -88,7 +88,7 @@ class BinaryTree {
 		traverse(root);
 	}
 	public void traverse(Nodee n) {
-		if (n.value > 0)
+
 	}
 	
 	public void setNodes(Nodee node) {
