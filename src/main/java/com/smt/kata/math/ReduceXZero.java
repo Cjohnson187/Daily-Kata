@@ -88,11 +88,7 @@ class BinaryTree {
 		traverse(root);
 	}
 	public void traverse(Nodee n) {
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> 6f3c4d9b0b5b4f44e4f288e31ca8e0974dc460e1
 	}
 	
 	public void setNodes(Nodee node) {
