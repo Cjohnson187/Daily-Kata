@@ -1,4 +1,7 @@
 package com.smt.kata.code;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,6 +37,28 @@ public class DiamondGeneration {
 	 * @return
 	 */
 	public List<String> generateDiamond(Character l) {
-		return null;
+		if (l == null) {
+			return new ArrayList<String>();
+		} else if (l == 'A' || l == 'a') {
+			return  Arrays.asList(Character.toUpperCase(l) + "");
+		} else {
+			List<String> diamond = new ArrayList<String>(((l-'A')*2) + 1);
+			for (int i=0; i<=((l-'A')*2) + 1; i++) {
+				diamond.add(i,"");
+			}
+			l = Character.toUpperCase(l);
+			System.out.println( "l = " + l);
+			int space = l - '@';
+			System.out.println("space = " + space +"  " +(l-'A'));
+			diamond.add(l-'A', (l+"") + " ".repeat(space) + (l-'A'+""));
+			for (int i = l-'A'-1, j = ((l+'A') - '@') +1 ; i >= 0 ; i--, j++) {
+				diamond.add(i, (l-- +"") + " ".repeat(space) + (l--+""));
+				diamond.add(j, (l-- +"") + " ".repeat(space) + (l--+""));
+			}
+			
+			System.out.println(diamond.toString());
+			return diamond;
+		}
+	
 	}
 }
