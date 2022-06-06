@@ -27,17 +27,8 @@ package com.smt.kata.number;
 public class ArmstrongNumber {
 
 	public boolean isArmstrongNumber(int number) {
-		 
-		int total = 0;
-		String num = String.valueOf(number);
 		
-		int pow = num.length();
-		for(int i=0; i< num.length(); i++) {
-			total += Math.pow(num.charAt(i)-'0', pow);
-		}
-		if (total == number) return true; 
-		
-		return  false;
+		return number == 0;
 	}
 
 }

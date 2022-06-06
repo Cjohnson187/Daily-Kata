@@ -2,11 +2,7 @@ package com.smt.kata.word;
 
 // JDK 11.x
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-
-import com.siliconmtn.data.text.StringUtil;
 
 /****************************************************************************
  * <b>Title</b>: SubstringConcatenationMatching.java
@@ -58,42 +54,6 @@ public class SubstringConcatenationMatching {
 	 * @return List of matching indexes
 	 */
 	public List<Integer> find(String phrase, String[] words) {
-		List<Integer> ret = new ArrayList<>();
-		if(phrase == null||phrase.length() >= 104 || phrase.length() <1  || words == null || words.length < 1 || words.length > 5000) 
-			return ret;
-		
-		List<String> ww = new ArrayList<>();
-		ww  = buildWords(new ArrayList<String>( Arrays.asList(words)), "",ww);
-		
-		phrase = phrase.toLowerCase();
-		
-		for(String word : ww) {
-			if(word.length() < 1 || word.length() >30) 
-				continue;
-			for(int i =0 ; i < phrase.length(); i++) {
-				if(phrase.substring(i).contains(word)) {
-					ret.add(phrase.substring(0 ,  i).length() + phrase.substring(i).indexOf(word));
-					i =phrase.substring(0, i).length() + phrase.substring(i).indexOf(word) + word.length();
-				}
-			}
-		}
-		
-		return ret;
-	}
-	
-	public List<String> buildWords(List<String> words, String word, List<String> cat) {
-		words.remove(null);
-		if(words.isEmpty())  {
-			cat.add(word.toLowerCase());
-			return cat;
-		}
-
-		for(String w : words) {
-			List<String> rem = new ArrayList<String>(words);
-			rem.remove(rem.indexOf(w));
- 			buildWords(rem, word+w , cat);
-		}
-
-		return cat;
+		return new ArrayList<>();
 	}
 }

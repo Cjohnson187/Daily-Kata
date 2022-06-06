@@ -1,13 +1,5 @@
 package com.smt.kata.word;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: RearrangeWordsByLength.java
  * <b>Project</b>: SMT-Kata
@@ -57,7 +49,7 @@ public class RearrangeWordsByLength {
 	 * @return Sorted phrase.  Empty string if invalid data
 	 */
 	public String sort(String phrase) {
-		return StringUtil.isEmpty(phrase)? "":  StringUtils.capitalize(Arrays.stream(phrase.toLowerCase().split(" ")).sorted((s1, s2) -> s1.length()-s2.length()).collect(Collectors.joining(" ")));
+		return phrase;
 	}
 
 }

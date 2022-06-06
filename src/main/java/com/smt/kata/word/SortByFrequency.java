@@ -1,18 +1,5 @@
 package com.smt.kata.word;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.function.Function;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 /****************************************************************************
  * <b>Title</b>: SortByFrequency.java
  * <b>Project</b>: SMT-Kata
@@ -55,19 +42,6 @@ public class SortByFrequency {
 	 * @return characters sorted by the number of times they appear in the word
 	 */
 	public String sort(String word) {
-
-		 //Map<Integer, Long> frequencies =
-//				 Stream<Object> w = 
-//			        word.codePoints()
-//			           .parallel()
-//			           .boxed()
-//			           .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().sorted(Map.Entry.comparingByValue().reversed()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-//			        			(oldValue, newValue) -> oldValue, LinkedHashMap::new));
-//				 System.out.println();
-		 
-		 
-		
-		
 		return word;
 	}
 

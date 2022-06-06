@@ -1,7 +1,5 @@
 package com.smt.kata.distance;
 
-import java.util.Arrays;
-
 /****************************************************************************
  * <b>Title</b>: ClosestPoints.java
  * <b>Project</b>: SMT-Kata
@@ -38,35 +36,7 @@ public class ClosestPoints {
 	 * @return Closest points
 	 */
 	public Integer[][] calculateClosestPoints(Integer[][] points) {
-		if(points == null || points.length < 2) return new Integer[0][0];
-	
-		int a = 0;
-		int b = 1;
-		double dist = calcDistance(points, 0, 1);
-		for(int i = 0; i < points.length; i++) {
-			
-			for(int j = 0; j < points.length; j++) {
-				if(j == i) continue;
-	
-				Double d = calcDistance(points, i, j);
-				if (dist > d ) {
-					a = i;
-					b = j;
-					dist = d;
-				}
-
-			}
-		
-
-		}
-		Integer[][] ret = new Integer[2][2];
-		ret[0] = points[a];
-		ret[1] = points[b];
-		
-		return ret;
-	}
-
-	public double calcDistance(Integer[][] points, int a, int b)  {
-		return Math.sqrt(Math.pow((points[a][0]-points[b][0]), 2) + Math.pow((points[a][1]-points[b][1]), 2));
+		// Return the pairs with the min distance
+		return points;
 	}
 }

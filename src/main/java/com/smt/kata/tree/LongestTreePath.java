@@ -1,6 +1,5 @@
 package com.smt.kata.tree;
 
-import java.util.ArrayList;
 // JDK 11.x
 import java.util.List;
 
@@ -38,17 +37,15 @@ import java.util.List;
  * @updates:
  ****************************************************************************/
 public class LongestTreePath {
-	KataTree<Integer> tree;
+
 	/**
 	 * Calculates the longest path for the assigned weights at each node
 	 * @param nodes Collection of nodes to calculate against
 	 * @return Sum of the weights from each node in the path
 	 */
 	public int caclculatePath(List<KataNode<Integer>> nodes) {
-		tree = new KataTree<Integer>(nodes, nodes.get(0));
-		List<KataNode<Integer>> newNodes  = new ArrayList<>();
+		
 		return nodes.size();
-
 	}
 
 }

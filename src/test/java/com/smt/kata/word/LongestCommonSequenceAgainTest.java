@@ -81,7 +81,7 @@ class LongestCommonSequenceAgainTest {
 	 */
 	@Test
 	void testGetSequenceMixedCase() throws Exception {
-		assertEquals("eig", lcsa.getSequence(new String[]{ "EpidemiOlogist", "refrigerAtionE", "bElievingmore" }));
+		assertEquals("eig", lcsa.getSequence(new String[]{ "EpidemiOlogist", "refrigErAtion", "bElievingmore" }));
 	}
 
 }

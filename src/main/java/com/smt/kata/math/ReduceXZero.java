@@ -1,9 +1,5 @@
 package com.smt.kata.math;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /****************************************************************************
  * <b>Title</b>: ReduceXZero.java
  * <b>Project</b>: SMT-Kata
@@ -52,63 +48,6 @@ public class ReduceXZero {
 	 * @return Minimum number of moves to match the sum
 	 */
 	public int minOperations(int[] nums, int x) {
-		List<Integer> numList = Arrays.stream(nums)
-			      .boxed()
-			      .collect(Collectors.toList());
-		BinaryTree tree = new BinaryTree(x, numList);
-		// tree.findSomething
-		
 		return x;
 	}
-}
-
-class Nodee {
-	List<Integer> values;
-    int value;
-   
-    Nodee left;
-    Nodee right;
-
-    Nodee(int value, List<Integer> values) {
-        this.value = value;
-        right = null;
-        left = null;
-    }
-}
-
-class BinaryTree {
-
-	Nodee root;
-	BinaryTree(int x , List<Integer> nums){
-		root = new Nodee(x, nums);
-		setNodes(root);
-	}
-	
-	public void findLeast() {
-		traverse(root);
-	}
-	public void traverse(Nodee n) {
-
-	}
-	
-	public void setNodes(Nodee node) {
-		if (node != null && node.value > 0 && node.values.size() > 1 && node.left == null) {
-			// left node
-			List<Integer> vals = node.values;
-			int newX = node.value - vals.get(0);
-			vals.remove(0);
-			node.left = new Nodee(newX, vals);	
-			setNodes(node.left);
-		}
-		if (node != null && node.value > 0 && node.values.size() > 1 && node.right == null) {
-			// right node
-			List<Integer> vals = node.values;
-			int newX = node.value - vals.get(vals.size()-1);
-			vals.remove(vals.size()-1);
-			node.right = new Nodee(newX, vals);
-			setNodes(node.right);
-		}
-	}
-	
-
 }

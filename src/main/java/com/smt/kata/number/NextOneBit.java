@@ -1,8 +1,5 @@
 package com.smt.kata.number;
 
-
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: NextOneBit.java
  * <b>Project</b>: SMT-Kata
@@ -32,15 +29,6 @@ public class NextOneBit {
 	 * @return Next binary number with the same number of ones
 	 */
 	public String calculate(String binNum) {
-		if(StringUtil.isEmpty(binNum) || !binNum.matches("[01]+")) return "";
-		int num = Integer.parseInt(binNum, 2);
-		int num1 = binNum.replaceAll("0","").length();
-		
-		for (int i = num+1; ; i++) {
-			String n = Integer.toBinaryString(i);
-			if(n.replaceAll("0","").length() == num1) return n;
-			
-		}
-		
+		return binNum;
 	}
 }

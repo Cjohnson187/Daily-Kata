@@ -34,20 +34,7 @@ public class RepeatCounter {
 	 * @return Map with each object and it's count
 	 */
 	public Map<Object, Integer> calculate(Object[] items) {
-		 
-		Map<Object, Integer> ret = new HashMap<>();
-		if(items == null) return ret;
-		for (Object o: items) {
-			if (ret.containsKey(o)) {
-				ret.put(o, ret.get(o)+1);
-			}
-			else {
-				ret.put(o, 1);
-			}
-		
-		}
-		
-		return ret;
+		return counter;
 	}
 	
 	/**
@@ -71,22 +58,5 @@ public class RepeatCounter {
 		public Object getValue() { return value; }
 		public void setKey(Object key) { this.key = key; }
 		public void setValue(Object value) { this.value = value; }
-		
-		@Override
-        public boolean equals(Object o) {
-            if (!(o instanceof MyBean)) return false;
-            MyBean check = (MyBean)o;
-
-            return (getKey().equals(check.getKey()) && 
-                    getValue().equals(check.getValue()));
-        }
-		
-		@Override
-        public int hashCode() {
-			return 0;
-          
-        }
-			
-		
 	}
 }

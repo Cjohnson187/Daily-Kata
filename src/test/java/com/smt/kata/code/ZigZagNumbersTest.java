@@ -55,14 +55,6 @@ class ZigZagNumbersTest {
 	void testIsZigZagSame() throws Exception {
 		assertFalse(zzn.isZigZag(new int[]{2,4,2,2,1,5,3}));
 	}
-	
-	/**
-	 * Test method for {@link com.smt.kata.code.ZigZagNumbers#isZigZag(int[])}.
-	 */
-	@Test
-	void testIsZigZagDownUp() throws Exception {
-		assertFalse(zzn.isZigZag(new int[]{4,2,3,1,8,5,3}));
-	}
 
 	/**
 	 * Test method for {@link com.smt.kata.code.ZigZagNumbers#isZigZag(int[])}.
@@ -86,10 +78,5 @@ class ZigZagNumbersTest {
 	@Test
 	void testIsZigZagLarge() throws Exception {
 		assertTrue(zzn.isZigZag(new int[]{10000, 500000, 250000, 2000000, 100000, 1980000, 76587}));
-	}
-	
-	@Test
-	void testIsZigZagNegativeFlip() throws Exception {
-	    assertTrue(zzn.isZigZag(new int[]{-5,-10,-2,-8}));
 	}
 }

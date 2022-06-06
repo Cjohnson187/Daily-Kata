@@ -39,8 +39,6 @@ class SkylineViewTest {
 		assertEquals(0,  sv.getNumViewsForward(new int[0]));
 	}
 	
-	
-	
 	/**
 	 * Test method for {@link com.smt.kata.distance.SkylineView#getNumViewsBackwards(int[])}.
 	 */
@@ -84,13 +82,5 @@ class SkylineViewTest {
 	void testGetNumViewsBackwardsAlt() throws Exception {
 		assertEquals(2,  sv.getNumViewsBackwards(new int[] { 5, 2, 5, 1, 4 }));
 		assertEquals(2,  sv.getNumViewsForward(new int[] { 5, 2, 5, 1, 4 }));
-	}
-	
-	/**
-	 * Test method for {@link com.smt.kata.distance.SkylineView#getNumViewsForward(int[])}.
-	 */
-	@Test
-	void testGetNumViewForwardLowerPeak() throws Exception {
-		assertEquals(3,  sv.getNumViewsForward(new int[] { 5, 4,3,4,1 }));
 	}
 }

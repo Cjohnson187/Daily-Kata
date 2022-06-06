@@ -40,10 +40,7 @@ public class HarshadNumber {
 	 * @return
 	 */
 	public boolean isHarshad(int value) {
-		int sum = 0;
-		for (char c : (Math.abs(value)+"").toCharArray())
-			sum += c-'0';
-		return value != 0 && value%sum == 0;
-	} 
+		return value == 0;
+	}
 
 }

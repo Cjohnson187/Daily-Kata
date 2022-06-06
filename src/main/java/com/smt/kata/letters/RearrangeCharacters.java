@@ -1,9 +1,5 @@
 package com.smt.kata.letters;
 
-import java.util.Random;
-
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: RearrangeCharacters.java
  * <b>Project</b>: SMT-Kata
@@ -31,21 +27,6 @@ public class RearrangeCharacters {
 	 * @return Rearranged word
 	 */
 	public String arrange(String word) {
-		if (StringUtil.isEmpty(word)) return "";
-		if(word.length() < 2) return word;
-		if(word.equals((word.charAt(0)+"").repeat(word.length()) )) return "";
-		StringBuilder s = new StringBuilder(word);
-		Random rand = new Random();
-		
-		for (int i = 0; i < s.length()-1; i++) {
-			char cur = s.charAt(i);
-			if(cur == s.charAt(i+1)) {
-				s.deleteCharAt(i);
-				s.insert(rand.nextInt(s.length()), cur);
-				i = 0;
-			}
-		} 
-		return s.toString();
+		return word;
 	}
-	
 }

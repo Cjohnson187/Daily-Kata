@@ -1,7 +1,5 @@
 package com.smt.kata.data;
 
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title:</b> StringSequence.java
  * <b>Project:</b> SMT-Kata
@@ -34,19 +32,7 @@ public class StringSequence {
 	 * @return True if the source string is in the destination.  False otherwise
 	 */
 	public boolean hasSequence(String source, String dest) {
-		if (StringUtil.isEmpty(source) || StringUtil.isEmpty(dest)  ) return false;
-		for (int i = 0; i < dest.length(); i++) {
-			if (dest.toLowerCase().contains(source.toLowerCase())) {
-				return true;
-			}
-			dest = rotate(dest);
-		}	
-		return false;
+		return source.equalsIgnoreCase(dest);
 	}
-	
-	public String rotate(String s) {
-		String begin = s.substring(s.length()-1);
-		s = begin + s.substring(0, s.length()-1);
-		return s;
-	}
+ 
 }

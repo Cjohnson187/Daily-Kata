@@ -1,12 +1,7 @@
 package com.smt.kata.io;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 // JDK 11.x
 import java.io.IOException;
-import java.util.Scanner;
-
-import com.siliconmtn.data.text.StringUtil;
 
 
 /****************************************************************************
@@ -37,24 +32,6 @@ public class CountingLines {
 	 * @throws IOException
 	 */
 	public int getNumberLines(String clazzName) throws IOException {	
-		String dir  = "src/main/java/"+ clazzName.replace(".", "/")+".java";
-		int lineCount = 0;	
-		try {
-		      File file = new File(dir);
-		      Scanner myReader = new Scanner(file);
-		      boolean comment = false;
-		      while (myReader.hasNextLine()) {
-		    	  String data = myReader.nextLine();
-		    	  if (data.contains("/**") || data.contains("/*")) comment = true;
-		    	  if (data.contains("*\\") && comment == true) comment = false;
-		    	  if (comment == true || StringUtil.isEmpty(data) ) continue;
-		    	  lineCount++;
-		      }
-		      myReader.close();
-		    } catch (Exception e) {
-		    	throw new IOException();
-		    }
-		
-		return lineCount-1;
+		return clazzName.length();
 	}
 }

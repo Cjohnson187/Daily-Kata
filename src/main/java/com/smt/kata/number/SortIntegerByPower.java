@@ -1,13 +1,5 @@
 package com.smt.kata.number;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.IntStream;
-
 // JDK 11.x
 
 /****************************************************************************
@@ -76,11 +68,7 @@ import java.util.stream.IntStream;
  * @updates:
  ****************************************************************************/
 public class SortIntegerByPower {
-	
-	@FunctionalInterface
-    interface TriFunction<T,U,V,R> {
-       R apply(T t, U u, V v);
-    }
+
 	/**
 	 * Finds the correct power in the range that matches "k"
 	 * @param low Low value for the powers
@@ -89,56 +77,6 @@ public class SortIntegerByPower {
 	 * @return value in the high/low range, sorted that matches the kth element
 	 */
 	public int find(int low, int high, int k) {
-		if(low < 1 || high < low || high > 1000 || k < 1 || k > high-low+1) return 0;
-		if(high == low ) return low;
-		// equation 
-		Function<Integer, Integer> p = (i ->  i/2 == 1 ? (3 * i) +1 : i/2) ;
-		// increment
-		//BiFunction<Integer, Integer, Integer> f1 = (num, i) -> (num != 1 ? (f4.apply(m.apply(num) , i+1)) : i); 
-		
-		//BiFunction<Integer, Integer, Integer> f2 = (num, i) -> num == 1? i: num.apply(num, i+1);
-		
-		//Function<Integer, Integer> runner = x -> f2.apply(f2, x);  
-		
-		Function<Integer, Integer> fact  = x -> {
-			
-			TriFunction<TriFunction, Integer, Integer, Integer> factHelper = 
-					(func, num, count) -> (num == 1) ? count : (Integer) func.apply(func, num, count);
-					return factHelper.apply(factHelper, x, x);
-		};
-		
-		//Function<Integer, Integer> me = ( i -> i = 1 ? )
-		
-		System.out.println("applied = " + fact.apply(low));
-		
-		
-//		Function<Double, Double> fact = x -> {
-//		    BiFunction<BiFunction, Double, Double> factHelper =
-//		        (f, d) -> (d == 0) ? 1.0 : d*(double)f.apply(f,d-1);
-//		    return factHelper.apply(factHelper, x);
-//		};
-		
-		int[] range = IntStream.range(low, high).toArray();
-//		Arrays.sort(range, Comparator.comparing({
-//			
-//		})
-//		); 
-		
-		System.out.println(Arrays.toString(range));
-		 
-			
 		return k;
 	}
-	
-	public static int pow(int number) {
-		int count = 1;
-		Function<Integer, Integer> p = (i ->  i/2 == 1 ? (3 * i) +1 : i/2) ;
-		while (number > 1 ) {
-			p.apply(number);
-			count++;
-		}
-		return count;
-	}
-	
 }
-

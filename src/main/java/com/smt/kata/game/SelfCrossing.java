@@ -45,16 +45,7 @@ public class SelfCrossing {
 	 * @return True if lines overlap.  False otherwise
 	 */
 	public boolean overlaps(int[] steps) {
-		boolean is = false;
-		if(steps != null && steps.length > 3) 
-			return is;
-		
-		
-		if(steps[2] < steps[0] && steps[3] < steps[1]) {
-			is = true;
-		}
-		
-		return is; 
+		return steps == null;
 	}
 
 }

@@ -1,16 +1,9 @@
 package com.smt.kata.distance;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 // JDK 11.x
 import java.util.List;
-import java.util.Map;
-
-import org.w3c.dom.css.Rect;
 
 // Kata Libs
-import com.smt.kata.distance.bean.CoordinateVO;
 import com.smt.kata.distance.bean.Rectangle;
 
 /****************************************************************************
@@ -47,7 +40,6 @@ public class RangeSumQuery {
 
 	// Members
 	protected int[][] matrix;
-	Map<Integer, Integer> loc;
 	
 	/**
 	 * Initializes the class with a matrix to use to calculate against
@@ -56,8 +48,6 @@ public class RangeSumQuery {
 	public RangeSumQuery(int[][] matrix) {
 		super();
 		this.matrix = matrix;
-		this.loc = new HashMap<>();
-
 	}
 	
 	/**
@@ -66,19 +56,7 @@ public class RangeSumQuery {
 	 * @return Sum of all cells inside the rectangles
 	 */
 	public int sumRange(List<Rectangle> areas) {
-		if(areas.isEmpty()) return 0;
-		int all = 0;
-		System.out.println("check = " + (new int[] {1,2} == new int[] {1,2}));
-		
-		for (Rectangle rectangle : areas) {
-			System.out.println("rectangle string outer= " + loc.toString());
-			if(rectangle == null ) continue;
-
-			all += rectangle.size(matrix, loc);
-
-			System.out.println("all " + all);
-		}
-		return all;
-	
+		return areas.size();
 	}
+
 }

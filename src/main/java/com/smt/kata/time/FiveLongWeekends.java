@@ -1,10 +1,7 @@
 package com.smt.kata.time;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 // JDK 11.x
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /****************************************************************************
  * <b>Title:</b> FiveLongWeekends.java
@@ -46,18 +43,7 @@ public class FiveLongWeekends {
 	 * @return Date of the five long weekends month.  Null otherwise
 	 */
 	public Date findNext(Date d) {
-		Calendar date = Calendar.getInstance();
-        date.setTime(d);
-       
-        if (d == null || d.equals(new Date())) return null;
-        while(date.getTime().compareTo( Calendar.getInstance().getTime()) < 0) {
-        
-        }
-
-
-		
 		return d;
 	}
-	
 
 }

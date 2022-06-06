@@ -1,21 +1,9 @@
 package com.smt.kata.game;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 // JDK 11.x
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.collections.map.HashedMap;
 
 /****************************************************************************
  * <b>Title</b>: VoteCounting.java
@@ -52,8 +40,6 @@ public class VoteCounting {
 	
 	// Members
 	private List<Integer> possibleFraudVotes = new ArrayList<>();
-	
-	private Map<Candidates, Integer> realVotes = new HashMap();
 
 	/**
 	 * Counts the votes for a given version
@@ -63,40 +49,6 @@ public class VoteCounting {
 	 * @throws IOException If votes can't be loaded
 	 */
 	public List<Candidates> count(int version) throws IOException {
-		List<Candidates> candidates = new ArrayList<>();
-		List<Integer> votes = new ArrayList<>();
-	
-		
-		String dir = String.format(RESOURCE, version);
-		System.out.println( dir );
-		File initialFile = new File(dir);
-		
-		try(InputStreamReader isr = new InputStreamReader(  this.getClass().getResourceAsStream(String.format(RESOURCE, version)));
-				BufferedReader reader = new BufferedReader(isr);) {
-		
-	
-			
-			
-			while (reader.ready()) {
-				String line = reader.readLine();
-				String[] vote = line.split("\t");
-				System.out.println(Arrays.toString(vote));
-				if (votes.contains(Integer.parseInt( vote[0]))) {
-					possibleFraudVotes.add(Integer.parseInt( vote[0]));
-				} else {
-					votes.add(Integer.parseInt(vote[0]));
-					//candidates.
-					//if (realVotes.containsKey(vote))
-					
-				}
-				System.out.println("line = " +reader.readLine());
-			}
-			
-		} catch (Exception e) {
-			System.out.println("Could not read file");
-			e.printStackTrace();
-		}
-		
 		return new ArrayList<>();
 	}
 	

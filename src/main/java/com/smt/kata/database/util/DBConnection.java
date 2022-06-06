@@ -2,9 +2,7 @@ package com.smt.kata.database.util;
 
 // JDK 11.x
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 /****************************************************************************
  * <b>Title</b>: Connection.java
@@ -25,7 +23,6 @@ public class DBConnection {
 	protected String driver; 
 	protected String url;
 	protected Connection conn;
-	protected boolean isConnected;
 	
 	/**
 	 * 
@@ -37,11 +34,9 @@ public class DBConnection {
 	public DBConnection(String user, String pwd, String driver, String url) {
 		super();
 		this.user = user;
-		this.pwd = "sqll0gin";
+		this.pwd = pwd;
 		this.driver = driver;
 		this.url = url;
-		this.isConnected = false;
-		this.conn = null;
 	}
 	
 	
@@ -50,27 +45,23 @@ public class DBConnection {
 	 * @return
 	 */
 	public Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(this.url, this.user, this.pwd);
+		return conn;
 	}
 	
-
 	/**
 	 * Identifies whether there is a connection to the db
 	 * @return
-	 * @throws SQLException 
 	 */
-	public boolean isConnected() throws SQLException {
-		return ( conn != null &&!conn.isClosed());
+	public boolean isConnected() {
+		return false;
 	}
 	
 	/**
 	 * Closes the database connection
-	 * @throws SQLException 
 	 *
 	 */
-	public void close() throws SQLException {
-		if(conn != null ) 
-			conn.close();
+	public void close() {
+		/* Fill me in */
 	}
 
 }

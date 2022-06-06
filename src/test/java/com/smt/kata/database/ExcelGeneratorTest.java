@@ -38,20 +38,13 @@ class ExcelGeneratorTest {
 	ExcelGenerator eg;
 	DBConnection dbConn;
 
-	private static final String URL = "jdbc:postgresql://dev-customer-sb-db.aws.siliconmtn.com:5432/webcrescendo_custom_sb?defaultRowFetchSize=25&amp;prepareThreshold=3";
-    private static final String DRIVER = "org.postgresql.Driver";
-    private static final String USER = "daily_kata";
-    private static final String PASSWORD = "dailyKata2021!";
-    private static final String ORG_ID = "GROUT_DOCTOR";
-    private static final String FILE_PATH = "/home/chrisjohnson/Desktop/ExcelTest/";
-    
-//	// Database members
-//	private static final String URL = "jdbc:postgresql://dev-common-sb-db.aws.siliconmtn.com:5432/wc_dev_sb?defaultRowFetchSize=25&amp;prepareThreshold=3";
-//	private static final String DRIVER = "org.postgresql.Driver";
-//	private static final String USER = "wc_user_dev";
-//	private static final String PASSWORD = "sqll0gin";
-//	private static final String ORG_ID = "GROUT_DOCTOR";
-//	private static final String FILE_PATH = "/home/etewa/Desktop/ExcelTest/";
+	// Database members
+	private static final String URL = "jdbc:postgresql://staging-sb-db.aws.siliconmtn.com:5432/wc_staging_sb?defaultRowFetchSize=25&amp;prepareThreshold=3";
+	private static final String DRIVER = "org.postgresql.Driver";
+	private static final String USER = "wc_user_sb";
+	private static final String PASSWORD = "CHANGE_ME";
+	private static final String ORG_ID = "SMT";
+	private static final String FILE_PATH = "/home/etewa/Desktop/ExcelTest/";
 	
 	/**
 	 * @throws java.lang.Exception

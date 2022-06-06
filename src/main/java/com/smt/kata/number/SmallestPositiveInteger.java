@@ -1,8 +1,5 @@
 package com.smt.kata.number;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /****************************************************************************
  * <b>Title</b>: SmallestPositiveInteger.java
  * <b>Project</b>: SMT-Kata
@@ -41,34 +38,6 @@ public class SmallestPositiveInteger {
 	 * @return smallest integer
 	 */
 	public int find(int[] arr) {
-		if(arr == null || arr.length < 1) return 0;
-		List<Integer> sets = new ArrayList<>();
-		//List<Integer> sets = new ArrayList<>();
-		int len = arr.length;
-		for (int i = 0; i< (1<<len); i++ ) {
-			
-			//sets.add(arr[i]);
-			int total = 0;
-			for (int j = 0; j< len; j++  ) {
-				if ((i & (1 << j)) > 0) {
-					total += j;
-				}
-				//if(j == i) continue;
-				
-				
-			}
-			
-			if(!sets.contains(total)) sets.add(total);
-		}
-		int ret = 1;
-		boolean in = false;
-		System.out.println(sets.toString());
-		while(true ) {
-			if(sets.contains(ret)) {
-				ret++;
-			}
-			else return ret;
-		}
-
+		return arr[0];
 	}
 }

@@ -1,13 +1,5 @@
 package com.smt.kata.number;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: AdditiveNumber.java
  * <b>Project</b>: SMT-Kata
@@ -56,107 +48,6 @@ public class AdditiveNumber {
 	 * @return True if additive, false otherwise
 	 */
 	public boolean isAdditive(String sequence) {
-		if(StringUtil.isEmpty(sequence) || sequence.length() > 35) return false;
-		
-		return additive(false, sequence.replaceAll("[^0-9.]", ""));
+		return sequence == null;
 	}
-	
-	/**
-	 * Reccurse number possibilities based on remaining string
-	 * @param a
-	 * @param sequence
-	 * @return
-	 */
-	public boolean additive(boolean a, String sequence) {
-		// end condition
-		if(a) 
-			return a;
-		
-		List<String> ones = getNums(sequence, 2);
-		for (String n1 : ones) {
-			if(n1.startsWith("0")) continue;
-			
-			String twoSeq = sequence.substring(n1.length(), sequence.length());
-			List<String> twos = getNums(twoSeq, 1);
-			for (String n2 : twos) {
-				if(n2.startsWith("0")) continue;
-				
-				String threeSeq = twoSeq.substring(n2.length(), twoSeq.length());
-				List<String> threes = getNums(threeSeq, 0);
-				for (String tot : threes) {
-					if(tot.startsWith("0")) continue;
-					//check if addiditve
-					if(Integer.parseInt(n1) + Integer.parseInt(n2) == Integer.parseInt(tot)) {
-						// check if end of sequence
-						if(sequence.endsWith(tot) ) {
-							return additive(true, twoSeq);
-						} else {
-							// continue to next number
-							return additive(false, twoSeq);
-						}
-					} else a = false;
-				}
-			}
-		}
-		
-		return a;
-	}
-	/**
-	 * Get list of number possibilities
-	 * @param seq
-	 * @param max
-	 * @return
-	 */
-	public List<String> getNums(String seq, int max) {
-		List<String> nums = new ArrayList<>();
-		for (int i = 0; i < seq.toCharArray().length-max; i++) 
-			nums.add(seq.substring(0, i+1));
-		return nums;
-	}
-	
-
-	
-	
-	
-	
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,5 @@
 package com.smt.kata.math;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 /****************************************************************************
  * <b>Title</b>: CommonOneBits.java
  * <b>Project</b>: SMT-Kata
@@ -30,17 +27,8 @@ public class CommonOneBits {
 	 * @return Next number to match
 	 */
 	public int find(int start) {
-		if(start <0 || start > 1024 ) return 0;
-		String bin = Integer.toBinaryString(start) +"0";
-		System.out.println("bin = " + bin + "  start = " + start);
-		for(char c: bin.toCharArray()) {
-			System.out.println(Integer.valueOf(""+c));
-		}
-		String val = Arrays.stream(bin.split("")).sorted((a, b) -> Integer.valueOf(b)  - Integer.valueOf(a)).collect(Collectors.joining());
-		//String val = bin.chars().mapToObj(i -> Integer.valueOf(i+"")).sorted((a, b) -> Integer.valueOf(""+a) - Integer.valueOf(""+b)).map(c -> c+"").collect(Collectors.joining());
+		
 		// Return the value
-		System.out.println("made string = " + val);
-		return  Integer.parseInt(val, 2);
+		return start;
 	}
 }
-

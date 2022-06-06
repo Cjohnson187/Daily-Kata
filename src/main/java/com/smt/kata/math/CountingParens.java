@@ -32,27 +32,6 @@ public class CountingParens {
 	 * @return
 	 */
 	public int calculate(String parens) {
-		if (parens == null ) {
-			return 0;
-		}
-		int rem = 0;
-		int left = 0;
-		
-		for (int i = 0; i < parens.length(); i++) {
-			if (parens.charAt(i) == '(') {
-				left++;
-			}
-			else if (parens.charAt(i) == ')') {
-				if ( left-1 < 0) {
-					rem++;
-				}
-				else left--;
-			}
-
-		}
-		if (Math.abs(left)>0) rem+=Math.abs(left);
-		
-
-		return rem;
+		return parens.length();
 	}
 }

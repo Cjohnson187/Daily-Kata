@@ -1,7 +1,5 @@
 package com.smt.kata.game;
 
-import java.util.Arrays;
-
 /****************************************************************************
  * <b>Title</b>: TicTacToeCheck.java
  * <b>Project</b>: SMT-Kata
@@ -76,60 +74,12 @@ public class TicTacToeCheck {
 		Player(String label) { this.label = label; }
 	}
 
-	
-
 	/**
 	 * Evaluates a Tic-Tac-Toe board based upon the moves provided
 	 * @param moves Moves that were made by each player
 	 * @return Player A or B if a player won.  Player N if no winner
 	 */
 	public Player evaluate(int[][] moves) {
-		if(moves == null || moves.length < 1 || moves[0] == null || moves[0].length < 1) return Player.N;
-		
-		String[][] board = new String[3][3];
-		for (int i = 0; i < board.length; i++) 
-			for (int j = 0; j < board[i].length; j++) 
-				board[i][j] = "0";
-
-		String player= "x";
-		for( int[] s: moves) {
-			board[s[0]][s[1]]  = player;
-			if(check(board) == 1) return Player.A;
-			else if(check(board) == 2) return Player.B;
-			player = player.equals("x") ? "o":  "x";
-		}
-
 		return Player.N;
-	}
-	
-	public int check(String[][] board) {
-		//check horizontal
-		for(int i = 0; i< board.length; i++) {
-			if (board[i][0].equals("x") && board[i][1].equals("x") && board[i][2].equals("x")) 
-				return 1;
-			
-			if (board[i][0].equals("o") && board[i][1].equals("o") && board[i][2].equals("o")) 
-				return 2;
-			
-		}
-		
-		//check vertical
-		for(int i = 0; i< board[0].length; i++) {
-			if (board[0][i].equals("x") && board[1][i].equals("x") && board[2][i].equals("x")) 
-				return 1;
-			
-			if (board[0][i].equals("o") && board[1][i].equals("o") && board[2][i].equals("o")) 
-				return 2;
-		}
-		
-		//diagonals x/ player 1
-		if(board[0][0].equals("x") && board[1][1].equals("x") && board[2][2].equals("x")) return 1;
-		if(board[0][2].equals("x") && board[1][1].equals("x") && board[2][0].equals("x")) return 1;
-		
-		//diagonals o/ player 2
-		if(board[0][0].equals("o") && board[1][1].equals("o") && board[2][2].equals("o")) return 2;
-		if(board[0][2].equals("o") && board[1][1].equals("o") && board[2][0].equals("o")) return 2;
-		
-		return 0;
 	}
 }

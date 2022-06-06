@@ -26,19 +26,7 @@ public class StrobogrammaticNumber {
 	 * @return True if stobomatic.  False otherwise
 	 */
 	public boolean isStrobogrammaticNumber(int source) {
-		if(source < 1) return false;
-		String s = source +"";
-		
-		for (int i = 0 ,j= s.length()-1; i < s.length()/2 && j > (s.length()/2); i++, j--) {
-			if((s.charAt(i) == '9' && s.charAt(j) == '9') || (s.charAt(i) == '6' && s.charAt(j) == '6')) 
-				return false;
-			else if((s.charAt(i) == '9' && s.charAt(j) == '6')|| (s.charAt(i) == '6' && s.charAt(j) == '9') || s.charAt(i) == s.charAt(j)) 
-				continue;
-			else 
-				return false;
-		}
-
-		return true;
+		return source == 0;
 	}
 
 }

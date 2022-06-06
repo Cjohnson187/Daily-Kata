@@ -1,7 +1,5 @@
 package com.smt.kata.number;
 
-import java.util.Arrays;
-
 /****************************************************************************
  * <b>Title</b>: RotatedArray.java
  * <b>Project</b>: SMT-Kata
@@ -48,9 +46,7 @@ public class RotatedArray {
 	 * @return Index of the target after pivoting.  -1 if target not located
 	 */
 	public int search(int[] nums, int target) {
-		if(nums == null) return -1;
-	
-		return search(nums, target, (nums.length/2));
+		return search(nums, target, 0);
 	}
 	
 	/**
@@ -62,30 +58,6 @@ public class RotatedArray {
 	 * @return Index of the target after pivoting.  -1 if target not located
 	 */
 	public int search(int[] nums, int target, int pivot) {
-		System.out.println(Arrays.toString(nums) + "   index of " +target+  "  = " + target);
-		int val =-1;
-		
-		for(int i=0; i< nums.length; i++) {
-			
-			System.out.println("i = " + i +"   pivot "+ pivot + "  target " + target);
-			if(nums[i] == target) {
-				System.out.println("chicken dinner");
-				if(i > pivot) {
-					val = i -pivot-1;
-					System.out.println(" i > pivot   i = " + i + "  pivot " + pivot + "  val = " + val);
-//					val= i - pivot +1;
-//					System.out.println(" i < pivot  i = " + i + "  pivot " + pivot + "  val = " + val);
-				}
-				else {
-//					val = i -pivot;
-//					System.out.println(" i > pivot   i = " + i + "  pivot " + pivot + "  val = " + val);
-					val= i - pivot +1;
-					System.out.println(" i < pivot  i = " + i + "  pivot " + pivot + "  val = " + val);
-				}
-				//return i < pivot? ( i+ pivot) : ( i -pivot-1) ;
-			}
-		}
-
-		return val;
+		return -1;
 	}
 }

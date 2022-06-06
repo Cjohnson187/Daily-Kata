@@ -1,11 +1,7 @@
 package com.smt.kata.time;
 
-import java.util.ArrayList;
 // JDK 11.x
 import java.util.Date;
-import java.util.List;
-
-import com.smt.kata.time.UsersInBuilding.EntryType;
 
 /****************************************************************************
  * <b>Title</b>: UsersInBuilding.java
@@ -37,18 +33,12 @@ import com.smt.kata.time.UsersInBuilding.EntryType;
 public class UsersInBuilding {
 
 	protected enum EntryType { ENTER, EXIT }
-	public static List<Response> ret;
-	public int inside = 0; 
-	public Date[] timePeriod = new Date[2];
-	public int max = 0;
-	public int current  = 0;
 	
 	/**
 	 * Initializes the counts and transactions
 	 */
 	public UsersInBuilding() {
 		super();
-		ret = new ArrayList<>();
 	}
 
 	/**
@@ -58,8 +48,6 @@ public class UsersInBuilding {
 	 * @param type Entering or exiting the building
 	 */
 	public void addEntry(Date entryTime, int count, EntryType type) {
-		ret.add(new Response(entryTime, count, type));
-		
 		/** Add something here **/
 	}
 	
@@ -68,54 +56,13 @@ public class UsersInBuilding {
 	 * @return
 	 */
 	public Response getBusyPeriod() {
-		boolean inMax = false;
-		Response re = new Response();
-		
-		for (Response r: ret) {
-			if(r.getStart() != null) {
-				current += r.getCount();
-				
-			}
-			else if(r.getEnd() != null) {
-				current -= r.getCount();
-			}
-			
-			if( current > max) {
-				max = current;
-				timePeriod[0] = r.getStart();
-				inMax = true;
-			}
-			else if (current < max  && inMax) {
-				timePeriod[1] = r.getEnd();
-				inMax = false;
-				re.start = timePeriod[0];
-				re.end = timePeriod[1];
-				re.count = max;
-			}
-				
-		}
-		
-		return re;
+		return new Response();
 	}
 
 	/**
 	 * Simple object to hold the response
 	 */
 	class Response {
-		public Response() {
-		
-		}
-		public Response(Date entryTime, int count, EntryType type) {
-			if (type == EntryType.ENTER) {
-				this.start = entryTime;
-				this.count = count;
-				this.end = null;
-			} else if(type == EntryType.EXIT) {
-				this.start = null;
-				this.end = entryTime;
-				this.count = count;
-			}
-		}
 		Date start;
 		Date end;
 		int count = 0;

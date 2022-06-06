@@ -1,7 +1,5 @@
 package com.smt.kata.math;
 
-import com.siliconmtn.data.format.NumberUtil;
-
 /****************************************************************************
  * <b>Title:</b> ClassAverage.java
  * <b>Project:</b> SMT-Kata
@@ -33,11 +31,6 @@ public class ClassAverage {
 	 * @return Score required to bring down the overall average by 5%
 	 */
 	public String takeDownAverage(String[] scores) {
-		Double sum = 0.00;
-		for (String s: scores) 
-			sum += NumberUtil.toDouble(s);
-		Double avg = (double) Math.round(((sum/scores.length)*.95) *(scores.length+1)) -sum;	
-		
-		return Math.round(avg) + "%";
+		return scores[0];
 	}
 }

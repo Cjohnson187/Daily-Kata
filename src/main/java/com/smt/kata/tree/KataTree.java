@@ -1,8 +1,6 @@
 package com.smt.kata.tree;
 
 import java.util.ArrayList;
-
-import java.util.LinkedList;
 // JDK 11.x
 import java.util.List;
 
@@ -30,7 +28,6 @@ public class KataTree<T> {
 	// Members
 	private KataNode<T> root;
 	private int depth = 0;
-	private int totalNodeCount= 0;
 	
 	/**
 	 * Creates a Tree of nodes based upon a Collection of unlinked nodes.  
@@ -40,44 +37,8 @@ public class KataTree<T> {
 	 * @param root Root Node object
 	 */
 	public KataTree(List<KataNode<T>> data,  KataNode<T> root) {
-		this.root = root; 
-		this.depth = 1;
-		this.totalNodeCount = 1;
-
-		addChildren(data, root, this.depth);
-		//depth = calculateDepth(root);
-		//print(root);
+		/** Intentionally Blank.  Please build **/
 	}
-
-	public void print(KataNode<T> root) {
-		System.out.println("id = " + root.getNodeId());
-		for(var v : root.getChildren()) {
-			print(v);
-		}
-
-	}
-	
-	private void addChildren(List<KataNode<T>> data,  KataNode<T> root, int depth) {
-		depth++;
-		var rootChildren = new ArrayList<KataNode<T>>();
-
-		for (var node : data) {
-			if (node.getParentId().equals(root.getNodeId())) {
-				totalNodeCount++;
-				this.depth = Math.max(this.depth, depth);
-				rootChildren.add(node);
-				addChildren(data ,node , depth);
-				
-			}
-			
-		}
-		
-		
-	
-		root.setChildren(rootChildren);
-	}
-
-
 	
 	/**
 	 * Returns the total depth of the tree
@@ -99,23 +60,14 @@ public class KataTree<T> {
 	 * @return Total number of nodes calculated
 	 */
 	public int getTotalNodeCount() {
-		return totalNodeCount;
+		return 0;
 	}
 	
 	/**
 	 * Finds a node based upon its id
 	 * @return node corresponding to the ID.  Null if not found
 	 */
-	public KataNode<T> find(String nodeData) {
-		if(this.root.getData().equals(nodeData)){
-			return this.root;
-		}
-		else {
-			for (var v : root.getChildren()){
-				this.root = v;
-				find(nodeData);
-			}
-		}
+	public KataNode<T> find(String nodeId) {
 		return null;
 	}
 	

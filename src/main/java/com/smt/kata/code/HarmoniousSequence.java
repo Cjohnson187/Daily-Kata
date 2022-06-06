@@ -1,7 +1,5 @@
 package com.smt.kata.code;
 
-import java.util.Arrays;
-
 /****************************************************************************
  * <b>Title</b>: HarmoniousSequence.java
  * <b>Project</b>: SMT-Kata
@@ -49,30 +47,6 @@ public class HarmoniousSequence {
 	 * @return total items in the harmonious sequence
 	 */
 	public int getLongest(int[] sequence) {
-		
-		if(sequence == null ) {
-			return 0;
-		}
-		
-		for (int start = 0; start <= sequence.length/2; start++) {
-			for (int end = sequence.length-1; end >= start; end--) {
-				
-				System.out.println( "   checking  ="+ Arrays.toString(sequence) +"   start "+ start +  "   end = " +end);
-				int is =  isHarm(sequence, start, end);
-				if(is >0) return is;
-				
-			}
-		}
-		
-		
-		return 0;
-	}
-	
-	
-	public int isHarm(int[] nums, int start, int end) {
-		int val  = Math.abs(nums[start] - nums[end]);
-		System.out.println(val  + "   checking  ="+ Arrays.toString(nums) +"   start  =" + nums[start] + "   end = " + nums[end]);
-		if(val == 1) return end-start+1;
-		return 0;
+		return sequence.length;
 	}
 }

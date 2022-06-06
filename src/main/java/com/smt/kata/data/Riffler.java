@@ -45,24 +45,7 @@ public class Riffler {
 	 * @return Combined array.  Empty array if invalid data
 	 */
 	public char[] riffle(char[] source, char[] dest) {
-		if (dest == null || source == null || dest.length > source.length || source.length - dest.length > 1) return new char[0];
-		int len = source.length + dest.length;
-		int sIndex = 0;
-		int dIndex = 0;
-		char[] combined = new char[len];
-		for (int i = 0; i < len; i++) {
-			
-			if (i%2 == 0 ) {
-				combined[i] = source[sIndex];
-				sIndex++;
-			}
-			else {
-				combined[i] = dest[dIndex];
-				dIndex++;
-			}
-		}
-		
-		return combined;
+		return source;
 	}
 	
 	/**
@@ -71,23 +54,6 @@ public class Riffler {
 	 * @return Source array as key and the dest array as value
 	 */
 	public GenericVO deriffle(char[] combined) {
-		if (combined.length<=0) return new GenericVO(null, null);
-		GenericVO ret = new GenericVO();
-		char[] source = new char[(combined.length/2) + (combined.length%2)];
-		char[] dest = new char[combined.length/2];
-		int sIndex = 0;
-		int dIndex = 0;
-		for (int i = 0; i < combined.length; i++) {
-			if (i%2 == 0 ) {
-				source[sIndex] = combined[i];
-				sIndex++;
-			}
-			else {
-				dest[dIndex] = combined[i];
-				dIndex++;
-			}
-		}
-		
-		return new GenericVO(source, dest);
+		return new GenericVO(combined, null);
 	}
 }

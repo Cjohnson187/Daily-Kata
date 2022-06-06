@@ -63,30 +63,6 @@ public class WordSubsets {
 	 * @return Collection of words that match the patterns
 	 */
 	public List<String> find(String[] words, String[] searchVal) {
-		List<String> ret= new ArrayList<>();
-		if(words == null || words.length < 2 || searchVal == null || searchVal.length < 1 )
-			return ret;
-
-		for(String s : words) {
-			if(s == null) continue;
-			s = s.toLowerCase();
-			boolean in = true;
-			
-			for (String i: searchVal) {
-				if(i == null) continue;
-				i = i.toLowerCase();
-				char[] c = i.toCharArray();
-	
-				for (int j =0; j < c.length; j++) 
-					if(( j+1 <  c.length && c[j+1] == c[j] && !s.contains((i)))|| !s.contains((c[j]+"")) ) 
-							in = false; 		
-				
-			}
-			if(in) 
-				ret.add(s);
-			
-		}
-		
-		return ret;
+		return new ArrayList<>();
 	}
 }

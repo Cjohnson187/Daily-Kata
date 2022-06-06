@@ -48,16 +48,7 @@ public class XORMania {
 	 * @return Number of matching positive integers.  ) if invalid data
 	 */
 	public int findMatches(int m, int n) {
-		int numPairs= 0;
-		if(m < 1 || m >1024 || n < 1 || n > 1024) return numPairs;
-		for (int i=0; i <= m; i++) {
-			for (int j = 0; j <= m; j++) {
-				if((i+j) == m && (i^j) == n) {
-					numPairs++;
-				}
-			}
-		}
-		return numPairs;
+		return m + n;
 	}
 
 }

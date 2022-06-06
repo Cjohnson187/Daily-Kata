@@ -1,6 +1,5 @@
 package com.smt.kata.word;
 
-import java.util.Arrays;
 // JDK 11.x
 import java.util.Collection;
 
@@ -64,7 +63,6 @@ class RearrangeWordsTest {
 	@Test
 	void testArrangeMixedCase() throws Exception {
 		Collection<String> words = rw.arrange("aAabBc");
-		System.out.println(" list " + words.toString());
 		assertEquals(1, words.size()); 
 		assertTrue(words.contains("aAabBc"));	
 	}

@@ -57,16 +57,4 @@ public class SumDivisibleByP {
  	public int calculate(int[] nums, int p) {
  		return p;
  	}
- 	
- 	
-}
-class Node {
-	Integer value;
-	int height;
-	int[] vals;
-	Node left;
-	Node right;
-}
-class tree {
-	
 }

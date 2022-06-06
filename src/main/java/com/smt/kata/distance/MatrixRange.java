@@ -43,41 +43,6 @@ public class MatrixRange {
 	 * @return number of coordinates outside the range
 	 */
 	public int getNumberElements(int[][] matrix, CoordinateVO start, CoordinateVO end) {
-		if (matrix == null || start == null || end == null ) {
-			return 0;
-		}
-		if(matrix[0].length > start.getColumn() || matrix[0].length > end.getColumn() || matrix.length < start.getRow() || matrix.length < end.getRow())
-		return 0;
-		int low = matrix[start.getRow()][start.getColumn()];
-		int high = matrix[ end.getRow()][end.getColumn()];
-		System.out.println("low = " + low + "  high = " + high);
-		//if(high > matrix.length) return 0;
-		if(low > high) {
-			int temp = high;
-			high = low;
-			low = temp;
-		}
-		
-		int count = 0;
-		System.out.println("low = " + low + "  high = " + high);
-		for(int[] i : matrix) {
-			for(int j : i) {
-				if(j == low || j == high) {
-					continue;
-				}
-				//if(j == low || j == high) continue;
-				else if(j < low || j > high)
-						count++;
-					
-				
-					
-				
-			}
-			
-		}
-		//if(low == high) count -= 1;
-		//else count-= 2;
-		return count;
-		
+		return matrix.length;
 	}
 }

@@ -35,17 +35,7 @@ public class SkylineView {
 	 * @return Number of buildings with a view
 	 */
 	public int getNumViewsBackwards(int[] buildings) {
-		if(buildings == null || buildings.length <1) return 0;
-		else if(buildings.length < 2) return 1;
-		int highest = 0;
-		int views = 0;
-		for (int i =  buildings.length-1; i >= 0; i--) {
-			if (buildings[i] > highest ) {
-				views++;
-				highest = buildings[i];
-			}
-		}
-		return views;
+		return buildings.length;
 	}
 	
 	/**
@@ -54,32 +44,7 @@ public class SkylineView {
 	 * @return Number of buildings with a view
 	 */
 	public int getNumViewsForward(int[] buildings) {
-		if(buildings == null || buildings.length <1) return 0;
-		else if(buildings.length < 2) return 1;
-		int highest = buildings[0];
-		int views = 1;
-		for (int i = 1; i < buildings.length; i++) {
-			int nextPeak = getNextHighestPeak(buildings, i);
-			if(i < nextPeak && buildings[nextPeak] >= highest) {
-				highest =  buildings[i];
-				views  =1;
-			}
-			else if(i <= nextPeak) {
-				views++;
-			}
-			i = nextPeak;
-		}
-		return views;
-		
+		return buildings.length;
 	}
-	
-	public int getNextHighestPeak(int[] buildings, int index) {
-		int next = index;
-		for (int i = index; i < buildings.length; i++) {
-			if(buildings[index] <= buildings[i]) {
-				next = i;
-			}
-		}
-		return next;
-	}
+
 }

@@ -2,9 +2,7 @@ package com.smt.kata.object;
 
 // JDK 11.x
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /****************************************************************************
@@ -53,67 +51,7 @@ public class JsonParser {
 	 */
 	public Map<String, Object> parse(String json) throws IOException {
 		Map<String, Object> data = new HashMap<>();
-		String sub = json.replace("\n", "").replace(" ", "").replace("\t", "");
-		sub = sub.substring(sub.indexOf("{")+1, sub.lastIndexOf("}"));
 
-		System.out.println("sub string= " + sub);
-		
-		data.putAll(  mapJson("",sub)  );
-	
-		for(var v: data.entrySet()) {
-			System.out.println("key = " + v.getKey() +"   "+ v.getValue());
-		}
-		
-
-		return data;
-	}
-	
-	public Map<String, Object> mapJson(String key, String val){
-		//return map
-		Map<String, Object> data = new HashMap<>();
-		Boolean pair = true;
-		// set key var
-		if(key.length()< 1) key += "."+ val.substring(0, val.indexOf(":"));
-		else key = val.substring(0, val.indexOf(":"));
-		String[] setup = val.split(",", 2);
-		System.out.println("string size = " + Arrays.toString(setup));
-		
-		
-		String subVal = val.substring(val.indexOf(":"), val.indexOf(","));
-		
-		//val = 
-		System.out.println("key = " + key + "   subval = " + subVal + "   val " + val);
-		
-		if(val.contains("{")) mapJson(key, val.substring(1, val.length()-1));
-		//String ln = keyAlt.substring(keyAlt.indexOf("'")+1, keyAlt.indexOf("\n") );
-		
-		//System.out.println("str = " + key + "cur = "+ cur+"  ln = "+ ln);
-//		if(key.length() < 1)
-//		key = ln.substring(0, ln.indexOf("'"));
-//		else {
-//			key +="." +  ln.substring(0, ln.indexOf("'"));
-//		}
-		System.out.println("keeeyeyeye = " +  key);
-		//String val = val.split("\\n")[1];
-		val = val.substring(val.indexOf(",") );
-		if (val.contains("{")) {
-			System.out.println("crap");
-			data.putAll(  mapJson(key, val)  );
-			
-		}
-		else {
-			try {
-				data.put(key, Integer.valueOf(val.substring(val.indexOf(":")+1, val.indexOf(",")).trim()));
-			} catch (Exception e) {
-				data.put(key, val.substring(val.indexOf(":")+1, val.indexOf(",")).trim());
-			}
-			
-			
-		}
-		//System.out.println("str = " + key +" val "+ val );
-		
-		
-		
 		return data;
 	}
 }

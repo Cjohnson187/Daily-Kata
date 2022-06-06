@@ -1,7 +1,5 @@
 package com.smt.kata.code;
 
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: CreditCardValidator.java
  * <b>Project</b>: Daily-Kata
@@ -39,46 +37,12 @@ import com.siliconmtn.data.text.StringUtil;
  ****************************************************************************/
 public class CreditCardValidator {
 	
-	
 	/**
 	 * Validates the provided CC number
 	 * @param ccn
 	 * @return
 	 */
-	public static boolean isValid(String ccn) {
-		if(StringUtil.isEmpty(ccn)) return false;
-		if(!ccn.matches("^[0-9]+$")) return false;
-		int checkDig = Integer.parseInt(ccn.substring(ccn.length()-1));
-		StringBuilder ccnN = new StringBuilder(ccn.substring(0, ccn.length()-1));
-		StringBuilder ccnR = ccnN.reverse();
-		int[] nums = new int[ccnR.length()];
-		for (int i=0; i<nums.length; i++ ) {
-			if((i+1)%2 != 0) {
-				if ((((ccnR.charAt(i)-'0') * 2)+"").length() > 1 ) {
-					nums[i] = doubleIt(((ccnR.charAt(i)-'0') * 2));
-				}
-				else {
-					nums[i] = ((ccnR.charAt(i)-'0') * 2);
-				}
-			}
-			else nums[i] = (ccnR.charAt(i)-'0');
-		}
-		int sum = 0;
-		for (int j : nums) {
-			sum += j;
-		}
-		return (10-((sum+"").charAt((sum+"").length()-1)-'0')) == checkDig;
-	}
-	
-	public static int doubleIt(int num) {
-		if ((num+"").length() > 1) {
-			int newN = 0;
-			for (int i=0; i< (num+"").length(); i++) {
-				newN += (((num+"").charAt(i))-'0') ;
-			}
-			num = newN;
-		}
-		if((num+"").length() > 1) doubleIt(num);
-		return num;
+	public boolean isValid(String ccn) {
+		return "".equals(ccn);
 	}
 }

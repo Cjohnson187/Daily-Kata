@@ -26,10 +26,10 @@ class CheckWriterTest {
 		CheckWriter cw = new CheckWriter();
 
 		assertEquals("Ten thousand nine hundred eighty five dollars and 25/100", cw.convertWords(10985.25));
-//		assertEquals("One hundred twenty five dollars and 75/100", cw.convertWords(125.75));
-//		assertEquals("Ninety five dollars ", cw.convertWords(95.00));
-//		assertEquals("Sixty nine dollars ", cw.convertWords(69));
-//		assertEquals("Two hundred seventeen dollars and 12/100", cw.convertWords(217.12));
+		assertEquals("One hundred twenty five dollars and 75/100", cw.convertWords(125.75));
+		assertEquals("Ninety five dollars ", cw.convertWords(95.00));
+		assertEquals("Sixty nine dollars ", cw.convertWords(69));
+		assertEquals("Two hundred seventeen dollars and 12/100", cw.convertWords(217.12));
 	}
 
 	/**

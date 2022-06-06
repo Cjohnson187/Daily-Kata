@@ -1,7 +1,5 @@
 package com.smt.kata.number;
 
-import com.siliconmtn.data.format.NumberUtil;
-
 /****************************************************************************
  * <b>Title</b>: RotateForMax.java 
  * <b>Project</b>: SMT-Kata 
@@ -42,25 +40,6 @@ public class RotateForMax {
 	 * @return
 	 */
 	public long rotate(long input) {
-		if (input == 0 ) return 0;
-		long largest = input;
-		boolean neg = false;
-		if (input < 0) neg = true;
-		String word = String.valueOf(Math.abs(input));
-		for (int i=0; i< word.length()-1; i++) {
-			String rev = word.substring(i, word.length());
-			String s = word.substring(0,i)  +  " " + rev.substring(rev.length()-1);// + rev.substring( ,rev.length()-1)   );
-			
-			if (neg) s = "-"+word ;
-			System.out.println("word = " + s);
-			if (NumberUtil.toLong(s) >  largest) largest = NumberUtil.toLong(s);
-		}
-		
-		
-		//rotate left
-		// keep first rotate rest left
-		// keep first two
-        return largest;
+        return input;
     }
-	
 }

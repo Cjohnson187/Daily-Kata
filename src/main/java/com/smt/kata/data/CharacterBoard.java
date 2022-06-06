@@ -51,9 +51,4 @@ public class CharacterBoard {
 	public boolean exists(String word) {
 		return word == null;
 	}
-	
-	public char up() {
-		
-		return 'a';
-	}
 }

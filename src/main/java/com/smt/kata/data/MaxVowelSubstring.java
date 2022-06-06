@@ -1,9 +1,5 @@
 package com.smt.kata.data;
 
-import java.util.Iterator;
-
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: MaxVowelSubstring.java
  * <b>Project</b>: Daily-Kata
@@ -67,28 +63,7 @@ public class MaxVowelSubstring {
 	 * @return max number of vowels found.  0 otherwise
 	 */
 	public int find(String word, int k) {
-		if(StringUtil.isEmpty(word) || word.length() > 1000000 || k > word.length() ||  k < 1) return 0;
-		int max = 0;
-		for(int i = 0 ;i < word.length() && i+k < word.length(); i++) {
-			String sub = word.substring(i , i+k);
-			int vowels = checkVowels(sub);
-			if(vowels > max) max = vowels;
-		}
-		return max;
-	}
-	
-	public int checkVowels(String s) {
-		int count = 0;
-		for(int i = 0; i < s.length(); i++) {
-			for (char c: vowels.toCharArray()) {
-				if( s.charAt(i) == c) {
-					count++; 
-					break;
-				}
-			}
-		}
-		
-		return count;
+		return k;
 	}
 
 }

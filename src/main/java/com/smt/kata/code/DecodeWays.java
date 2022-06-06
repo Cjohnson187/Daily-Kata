@@ -2,10 +2,7 @@ package com.smt.kata.code;
 
 // JDK 11.x
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import com.siliconmtn.data.text.StringUtil;
 
 /****************************************************************************
  * <b>Title</b>: DecodeWays.java
@@ -66,73 +63,6 @@ public class DecodeWays {
 	 * @return Collection of possible codes
 	 */
 	public List<String> encode(String code) {
-		if(code == null || code.length() == 0 || code.contains("0"))
-			return new ArrayList<String>();
-		
-		// Letters Found
-		List<String> solutions = new ArrayList<>();
-		
-		// numbers to convert
-		//List<String> digits = Arrays.asList(code.split(""));
-		List<String> digits = getNumList(code);
-		
-		System.out.println("original numbers found = " + digits.toString());
-		System.out.println("combos found = " );
-		for (String number : digits) {
-			char letter = getAsccii(number);
-			if(letter != (char)0) {
-				solutions.add(letter+"");
-			}
-		}
-		
-		
-		
-		// 226 => BZ, VF, BBF
-
-		
-		
-		
-		System.out.println("original numbers found = " + solutions.toString() );
-
-		return solutions;
+		return new ArrayList<>();
 	}
-	
-	/**
-	 * get char value
-	 * @param numString
-	 * @return
-	 */
-	public char getAsccii(String numString ) {
-		int num = Integer.parseInt(numString);
-		if( num > 0  && num < 27) {
-			
-			return (char)(num+64);
-		}
-		
-		return 0;
-	}
-
-
-	public List<String> getNumList(String code){
-		List<String> group = new ArrayList<String>();
-		char[] charArray = code.toCharArray();
-		for(int i=1; i<charArray.length; i++){
-			String prev = String.valueOf(charArray[i-1]);		// 2
-			String curr = String.valueOf(charArray[i]);		// 2
-			if(!group.contains(prev))
-				group.add(prev);
-			if(!group.contains(curr))
-				group.add(curr);
-			String together = String.valueOf(prev) + String.valueOf(curr);
-			if(Integer.parseInt(together) > 0 && Integer.parseInt(together) < 27 && !group.contains(together))
-				group.add(together);
-
-			// Adding to group done...
-		}
-		
-		return group;
-	}
-	
-	
-	
 }

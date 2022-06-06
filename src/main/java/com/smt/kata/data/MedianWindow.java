@@ -47,14 +47,6 @@ public class MedianWindow {
 	 * @return Overall median valu of the medians of each window
 	 */
 	public int calculateMedianFromWindow(int[] values, int k) {
-		if(values == null || values.length < k || k < 0) return 0;
-		for (int i = 0; i < values.length-k+1; i++) {
-			System.out.println("window  = " );
-			for (int j = i; j < i+k; j++) {
-				System.out.println(values[j]);
-			}
-		}
-		
 		return values.length;
 	}
 }

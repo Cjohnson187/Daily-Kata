@@ -1,7 +1,13 @@
 package com.smt.kata.word;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 /****************************************************************************
  * <b>Title</b>: AlienAlphabet.java
@@ -30,90 +36,109 @@ public class AlienAlphabet {
 	 * @return Order of the characters
 	 */
 	public char[] alphabetize(String[] words) {
-		if(words == null || words.length < 2 ) return new char[0];
-		// return new char[0];
-
-		List<Character> chArr = new ArrayList<Character>();
-
-		// Finding the length of the longest word
-		int lenOfLongestWord = 0;
-		for(String word : words){
-			if(word.length() > lenOfLongestWord)
-				lenOfLongestWord = word.length();
-		}
-
-		int i=0;
-		while(i < lenOfLongestWord){
-			for(String word : words){
-				if(i < word.length()){
-					char ch = word.charAt(i);
-					if(!chArr.contains(ch)){
-						// Add
-						if(i == 0){
-							// First char of each word
-							chArr.add(ch);
-						}
-						else{
-							// Find all the words in the list that have the same first 2 chars.
-							String subString = word.substring(0, i-1);
-							List<String> arrRest = findRest(words, subString, i);
-							System.out.println("arrRest => " + arrRest);
-							StringBuilder sb = new StringBuilder();
-							// Comparing the words...
-							
-							char find = word.substring(i).charAt(0);
-							for(int j=0; j < arrRest.size() ; j++){
-								char findInList = arrRest.get(j).substring(i).charAt(0);
-								System.out.println("find = " + find + "  " + findInList);
-								if(find  != findInList) {
-									int indexDiff= j+i;
-									char ins = (arrRest.get(j).substring(i ).charAt(0) );
-									System.out.println("found char = " +ins + "   index  to ins = " + indexDiff);
-									if(!chArr.contains(find)) {
-										chArr.add(indexDiff, ins);
-									}
-									//chArr.add(indexDiff, ins);
-								}
-								
-								
-								// ywx,
-								// ywz
-								// enter different char before existing
-							}
-							
-						}
-					}
-					//else
-						// ignore
-				}
-			}
-			i++;
-		}
-		System.out.println("final list  = " + chArr.toString());
-		return chArr.toString().toCharArray()  ;
+		List<Node> nodes = new ArrayList<>();
+		Graph graph = new Graph(words);
+		
+		
+		return new char[0];
+	}
+}
+class Graph {
+	List<Node> nodes;
+	Set<Character> chars;
+	
+	public Graph(String[] words) {
+		this.nodes = new ArrayList<>();
+		this.chars = new HashSet<>();
+		for (String s : words) 
+			Arrays.stream(s.toLowerCase().split("")).forEach((a) -> chars.add(Character.valueOf(a.charAt(0))));
+		setEdges(words);
 	}
 	
-	public List<String> findRest(String[] words, String subString, int i) {
-		List<String> found = new ArrayList<>();
-		for(String word: words ) {
-			if (word.startsWith(subString)) {
-				found.add(word);
+	public Set<Character> getChars() {
+		return this.chars;
+	}
+	
+	public void setEdges(String[] words) {
+		for(int i=0; i < words.length; i++) {
+			for(int j=0; j < words.length; j++) {
+				if (i ==j) continue;
+				if (words[i].charAt(0) == words[j].charAt(0)) {
+					//similar words
+					checkLetter(Arrays.asList(words[i], words[j]));
+					
+				}
 			}
 		}
-		
-		return  found;
 	}
-
-			
+	public Integer getNode(Character toFind) {
+		return IntStream.range(0, nodes.size()).filter(i -> nodes.get(i).getVal() == toFind).findFirst().getAsInt();
+	}
+	
+	public void setEdge(Character v, Character vx) {
+		Node a = nodes.get(getNode(v));
+		Node b = nodes.get(getNode(vx));
+		a.setNext(b);
+		
+	}
+	public void checkLetter(List<String> words) {
+	words.sort((x , y) -> x.length() - y.length());
+	
+		for(int i=0; i < words.get(0).length(); i++) {
+			if (words.get(0).charAt(i) != words.get(1).charAt(i))
+				if (words.get(0).charAt(i) - words.get(1).charAt(i) > 0) {
+					setEdge(words.get(0).charAt(i), words.get(1).charAt(i));
+				} else {
+					setEdge(words.get(1).charAt(i), words.get(0).charAt(i));
+				}
+				break;
+		}
+	}
+	
+	
+	public List<Character>getAlphabet() {
+		List<Character> alpha = new ArrayList<>();
+		
+		
+		return alpha;
+	}
 }
-
-// We look at first char of each word and put in order => x, w, y
-// We then look at second char of each word
-// if(char is already part of the list => ignore
-// else(new char that is not part of the list => 
-// Then we go onto the 3rd char of each word
-
-
-
-
-
+class Node {
+	Node prev;
+	Node next;
+	char value;
+	
+	public Node(char val) {
+		this.value = val;
+	}
+	public void setVal(char val) {
+		this.value = val;
+	}
+	public char getVal() {
+		return this.value;
+	}
+	public void setNext(Node node) {
+		this.next = node;
+	}
+	public Node getNext() {
+		return this.next;
+	}
+	public char getNextVal() {
+		return this.next.getVal();
+	}
+	public void setPrev(Node node) {
+		this.prev = node;
+	}
+	public Node getPrev() {
+		return this.prev;
+	}
+	public char getPrevVal() {
+		return this.prev.getVal();
+	}
+	public int getEdgeSize() {
+		int edges = 0;
+		if(prev != null) edges++;
+		if(next != null) edges++;
+		return edges;
+	}
+}

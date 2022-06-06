@@ -26,45 +26,6 @@ public class SpreadsheetNumbering {
 	 * @return Excel column heading
 	 */
 	public String getColumnLabel(int col) {
-		// A = 65
-		//int rem = col%26;
-		int div = col/26;
-		char c = 65;
-		int rem = 0;
-		StringBuilder str = new StringBuilder();
-		if(col < 26) {
-			str.append((char) ((col)+64));
-		}
-		boolean run = true;
-		while(col>0) {
-			
-			if (col > 26 ) {
-				
-				str.append( (char)((col/26)+64) );
-				System.out.println("rem = " + rem);
-			
-			}
-				
-				char cur = (char) ((col/26)+64);
-				rem = (col%26);
-				
-				str.append(cur);
-				
-				
-				System.out.println(cur);
-				col = col/26;
-				if (col < 26 ) {
-					str.append( (char)(rem+64) );
-					System.out.println("rem = " + rem);
-				
-				}
-				
-			
-		}
-		
-		
-		
-		//System.out.println(div + "  " + rem +   " " + c);
-		return str.toString();
+		return "";
 	}
 }

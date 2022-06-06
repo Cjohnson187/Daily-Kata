@@ -1,11 +1,5 @@
 package com.smt.kata.math;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 /****************************************************************************
  * <b>Title</b>: KaprekarsConstant.java
  * <b>Project</b>: SMT-Kata
@@ -44,47 +38,6 @@ public class KaprekarsConstant {
 	 * @return the number of steps to acheive the number
 	 */
 	public int calculateSteps(int num) {
-		if(num < 0 || num > 9999) return 0;
-
-		int count = 0;
-		
-		count =run(num, count);
-		
-		return count;
-	}
-	
-	
-	public String stringIt(List<String> lets) {
-		String num = "";
-		for(String s: lets) 
-			num+=s;
-		
 		return num;
-	}
-	
-	public int run(int num, int count) {
-		
-		String start = num+"";
-		List<String> forward = Arrays.asList(start.split(""));
-		Collections.sort(forward);
-		List<String> backward = new ArrayList<>(forward);
-		Collections.reverse(backward);
-		
-	
-		 
-		// check for 2 unique
-		String let = forward.get(0);
-		boolean dup = false;
-		for(int i = 0; i < forward.size(); i++) 
-			if(!forward.get(i).equals(let)) dup = true;
-		if(dup == false) return count;
-		
-		
-		int newNum = Integer.parseInt(stringIt( backward)) - Integer.parseInt(stringIt(forward)) ;
-		if(num != newNum) 
-			count = run(newNum, ++count);
-		
-		return count;
-		
 	}
 }

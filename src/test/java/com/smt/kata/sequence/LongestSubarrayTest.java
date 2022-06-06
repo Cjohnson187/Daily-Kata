@@ -84,12 +84,4 @@ class LongestSubarrayTest {
 	void testFindExampleSix() throws Exception {
 		assertEquals(2, ls.find(new int[]{1, 1,2,2,3,3,4,4,5,5,5,5,6,6,7,7,8,8,8,8,8}));
 	}
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-    void testFindExampleSeven() throws Exception {
-        assertEquals(6, ls.find(new int[]{1, 2, 3, 2, 4, 5, 6, 7}));
-    }
 }

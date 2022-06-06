@@ -33,15 +33,7 @@ public class StringOrder {
 	 * @return true if each character is in order.  False otherwise
 	 */
 	public boolean isInOrder(String val) {
-		if(val == null||val.length() == 0) {
-			return false;
-		} 
-		 for (int i = 1; i < val.length(); ++i) {
-	            if (val.charAt(i-1) > val.charAt(i)) {
-	            	return false;
-	            }
-	        }
-        return true;
+		return val == null;
 	}
 
 }

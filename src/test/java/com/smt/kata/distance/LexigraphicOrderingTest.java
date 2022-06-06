@@ -69,15 +69,15 @@ class LexigraphicOrderingTest {
 	/**
 	 * Test method for {@link com.smt.kata.distance.LexigraphicOrdering#orderData(char[][])}.
 	 */
-	//@Test
-//	void testOrderDataSingleRow() throws Exception {
-//		char[][] data = lo.orderData(new char[][] {
-//			{ 'a', 'b', 'c', 'd', 'e', 'f' }
-//		});
-//		
-//		assertEquals(1, data.length);
-//		assertEquals(6, data[0].length);
-//	}
+	@Test
+	void testOrderDataSingleRow() throws Exception {
+		char[][] data = lo.orderData(new char[][] {
+			{ 'a', 'b', 'c', 'd', 'e', 'f' }
+		});
+		
+		assertEquals(1, data.length);
+		assertEquals(6, data[0].length);
+	}
 
 	/**
 	 * Test method for {@link com.smt.kata.distance.LexigraphicOrdering#orderData(char[][])}.

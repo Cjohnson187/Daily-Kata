@@ -1,11 +1,5 @@
 package com.smt.kata.math;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
-
-
 /****************************************************************************
  * <b>Title</b>: FormTheLargest.java
  * <b>Project</b>: SMT-Kata 
@@ -43,15 +37,6 @@ public class FormTheLargest {
 	 * @return Largest number possible from the source
 	 */
 	public long calculate(long source) {
-		
-		char[] s= (source+"").toCharArray();
-		Arrays.sort((source+"").toCharArray());
-		List<String> l = (Arrays.asList( (source+"").split(""))) ;
-		//PriorityQueue<E> P = new PriorityQueue<>();
-		
-		
-		//System.out.println(  " words = " + l.sort(Long.parseLong("0"), Long.parseLong("01")) +"  "+ l.size() ) ;
-		
-		return source ;
+		return source;
     }
 }

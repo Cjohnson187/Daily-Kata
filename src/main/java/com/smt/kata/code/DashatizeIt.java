@@ -1,7 +1,5 @@
 package com.smt.kata.code;
 
-import com.siliconmtn.data.text.StringUtil;
-
 /****************************************************************************
  * <b>Title</b>: DashatizeIt.java 
  * <b>Project</b>: SMT-Kata 
@@ -35,29 +33,6 @@ public class DashatizeIt {
 	 * @return Formatted string.  Empty string if input is empty or null
 	 */
     public String process(String input) {
-    	String ret = "";
-    	if(StringUtil.isEmpty(input)) {
-    		return ret;
-    	}
-
-    	char[] chars = input.toCharArray();
-    	for(char c: chars) {
-    		if (c < 48 || c > 57) continue;
-    		else if(c%2 == 1) {
-    			if (ret.length() > 1 && ret.charAt(ret.length()-1) == '-')
-    				ret += c +"-";
-    			else {
-    				ret += "-" +c+"-";
-    			}
-    		}
-    		else {
-    			ret+=c;
-    		}
-    	}
-   
-    	if(ret.length() > 1 && ret.charAt(0)== '-' ) ret = ret.substring(1);
-    	if(ret.length() > 1 && ret.charAt(ret.length()-1)== '-' ) ret = ret.substring(0 , ret.length()-1);
-    	
-    	return ret;
+    	return input;
     }
 }

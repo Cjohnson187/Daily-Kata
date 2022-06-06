@@ -1,8 +1,5 @@
 package com.smt.kata.sequence;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /****************************************************************************
  * <b>Title</b>: LongestSubarray.java
  * <b>Project</b>: SMT-Kata
@@ -30,26 +27,6 @@ public class LongestSubarray {
 	 * @return Length of the longest distinct sub-array
 	 */
 	public int find(int[] sequence) {
-		int longest = 0;
-		if(sequence == null || sequence.length < 1) 
-			return longest;
-		List<Integer> seq = new ArrayList<>();
-		for (int i = 0; i < sequence.length; i++) {
-			if(!seq.contains(sequence[i])) {
-				seq.add(sequence[i]);
-				longest = seq.size() > longest? seq.size():longest;
-			}
-			else {
-				longest = seq.size() > longest? seq.size():longest;
-				if( i+1 == sequence.length)
-					return longest;
-				
-				i = i- seq.indexOf(sequence[i]);
-				seq.clear();
-//				seq.add(sequence[i]);
-			}
-		}
-		
-		return seq.size() > longest? seq.size():longest;
+		return sequence.length;
 	}
 }

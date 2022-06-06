@@ -1,11 +1,5 @@
 package com.smt.kata.data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
 /****************************************************************************
  * <b>Title</b>: SplitBinaryString.java
  * <b>Project</b>: SMT-Kata
@@ -48,63 +42,13 @@ import org.apache.commons.lang3.StringUtils;
  ****************************************************************************/
 public class SplitBinaryString {
 
-	public static List<List<String>> perms = new ArrayList<>();
-	
 	/**
 	 * Splits a string into 3 parts and counts the "1"s to ensure they have the same number
 	 * @param s String to evaluate
 	 * @return Count of matches when split
 	 */
 	public int split(String s) {
-		if(StringUtils.isEmpty(s) || StringUtils.countMatches(s, "1") < 3) 
-			return 0;
-		int threes = StringUtils.countMatches(s, "1");
-		if (threes % 3 != 0) return 0;
-		int threesCount = threes /3;
-		
-		System.out.println(threesCount);
-		
-		
-
-		
 		return s.length();
-	}
-	
-	public List<String> getsection(int threesCount, String s, int index) {
-		String section = "";
-		
-		
-		
-		return null;
-	}
-	public List<String> buildList(String s){
-		List<String> words = new ArrayList<>();
-		String sNew = s;
-		String first = getSection(sNew);
-		sNew = sNew.substring(first.length());
-		String second = getSection(sNew);
-		sNew = sNew.substring(second.length());		
-		String third = getSection(sNew);
-		words.add(first);
-		words.add(second);
-		words.add(third);
-		return words;
-		
-	}
-	
-	public String getSection(String s) {
-		boolean contains1 = false;
-		String sub = "";
-		for (int i=0; i < s.length(); i++) {
-			if(sub.contains("1")) contains1 = true;
-			if(contains1 && (s.charAt(i)+"").equals("1")) {
-				return sub;
-			} else {
-				sub += s.charAt(i);
-			}
-		}
-		
-		return sub;
 	}
 
 }
