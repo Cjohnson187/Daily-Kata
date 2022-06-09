@@ -29,6 +29,23 @@ public class PythagoreamTriplet {
 	 * @return True if 3 values match pythagoreams thereom.  False otherwise
 	 */
 	public boolean hasMatch(int[] values) {
-		return values == null;
+		int matches = 0; 
+		for (int i = 0; i < values.length; i++) {
+			for (int j = 0; j < values.length; j++) {
+				
+			}
+		}
+		return matches == 3;
+	}
+	
+	public void coprimePairs() {
+		
+	}
+	
+	public int euclid(int a, int b)  {
+		int r = a%b;
+		int c = a/b;
+		if (r > 0 ) return euclid(b, r) ;
+		else return b;
 	}
 }

@@ -45,11 +45,11 @@ public class ValidSherlockString {
 			if (c == check ) freq ++;
 		}
 		int count = m.get(sequence.charAt(0));
-		for (var v: m.entrySet()) {
-			if (v.getValue() > count) mult++;
-			if(v.getValue() > freq+1 ) return false;
-			if(v.getValue() < freq ) return false;
-		}	
+//		for (var v: m.entrySet()) {
+//			if (v.getValue() > count) mult++;
+//			if(v.getValue() > freq+1 ) return false;
+//			if(v.getValue() < freq ) return false;
+//		}	
  		return mult <= 2 ;
 	}
 }

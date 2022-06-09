@@ -1,5 +1,10 @@
 package com.smt.kata.word;
 
+import java.util.Arrays;
+import java.util.function.BinaryOperator;
+
+import org.apache.commons.lang3.StringUtils;
+
 /****************************************************************************
  * <b>Title</b>: WordRank.java
  * <b>Project</b>: SMT-Kata
@@ -30,7 +35,19 @@ public class WordRank {
 	 * @return
 	 */
 	public String calculate(String phrase) {
+		if(StringUtils.isEmpty(phrase)) return "";
+		
+		
+		System.out.println(phrase);
+		String[] words = phrase.split("");
+		int index= 0;
+		for (int i = 0; i < words.length; i++) {
+			int val = Arrays.asList(words[i].split("")).stream().reduce(0, (total, el) -> total + el.charAt(0), Integer::sum);
+			System.out.println(val);
+		}
 		
 		return phrase;
 	}
+	
+	
 }

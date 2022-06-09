@@ -1,5 +1,9 @@
 package com.smt.kata.time;
 
+import java.time.LocalTime;
+
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * The Berlin Clock (Mengenlehreclock or Berlin Uhr) is a clock that tells the
  * time using a series of illuminated coloured blocks, as you can see in the
@@ -55,7 +59,24 @@ public class BerlinClock {
 	 * @return
 	 */
 	public String generateTime(String time) {
-		return null;
+	 var clock = LocalTime.now();
+        try {
+            clock = LocalTime.parse(time);
+            StringBuilder builder = new StringBuilder();
+            builder.append(generateSeconds(clock.toString()));
+            builder.append(generateFiveHoursRow(clock.toString()));
+            builder.append(generateSingleHoursRow(clock.toString()));
+            builder.append(generateFiveMinutesRow(clock.toString()));
+            builder.append(generateSingleMinutesRow(clock.toString()));
+            return builder.toString();
+            //System.out.println("time = " + clock.getSecond());
+            //{sec}{5Hours}{1Hours}{5Minutes}{1Minute}
+            
+        }
+        catch (Exception e) {
+            return null;
+        }
+        
 	}
 
 	/**
@@ -66,7 +87,21 @@ public class BerlinClock {
 	 * @return
 	 */
 	public String generateSingleMinutesRow(String time) {
-		return null;
+		var clock = LocalTime.now();
+        try {
+            clock = LocalTime.parse(time);
+    		int min = clock.getMinute();
+    		int div = min%5;
+    		String fives = "";
+    		fives += "Y".repeat(div);
+    		
+    		String zeros = "0".repeat(4-div);
+    		return fives+zeros;    
+        }
+        catch (Exception e) {
+            return null;
+        }
+		
 	}
 
 	/**
@@ -77,7 +112,28 @@ public class BerlinClock {
 	 * @return
 	 */
 	public String generateFiveMinutesRow(String time) {
-		return null;
+		var clock = LocalTime.now();
+        try {
+        	int min = clock.getMinute();
+    		int div = min/5;
+    		String fives = "";
+    		fives += "Y".repeat(div);
+    		StringBuilder s = new StringBuilder(fives);
+    		if(s.length() >= 3)
+    			s = s.replace(2, 3, "R");
+    		if(s.length() >= 6)
+    			s = s.replace(5, 6, "R");
+    		if(s.length() >= 9)
+    			s = s.replace(8, 9, "R");
+    		
+    		String zeros = "0".repeat(11-div);
+    		System.out.println(s.append(zeros).toString());
+    		return s.toString();  
+        }
+        catch (Exception e) {
+            return null;
+        }
+		
 	}
 
 	/**
@@ -88,7 +144,22 @@ public class BerlinClock {
 	 * @return
 	 */
 	public String generateSingleHoursRow(String time) {
-		return null;
+		var clock = LocalTime.now();
+		try {
+			clock =  LocalTime.parse(time);
+			int hour = clock.getHour();
+			int rem = hour%4;
+			
+			String hs = "R".repeat(rem);
+		
+			String zeros = "0".repeat(4-rem);
+			return hs+zeros ;
+        }
+        catch (Exception e) {
+            return null;
+        }
+		
+		
 	}
 
 	/**
@@ -99,7 +170,20 @@ public class BerlinClock {
 	 * @return
 	 */
 	public String generateFiveHoursRow(String time) {
-		return null;
+		var clock = LocalTime.now();
+		try {
+			clock =  LocalTime.parse(time);
+			int hour = clock.getHour();
+			int div = hour/4;
+			String fives = "";
+			fives += "R".repeat(div);
+			String zeros = "0".repeat(4-div);
+			return fives+zeros ;
+        }
+        catch (Exception e) {
+            return null;
+        }
+		
 	}
 
 	/**
@@ -110,6 +194,14 @@ public class BerlinClock {
 	 * @return
 	 */
 	public String generateSeconds(String time) {
-		return null;
+		var clock = LocalTime.now();
+		try {
+			clock =  LocalTime.parse(time);
+			return clock.getSecond()%2 == 0 ? "Y":"0";
+        }
+        catch (Exception e) {
+            return null;
+        }
+		
 	}
 }
