@@ -31,6 +31,18 @@ public class ClassAverage {
 	 * @return Score required to bring down the overall average by 5%
 	 */
 	public String takeDownAverage(String[] scores) {
-		return scores[0];
+		if(scores == null || scores.length < 1) return "";
+		int sum = 0;
+		for(String s : scores) {
+			sum += Integer.parseInt(s.replaceAll("%", ""));
+		}
+		int avg = sum / scores.length;
+		System.out.println("avg" + (avg *.95));
+		System.out.println("avg" + Math.round( avg *.95));
+		
+		Double target = (.95 * avg);
+		int grade = 0;
+		while (((avg + grade)/2) < target) grade++; 
+		return (grade-1)+"%";
 	}
 }
