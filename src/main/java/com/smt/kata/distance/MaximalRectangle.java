@@ -1,6 +1,5 @@
 package com.smt.kata.distance;
 
-import jakarta.validation.constraints.Null;
 
 /****************************************************************************
  * <b>Title</b>: MaximalRectangle.java <b>Project</b>: SMT-Kata <b>Description:

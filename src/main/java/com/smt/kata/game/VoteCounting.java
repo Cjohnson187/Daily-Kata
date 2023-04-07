@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 
 /****************************************************************************
  * <b>Title</b>: VoteCounting.java

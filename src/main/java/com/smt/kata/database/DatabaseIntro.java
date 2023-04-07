@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 
 /****************************************************************************
  * <b>Title</b>: DatabaseIntro.java
@@ -37,7 +36,7 @@ public class DatabaseIntro {
 
 	/**
 	 * Initializes the class with the database connection
-	 * @param dbConn
+	 * @param
 	 */
 	public DatabaseIntro(Connection conn) throws SQLException {
 		super();
@@ -51,7 +50,7 @@ public class DatabaseIntro {
 	 * @throws SQLException 
 	 */
 	public Map<String, String> getTableMetaData(String tableName) throws SQLException {
-		Map<String, String> meta = new HashedMap();
+		Map<String, String> meta = new HashMap<>();
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from ").append(tableName).append(" Limit 1");

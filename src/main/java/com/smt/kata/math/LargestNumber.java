@@ -12,7 +12,6 @@ import java.util.TreeMap;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-import org.hibernate.tuple.entity.EntityMetamodel.ValueGenerationStrategyException;
 
 /****************************************************************************
  * <b>Title</b>: LargestNumber.java <b>Project</b>: SMT-Kata <b>Description:

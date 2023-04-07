@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Daily-Kata.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Daily-Kata.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Daily-Kata.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Daily-Kata.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.smt.kata.Daily-Kata.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.smt.kata.Daily-Kata.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.smt.kata.Daily-Kata.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.smt.kata.Daily-Kata.test.iml" />
     </modules>
   </component>
 </project>

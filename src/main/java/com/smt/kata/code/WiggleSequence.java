@@ -2,7 +2,6 @@ package com.smt.kata.code;
 
 import java.util.ArrayList;
 
-import org.hibernate.mapping.List;
 
 /****************************************************************************
  * <b>Title</b>: WiggleSequence.java

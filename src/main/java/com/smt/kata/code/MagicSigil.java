@@ -1,5 +1,12 @@
 package com.smt.kata.code;
 
+import com.siliconmtn.data.text.StringUtil;
+
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /****************************************************************************
  * <b>Title</b>: MagicSigil.java
  * <b>Project</b>: SMT-Kata
@@ -31,7 +38,11 @@ public class MagicSigil {
 	 * @return
 	 */
 	public String sigilize(String word) {
-		return word + "";
+		if(word == null || word.isEmpty()) return "";
+		Set<String> set=new LinkedHashSet<String>();
+		word = word.toUpperCase().replaceAll(" ", "");
+		set.addAll(Arrays.asList(new StringBuffer(word).reverse().toString().split("")));
+		return new StringBuffer(set.stream().collect(Collectors.joining((""))).replaceAll("[AEIOU]", "")).reverse().toString();
 	}
 
 }

@@ -2,13 +2,8 @@ package com.smt.kata.time;
 
 import java.time.LocalDate;
 // JDK 11.x
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.apache.commons.collections.map.HashedMap;
 
 /****************************************************************************
  * <b>Title</b>: MostOccurringWeekday.java
@@ -71,7 +66,7 @@ public class MostOccurringWeekday {
       
         System.out.println(date.YEAR );
         System.out.println(end.YEAR );
-        Map<WeekDay, Integer> days = new HashedMap();
+        Map<WeekDay, Integer> days = new HashMap<>();
         days.put(WeekDay.SUNDAY, 0);
         days.put(WeekDay.MONDAY, 0);
         days.put(WeekDay.TUESDAY, 0);
