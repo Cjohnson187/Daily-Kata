@@ -1,5 +1,7 @@
 package com.smt.kata.data;
 
+import java.util.*;
+
 /****************************************************************************
  * <b>Title</b>: MissingNumber.java 
  * <b>Project</b>: SMT-Kata 
@@ -21,6 +23,17 @@ public class ReverseLettersKeepNumbers {
 	 * @return
 	 */
 	public String reverse(char[] cWord) {
+		Stack<Character> stack = new Stack<>();
+		for (int i = 0; i < cWord.length; i++) {
+			if(cWord[i] > 58) {
+				stack.push(cWord[i]);
+				cWord[i] = 127;
+			}
+		}
+		for (int i = 0; i < cWord.length; i++) {
+			if (cWord[i] == 127) cWord[i] = stack.pop();
+		}
+
 		return new String(cWord);
 	}
 }
