@@ -23,15 +23,27 @@ public class ReverseLettersKeepNumbers {
 	 * @return
 	 */
 	public String reverse(char[] cWord) {
-		Stack<Character> stack = new Stack<>();
-		for (int i = 0; i < cWord.length; i++) {
-			if(cWord[i] > 58) {
-				stack.push(cWord[i]);
-				cWord[i] = 127;
+//		Stack<Character> stack = new Stack<>();
+//		for (int i = 0; i < cWord.length; i++) {
+//			if(cWord[i] > 58) {
+//				stack.push(cWord[i]);
+//				cWord[i] = 127;
+//			}
+//		}
+//		for (int i = 0; i < cWord.length; i++) {
+//			if (cWord[i] == 127) cWord[i] = stack.pop();
+//		}
+
+		for (int i = 0, j= cWord.length-1; i <= j; i++, j--) {
+			if(cWord[i] > 58 && cWord[j] > 58)	{
+				char temp = cWord[i];
+				cWord[i] = cWord[j];
+				cWord[j] = temp;
+			} else if(cWord[i] > 58 && cWord[j] <= 58) {
+				i--;
+			} else if(cWord[i] <= 58 && cWord[j] > 58) {
+				j++;
 			}
-		}
-		for (int i = 0; i < cWord.length; i++) {
-			if (cWord[i] == 127) cWord[i] = stack.pop();
 		}
 
 		return new String(cWord);

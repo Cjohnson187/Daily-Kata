@@ -24,7 +24,7 @@ class ReverseLettersKeepNumbersTest {
 		ReverseLettersKeepNumbers rev = new ReverseLettersKeepNumbers();
 		
 		assertEquals("cb89a", rev.reverse("ab89c".toCharArray()));
-		assertEquals("onm5lk923j", rev.reverse("jkl5mn923o".toCharArray()));
+		assertEquals("onm5lk9923j", rev.reverse("jkl5mn9923o".toCharArray()));
 		assertEquals("123a45", rev.reverse("123a45".toCharArray()));
 	}
 
