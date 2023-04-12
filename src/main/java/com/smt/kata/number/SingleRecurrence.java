@@ -1,5 +1,7 @@
 package com.smt.kata.number;
 
+import java.util.Arrays;
+
 /****************************************************************************
  * <b>Title</b>: SingleRecurrence.java
  * <b>Project</b>: SMT-Kata
@@ -30,6 +32,9 @@ public class SingleRecurrence {
 	 * @return Only values with a single occurrence.  Empty int[] if none found
 	 */
 	public int[] find(int[] values) {
+		StringBuilder builder = new StringBuilder(Arrays.toString(values));
+		System.out.println(builder.toString());
+
 		return new int[] {};
 	}
 

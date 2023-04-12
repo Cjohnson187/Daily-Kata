@@ -27,7 +27,27 @@ public class LargestGap {
 	 * @return
 	 */
 	public int largestGap(int[] arr) {
-		return arr.length;
+		arr = bubbleSort(arr);
+		int largest = 0;
+		for (int i =0; i< arr.length-1; i++){
+			if(Math.abs(arr[i+1] - arr[i]) > largest){
+				largest = Math.abs(arr[i] - arr[i+1]);
+			}
+		}
+
+		return largest;
 	}
 
+	public int[] bubbleSort(int[] arr) {
+		int[] sorted = new int[arr.length];
+		for (int i =0; i< arr.length-1; i++){
+			if(arr[i] > arr[i+1]){
+				int temp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i+1] = temp;
+				arr = bubbleSort(arr);
+			}
+		}
+		return arr;
+	}
 }
