@@ -1,5 +1,14 @@
 package com.smt.kata.time;
 
+import com.siliconmtn.data.text.StringUtil;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /****************************************************************************
  * <b>Title</b>: CorretTheTime.java
  * <b>Project</b>: SMT-Kata
@@ -30,7 +39,15 @@ public class CorrectTheTime {
 	}
 	
 	public String transform(String time) {
-	
-		return time;
+		if(StringUtil.isEmpty(time)) return "";
+		int[] timeList = Arrays.stream(time.split(":")).mapToInt(Integer::parseInt).toArray(); //Arrays.asList(time.split(":"));
+		DecimalFormat df = new DecimalFormat("00");
+		for (int i = timeList.length-1; i > 0; i--) {
+			timeList[i-1] +=timeList[i] / 59;
+			timeList[i] = timeList[i] % 60;
+		}
+		timeList[0] = timeList[0] > 23 ? (timeList[0]/25) : timeList[0];
+
+		return IntStream.of(timeList).mapToObj(num -> df.format(num)).collect(Collectors.joining(":"));
 	}
 }

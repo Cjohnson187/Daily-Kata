@@ -76,4 +76,14 @@ class MinimumMovesEqualTest {
 	void testCalculateNegative() throws Exception {
 		assertEquals(144, mme.calculate(new int[] {2, 20, 33, -10, -12, 45, 34, 26} ));
 	}
+
+	/**
+	 * Test method for {@link com.smt.kata.distance.MinimumMovesEqual#calculate(int[])}.
+	 */
+	@Test
+	void testCalculateNew() throws Exception {
+		//assertEquals(40, mme.calculate(new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40} ));
+
+		assertEquals(40, mme.calculate(new int[] {45, 47, 52, 52, 53, 55, 56, 58, 62, 80} ));
+	}
 }

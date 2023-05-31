@@ -37,7 +37,13 @@ class BinaryAsciiConverterTest {
 	void testConvertEmpty() throws Exception {
 		assertEquals("", bac.convert(null));
 	}
-	
+	@Test
+	void testExample() throws Exception {
+		String b = "011000010110001001100011";
+		assertEquals("abc", bac.convert(b));
+	}
+
+
 	/**
 	 * Test method for {@link com.smt.kata.code.BinaryAsciiConverter#convert(java.lang.String)}.
 	 */

@@ -1,5 +1,7 @@
 package com.smt.kata.distance;
 
+import com.siliconmtn.data.text.StringUtil;
+
 /****************************************************************************
  * <b>Title</b>: friendFinder.java
  * <b>Project</b>: SMT-Kata
@@ -41,7 +43,8 @@ public class FriendFinder {
 	 * @return
 	 */
 	public int calculateDistance(String line) {
-		
-		return line.length();
+		if(StringUtil.isEmpty(line) || !line.contains("F") || !line.contains("S"))
+			return -1;
+		return Math.abs(line.indexOf("F")-line.indexOf("S")) ;
 	}
 }

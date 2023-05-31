@@ -34,6 +34,18 @@ public class PascalsTriangle {
 	 * @return Pascal Triangle
 	 */
 	public int[][] build(int levels) {
-		return new int[levels][];
+		if (levels < 1) return new int[0][];
+		int[][] pascals = new int[levels][];
+
+		for (int i = 0; i < levels ; i++) {
+			pascals[i] = new int[i+1];
+			pascals[i][0] = 1;
+			pascals[i][pascals[i].length-1]= 1;
+
+			for(int j = 1; pascals[i].length > 2 && j < pascals[i].length-1; j++){
+				pascals[i][j] = pascals[i-1][j] + pascals[i-1][j-1];
+			}
+		}
+		return pascals;
 	}
 }

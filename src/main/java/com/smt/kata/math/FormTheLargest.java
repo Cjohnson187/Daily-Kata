@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /****************************************************************************
@@ -44,14 +46,9 @@ public class FormTheLargest {
 	 */
 	public long calculate(long source) {
 		
-		char[] s= (source+"").toCharArray();
-		Arrays.sort((source+"").toCharArray());
-		List<String> l = (Arrays.asList( (source+"").split(""))) ;
-		//PriorityQueue<E> P = new PriorityQueue<>();
-		
-		
-		//System.out.println(  " words = " + l.sort(Long.parseLong("0"), Long.parseLong("01")) +"  "+ l.size() ) ;
-		
-		return source ;
+
+		return  Long.valueOf(Stream.of((Math.abs(source)+"").split(""))
+				.sorted(Collections.reverseOrder())
+				.collect(Collectors.joining()));
     }
 }

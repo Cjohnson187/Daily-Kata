@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /****************************************************************************
  * <b>Title</b>: MinimumMovesEqual.java
@@ -37,6 +38,7 @@ import java.util.List;
  ****************************************************************************/
 public class MinimumMovesEqual {
 
+
 	/**
 	 * Calculates the number of moves to make each item in the array the equal
 	 * @param elements Array to make equal
@@ -44,24 +46,48 @@ public class MinimumMovesEqual {
 	 */
 	public int calculate(int[] elements) {
 		if(elements == null || elements.length < 2) return 0;
-		int total = 0;
-		for (int i: elements) {
-			total += i;
-		}
-		total = total/elements.length;
 		int moves = 0;
-		for(int i=0, j=elements.length-1; i < elements.length && j >= 0; i++) {
-			while (elements[i] != total) {
-				if(elements[i] < total) {
-					elements[i]++;
-					moves++;
-				}
-				else if (elements[i] > total) {
-					elements[i]--;
-					moves++;
-				}
-			}
-		}
+		int[] sorted = IntStream.of(elements).sorted().toArray();
+		int median = elements.length % 2 >0? sorted[sorted.length/2] :(sorted[(sorted.length/2)-1] +sorted[(sorted.length/2)])/2;
+		int iqr = Math.abs(sorted[((sorted.length/2)/2)] - sorted[((sorted.length/4)*3)+1]);
+		int upperFence = (int) (sorted[((sorted.length/4)*3)+1] + (1.5*iqr));
+		int lowerFence = (int) (sorted[((sorted.length/2)/2)] - (1.5*iqr));
+		for(int i: elements)
+		 //if outlier- move to median
+			if(i> lowerFence || i < upperFence)
+				moves+= Math.abs(median-i);
 		return moves;
 	}
+
+
+//	public int calculate(int[] elements) {
+//		if(elements == null || elements.length < 2) return 0;
+//		int median =  IntStream.of(elements).sum()/elements.length;
+//		int moves = 0;
+//		for(int i: elements)
+//			moves+= Math.abs(median-i);
+//		return moves;
+//	}
+//	public int calculate(int[] elements) {
+//		if(elements == null || elements.length < 2) return 0;
+//		int total = 0;
+//		for (int i: elements) {
+//			total += i;
+//		}
+//		total = total/elements.length;
+//		int moves = 0;
+//		for(int i=0, j=elements.length-1; i < elements.length && j >= 0; i++) {
+//			while (elements[i] != total) {
+//				if(elements[i] < total) {
+//					elements[i]++;
+//					moves++;
+//				}
+//				else if (elements[i] > total) {
+//					elements[i]--;
+//					moves++;
+//				}
+//			}
+//		}
+//		return moves;
+//	}
 }

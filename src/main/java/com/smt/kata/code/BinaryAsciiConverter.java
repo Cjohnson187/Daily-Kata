@@ -1,5 +1,12 @@
 package com.smt.kata.code;
 
+import com.siliconmtn.data.text.StringUtil;
+import org.apache.commons.lang3.StringUtils;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /****************************************************************************
  * <b>Title</b>: BinaryAsciiConverter.java
  * <b>Project</b>: SMT-Kata
@@ -44,6 +51,6 @@ public class BinaryAsciiConverter {
 	 * @return
 	 */
 	public String convert(String binary) {
-		return binary;
+		return StringUtils.isEmpty(binary) || binary.length() % 8 > 0 ? "" :  Arrays.stream(binary.split("(?<=\\G.{8})")).map(s -> "" + (char)Integer.parseInt(s, 2)).collect(Collectors.joining());
 	}
 }
