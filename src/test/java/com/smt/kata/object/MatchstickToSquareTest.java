@@ -51,7 +51,7 @@ class MatchstickToSquareTest {
 	 */
 	@Test
 	void testCanFormSquareDouble() throws Exception {
-		assertTrue(mts.canFormSquare(new int[] {1,1,2,2,2} ));
+		assertTrue(mts.canFormSquare(new int[] {1,2,2,1,2} ));
 	}
 
 	/**

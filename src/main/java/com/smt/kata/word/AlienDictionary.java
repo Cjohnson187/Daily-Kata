@@ -7,8 +7,7 @@ import java.util.List;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import com.siliconmtn.data.text.StringUtil;
-
-
+import org.apache.commons.lang3.StringUtils;
 
 
 /****************************************************************************
@@ -66,9 +65,9 @@ public class AlienDictionary {
 	 */
 	public AlienDictionary(String order) throws DatatypeConfigurationException {
 		super();
-		if(order.length() != 26)
-			throw new DatatypeConfigurationException("Don't do this");
-		
+//		if(order.length() != 26)
+//			throw new DatatypeConfigurationException("Don't do this");
+
 		this.order = order;
 	}
 
@@ -78,47 +77,28 @@ public class AlienDictionary {
 	 * @return True if the words are in order and false otherwise
 	 */
 	public boolean isSorted(String[] words) {
-		if(words == null  ||words.length <= 1  ) {
+		if (words == null || words.length <= 1 || this.order.length() != 26)
 			return false;
-		}
-		List<Integer> wordVals = new ArrayList<>();
-		for(String word: words) {
-			int val = 0;
-			
-			if (StringUtil.isEmpty(word)) continue;
-			word = word.toLowerCase();
-			for (char c: word.toCharArray()) {
-				val += order.indexOf((c+"").toLowerCase());
-			}
-			wordVals.add(val);
-			System.out.println("word = " + word );
-		}
-		for (int i = 1; i < wordVals.size(); i++) {
-			int prev = wordVals.get(i-1);
-			System.out.println("prev val = " + prev +"  " + wordVals.get(i) + "  " + (prev > wordVals.get(i)) );
-		
-			if(prev < wordVals.get(i)) return true;
-			
-		}
+		for (int i = 0; i < words.length; i++)
+			words[i] = words[i].toLowerCase();
 
-//		for(int x=1; x< words.length; x++) {
-//			if(StringUtil.isEmpty( words[x])) {
-//				String temp=words[x-1];
-//				words[x-1] = words[x];
-//				words[x] =temp;
-//				continue;
-//			}
-//			words[x] = words[x].toLowerCase();
-//			int prevW = 0;
-//			int nextW = 0;
-//			
-//			for(int i=0; i< words[x-1].length() && i < words[x].length(); i++) {
-//				prevW += order.indexOf( (words[x-1].charAt(i)+"") );
-//				nextW += order.indexOf( (words[x].charAt(i)+"") );
-//			}
-//			if(prevW >= nextW) return false;
-//		}
+		return this.checkOrder(words, 0);
+	}
+	public boolean checkOrder(String[] words , int index) {
+		if(index >= words.length) return true;
+		if (StringUtils.isEmpty(words[index])) checkOrder(words, index+1);
+		for (int i = index+1; i < words.length; i++) {
+			if (StringUtils.isEmpty(words[i])) continue;
+			if (checkWords(words[index], words[i]) == false) return false;
+		}
+		return checkOrder(words, index+1);
+	}
+	public boolean checkWords(String word1, String word2) {
+		for (int i = 0; i <= word1.length() && i <= word2.length(); i++){
+			if (this.order.indexOf(word1.charAt(i)) > this.order.indexOf(word2.charAt(i)) ) return false;
 
-		return false;
+		}
+		return true;
+		//return word1.length() > word2.length() ? false: true;
 	}
 }

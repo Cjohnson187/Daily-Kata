@@ -1,6 +1,8 @@
 package com.smt.kata.word;
 
 // JDK 11.x
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,29 +66,26 @@ public class WordSubsets {
 	 */
 	public List<String> find(String[] words, String[] searchVal) {
 		List<String> ret= new ArrayList<>();
-		if(words == null || words.length < 2 || searchVal == null || searchVal.length < 1 )
-			return ret;
+		if(words == null || words.length <1 || searchVal == null || searchVal.length <1) return ret;
+		for(String word: words) {
+			if(StringUtils.isEmpty(word)) continue;
+			String checked = word;
+			Boolean contains = true;
 
-		for(String s : words) {
-			if(s == null) continue;
-			s = s.toLowerCase();
-			boolean in = true;
-			
-			for (String i: searchVal) {
-				if(i == null) continue;
-				i = i.toLowerCase();
-				char[] c = i.toCharArray();
-	
-				for (int j =0; j < c.length; j++) 
-					if(( j+1 <  c.length && c[j+1] == c[j] && !s.contains((i)))|| !s.contains((c[j]+"")) ) 
-							in = false; 		
-				
+			for(String search: searchVal){
+				if(StringUtils.isEmpty(search) || StringUtils.isEmpty(word)) continue;
+				checked = word.toLowerCase();
+				for (Character l: search.toCharArray()) {
+					checked = checked.replaceFirst((l + "").toLowerCase(), "");
+				}
+				if (checked.length() != word.length() - search.length()){
+					contains = false;
+					break;
+				}
 			}
-			if(in) 
-				ret.add(s);
-			
+			if(contains) ret.add(word.toLowerCase());
+
 		}
-		
 		return ret;
 	}
 }

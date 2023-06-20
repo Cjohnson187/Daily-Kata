@@ -62,6 +62,6 @@ public class StringHalves {
 	 * @return True if the numbers match.  False otherwise;
 	 */
 	public boolean calculate(String s) {
-		return (StringUtil.isEmpty(s)  || s.length() < 2) || s.substring(0, s.length()/2).replaceAll("[^aeiouAEIOU]","").length() ==  s.substring( s.length()/2, s.length()).replaceAll("[^aeiouAEIOU]","").length();
+		return (!StringUtil.isEmpty(s) && s.length() > 1 && s.length() < 1000) ? s.substring(0, s.length()/2).replaceAll("[^aeiouAEIOU]","").length() ==  s.substring( s.length()/2, s.length()).replaceAll("[^aeiouAEIOU]","").length(): false;
 	}
 }

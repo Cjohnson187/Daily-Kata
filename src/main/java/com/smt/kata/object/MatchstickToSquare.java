@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /****************************************************************************
  * <b>Title</b>: MatchstickToSquare.java
@@ -44,7 +46,26 @@ public class MatchstickToSquare {
 	 * @return True if they form a square, false otherwise
 	 */
 	public boolean canFormSquare(int[] matchsticks) {
+		if(matchsticks == null || IntStream.of(matchsticks).sum()%4 >0) return false;
+		int maxLen = IntStream.of(matchsticks).sum()/4;
+		List<Integer> sticks = Arrays.stream(matchsticks).boxed().sorted().filter(s -> s <maxLen).collect(Collectors.toList());
+		int sides  = matchsticks.length - sticks.size();
+		System.out.println(sticks);
+
 	
+
+		return true;
+	}
+
+	public boolean checkFormSquare(List<Integer> sticks, int index, int maxLen, int sides) {
+
+//	while (sides < 4){
+//		for (int i = 0; i < sticks.size(); i++) {
+//			if (sticks.get(i))
+//		}
+//	}
+
+
 
 		return true;
 	}
