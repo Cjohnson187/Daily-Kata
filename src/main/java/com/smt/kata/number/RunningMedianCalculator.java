@@ -2,7 +2,10 @@ package com.smt.kata.number;
 
 // JDK 11.x
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /****************************************************************************
  * <b>Title</b>: RunningMedianCalculator.java
@@ -44,7 +47,14 @@ public class RunningMedianCalculator {
 	 * @return
 	 */
 	public List<Double> getMedianValues(int[] values) {
-		return new ArrayList<>(values.length);
+		List<Double> runningMedian = new ArrayList<>();
+		if(values == null || values.length < 1) return runningMedian;
+
+		for (int i =0; i < values.length ; i++) {
+			List<Double> subArray = Arrays.stream(values).asDoubleStream().boxed().collect(Collectors.toList()).subList(0, i+1).stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+			runningMedian.add(subArray.size()%2 > 0? subArray.get(subArray.size()/2) : (subArray.get(subArray.size()/2)  + subArray.get((subArray.size()/2 )-1))/2);
+		}
+		return runningMedian;
 	}
 
 }
