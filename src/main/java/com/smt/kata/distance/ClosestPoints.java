@@ -1,6 +1,6 @@
 package com.smt.kata.distance;
 
-import java.util.Arrays;
+import java.util.function.BiFunction;
 
 /****************************************************************************
  * <b>Title</b>: ClosestPoints.java
@@ -31,42 +31,14 @@ import java.util.Arrays;
  * @updates:
  ****************************************************************************/
 public class ClosestPoints {
+	BiFunction<Integer[], Integer[], Double> sqrt = (pointA, pointB) -> ( Math.sqrt(Math.pow((pointA[0]-pointB[0]), 2) + Math.pow((pointA[1]-pointB[1]), 2)) );
 
-	/**
-	 * Finds the two closest points and returns them
-	 * @param points Points to calculate distance against
-	 * @return Closest points
-	 */
 	public Integer[][] calculateClosestPoints(Integer[][] points) {
 		if(points == null || points.length < 2) return new Integer[0][0];
-	
-		int a = 0;
-		int b = 1;
-		double dist = calcDistance(points, 0, 1);
-		for(int i = 0; i < points.length; i++) {
-			
-			for(int j = 0; j < points.length; j++) {
-				if(j == i) continue;
-	
-				Double d = calcDistance(points, i, j);
-				if (dist > d ) {
-					a = i;
-					b = j;
-					dist = d;
-				}
-
-			}
-		
-
-		}
-		Integer[][] ret = new Integer[2][2];
-		ret[0] = points[a];
-		ret[1] = points[b];
-		
-		return ret;
+		return findClosest(points, 0, 1, new Integer[][] {points[0], points[1]});
 	}
 
-	public double calcDistance(Integer[][] points, int a, int b)  {
-		return Math.sqrt(Math.pow((points[a][0]-points[b][0]), 2) + Math.pow((points[a][1]-points[b][1]), 2));
+	public Integer[][] findClosest(Integer[][] points, int y, int x, Integer[][] closest) {
+		return (y == points.length) ? closest : findClosest(points, (x == points.length-1 && y < points.length ? y+1 : y), (x == points.length-1 ? 0 : x+1 ), (sqrt.apply(points[y], points[x]) < sqrt.apply(closest[0], closest[1])  && y != x? new Integer[][] {points[y], points[x]} : closest));
 	}
 }
