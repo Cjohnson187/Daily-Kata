@@ -52,7 +52,6 @@ public class MaximizeFirst {
 	 */
 	public int maxPossible(int first, int second) {
 		StringBuilder biggest = new StringBuilder();
-		String[] sFirst = (first+"").split("");
 		List<String> sSecond = Arrays.stream((second + "").split("")).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 		for (String s: (first+"").split("")){
 			if(!sSecond.isEmpty() && NumberUtil.toInt(s) < NumberUtil.toInt(sSecond.get(0))) {
