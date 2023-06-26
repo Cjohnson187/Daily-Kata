@@ -4,6 +4,11 @@ package com.smt.kata.number;
 
 import com.siliconmtn.data.format.NumberUtil;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 /****************************************************************************
  * <b>Title:</b> MaximizeFirst.java
@@ -46,28 +51,19 @@ public class MaximizeFirst {
 	 * @return Largest swapped number possible
 	 */
 	public int maxPossible(int first, int second) {
-
-		char[] one = (first+"").toCharArray();
-		char[] two = (second+"").toCharArray();
-		char highest = 0;
-		int loc = 0;
-		for (int i = 0; i <  one.length  ; i++) {
-			for (int j = 0; j < two.length  ; j++) {
-				if(two[j]>highest) {
-					highest = two[j];
-					loc = j;
-				}	
-			}
-			if (highest > one[i]) {
-				one[i] = highest;
-				two[loc] = 0;
+		StringBuilder biggest = new StringBuilder();
+		String[] sFirst = (first+"").split("");
+		List<String> sSecond = Arrays.stream((second + "").split("")).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		for (String s: (first+"").split("")){
+			if(!sSecond.isEmpty() && NumberUtil.toInt(s) < NumberUtil.toInt(sSecond.get(0))) {
+				biggest.append(sSecond.get(0));
+				sSecond.remove(0);
+			} else {
+				biggest.append(s);
 			}
 		}
-		String s = "";
-		for (int i = 0; i < one.length; i++) 
-			s+=one[i];
 			
-		return NumberUtil.toInt(s);
+		return NumberUtil.toInt(biggest.toString());
 	}
 
 }
