@@ -1,5 +1,10 @@
 package com.smt.kata.math;
 
+import java.util.Arrays;
+import java.util.function.Function;
+import java.util.function.IntFunction;
+import java.util.stream.IntStream;
+
 /****************************************************************************
  * <b>Title</b>: SumArray.java
  * <b>Project</b>: SMT-Kata
@@ -20,12 +25,15 @@ package com.smt.kata.math;
  * @updates:
  ****************************************************************************/
 public class SumArray {
-
+	private int[] vals;
+	private int sum = 0;
 	/**
 	 * Constructor to assigns vals
 	 * @param vals
 	 */
 	public SumArray(int[] vals) {
+		this.vals = vals;
+		this.sum = IntStream.of(vals).sum();
 		
 	}
 	
@@ -36,7 +44,7 @@ public class SumArray {
 	 * @return Sum of values in range
 	 */
 	public int sum(int i, int j) {
-		return i+j;
+		return vals[i] + vals[j];
 	}
 
 }
