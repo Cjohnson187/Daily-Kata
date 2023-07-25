@@ -38,6 +38,12 @@ public class TransposeMatrix {
 	 * @return
 	 */
 	public String parse(String[][] matrix) {
-		return matrix[0][0];
+		if(matrix == null || matrix.length <1)
+			return "";
+
+		return parse(matrix, "", 0, 0);
+	}
+	public String parse(String[][] matrix, String sentence, int y, int x) {
+		return (y >= matrix.length-1 && x >= matrix[matrix.length-1].length-1) ? (sentence += " " + matrix[y][x]).trim() : (parse(matrix, (sentence += " " + matrix[y][x]), (y >= matrix.length-1 ? 0 : y+1), (y >=matrix.length-1 ? x+1 : x)));
 	}
 }
