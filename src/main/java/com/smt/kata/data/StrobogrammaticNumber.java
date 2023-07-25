@@ -1,5 +1,7 @@
 package com.smt.kata.data;
 
+import java.util.Comparator;
+
 /****************************************************************************
  * <b>Title</b>: StrobogrammaticNumber.java
  * <b>Project</b>: SMT-Kata
@@ -27,18 +29,37 @@ public class StrobogrammaticNumber {
 	 */
 	public boolean isStrobogrammaticNumber(int source) {
 		if(source < 1) return false;
-		String s = source +"";
-		
-		for (int i = 0 ,j= s.length()-1; i < s.length()/2 && j > (s.length()/2); i++, j--) {
-			if((s.charAt(i) == '9' && s.charAt(j) == '9') || (s.charAt(i) == '6' && s.charAt(j) == '6')) 
-				return false;
-			else if((s.charAt(i) == '9' && s.charAt(j) == '6')|| (s.charAt(i) == '6' && s.charAt(j) == '9') || s.charAt(i) == s.charAt(j)) 
-				continue;
-			else 
-				return false;
-		}
+		Comparator<String> spin = new Comparator<>() {
+			@Override
+			public int compare(String s, String t1) {
+				for (int i = 0; i < s.length(); i++) {
+					if(s.charAt(i) != t1.charAt(i) || s.charAt(i) == '9' || s.charAt(i) == '6'){
+						if ((s.charAt(i) == '6' && t1.charAt(i) == '9') || (s.charAt(i) == '9' && t1.charAt(i) == '6')) continue;
+						else return -1;
+					}
+				}
+				return 0;
+			}
+		};
 
-		return true;
+		String rev = new StringBuilder((source+"")).reverse().toString();
+		return spin.compare((source+""), rev.toString()) == 0;
 	}
+
+//	public boolean isStrobogrammaticNumber(int source) {
+//		if(source < 1) return false;
+//		String s = source +"";
+//
+//		for (int i = 0 ,j= s.length()-1; i < s.length()/2 && j > (s.length()/2); i++, j--) {
+//			if((s.charAt(i) == '9' && s.charAt(j) == '9') || (s.charAt(i) == '6' && s.charAt(j) == '6'))
+//				return false;
+//			else if((s.charAt(i) == '9' && s.charAt(j) == '6')|| (s.charAt(i) == '6' && s.charAt(j) == '9') || s.charAt(i) == s.charAt(j))
+//				continue;
+//			else
+//				return false;
+//		}
+//
+//		return true;
+//	}
 
 }
